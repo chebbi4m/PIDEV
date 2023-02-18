@@ -17,13 +17,15 @@ public class Main {
     
     public static void main(String[] args) {
        
-       Colis cls = new Colis ("abcd123", 152, 243, 42, 2, true, "Tunis", 2, 2);
+       Colis cls = new Colis ("abcd123", 152, 243, 42, 2, false,"Sousse", "Tunis", "Moi", 2, 2);
  
+       
+       
+
        ColisService cs = new ColisService();
        cs.ajouterColis(cls);
-
         
-        System.out.println(cs.afficherColis());
+       System.out.println(cs.afficherColis());
         
     }
 }

@@ -21,7 +21,7 @@ public class ColisService implements IColis{
     @Override
     public void ajouterColis(Colis cls) {
         try {
-            String sql="insert into colis values(null,?,?,?,?,?,?,?,?,?)"; 
+            String sql="insert into colis values(null,?,?,?,?,?,?,?,?,?,?,?)"; 
             PreparedStatement ste= myconn.prepareStatement(sql);
             ste.setString(1, cls.getRef());
             ste.setInt(2, cls.getHauteur());
@@ -29,9 +29,11 @@ public class ColisService implements IColis{
             ste.setInt(4, cls.getPoids());
             ste.setInt(5, cls.getPrix());
             ste.setBoolean(6, cls.getFragile());
-            ste.setString(7, cls.getDestination());
-            ste.setInt(8, cls.getId_client());
-            ste.setInt(9, cls.getId_paiment());
+            ste.setString(7, cls.getDepart());
+            ste.setString(8, cls.getDestination());
+            ste.setString(9, cls.getNom_receveur());
+            ste.setInt(10, cls.getId_client());
+            ste.setInt(11, cls.getId_paiment());
             ste.executeUpdate();
             System.out.println("colis ajouté");
         } catch (SQLException ex) {
@@ -41,7 +43,7 @@ public class ColisService implements IColis{
     
      @Override
     public void modifierColis(Colis cls) {
-        String sql="update colis set (?,?,?,?,?,?,?,?,?) where id= ?";
+        String sql="update colis set (?,?,?,?,?,?,?,?,?,?,?) where id= ?";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
                 ste.setString(1, cls.getRef());
@@ -50,9 +52,11 @@ public class ColisService implements IColis{
                 ste.setInt(4, cls.getPoids());
                 ste.setInt(5, cls.getPrix());
                 ste.setBoolean(6, cls.getFragile());
+                ste.setString(8, cls.getDepart());
                 ste.setString(7, cls.getDestination());
-            ste.setInt(8, cls.getId_client());
-            ste.setInt(9, cls.getId_paiment());
+                ste.setString(8, cls.getNom_receveur());
+                ste.setInt(9, cls.getId_client());
+                ste.setInt(10, cls.getId_paiment());
                 ste.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -79,9 +83,11 @@ public class ColisService implements IColis{
                         s.getInt(5),
                         s.getInt(6),
                         s.getBoolean(7),
+                        s.getString("depart"),
                         s.getString("destination"),
-                        s.getInt(9),
-                        s.getInt(10));
+                        s.getString("nom_receveur"),
+                        s.getInt(11),
+                        s.getInt(12));
                 colis.add(cls);
        
             }
@@ -89,6 +95,6 @@ public class ColisService implements IColis{
             System.out.println(ex.getMessage());
         }
         return colis;
-    }  
+    } 
     
 }

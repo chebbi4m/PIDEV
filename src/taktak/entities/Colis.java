@@ -17,21 +17,25 @@ public class Colis {
     private int poids;
     private int prix;
     private boolean fragile;
+    private String depart;
     private String destination;
+    private String nom_receveur;
     private int id_client;
     private int id_paiement;
     
     public Colis(){
         
     }
-    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile, String destination, int id_client, int id_paiement) {
+    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile,String depart, String destination, String nom_receveur, int id_client, int id_paiement) {
         this.ref = ref;
         this.hauteur = hauteur;
         this.largeur = largeur;
         this.poids = poids;
         this.prix = prix;
         this.fragile = fragile;
+        this.depart = depart;
         this.destination = destination;
+        this.nom_receveur = nom_receveur;
         this.id_client = id_client;
         this.id_paiement = id_paiement;
     }
@@ -65,9 +69,17 @@ public class Colis {
     public boolean getFragile() {
         return this.fragile;
     }
+    
+    public String getDepart() {
+        return this.depart;
+    }
 
     public String getDestination() {
         return this.destination;
+    }
+    
+    public String getNom_receveur() {
+        return this.nom_receveur;
     }
 
     public int getId_client() {
@@ -106,9 +118,17 @@ public class Colis {
     public void setFragile(boolean fragile) {
         this.fragile = fragile;
     }
+    
+    public void setDepart(String depart) {
+        this.depart = depart;
+    }
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+    
+    public void setNom_receveur(String nom_receveur) {
+        this.nom_receveur = nom_receveur;
     }
 
     public void setId_client(int id_client) {
@@ -142,10 +162,8 @@ public class Colis {
 
     @Override
     public String toString() {
-        return "Colis{" + "ref=" + ref + ", hauteur=" + hauteur + ", largeur=" + largeur + ", poids=" + poids + ", prix=" + prix + ", fragile=" + fragile + ", destination=" + destination + ", id_client=" + id_client + ", id_paiement=" + id_paiement + '}';
+        return "Colis{" + "ref=" + ref + ", hauteur=" + hauteur + ", largeur=" + largeur + ", poids=" + poids + ", prix=" + prix + ", fragile=" + fragile + " depart=" + depart + ", destination=" + destination + " nom_receveur=" +nom_receveur + ", id_client=" + id_client + ", id_paiement=" + id_paiement + '}';
     }
-    
-    
     
 }
 
