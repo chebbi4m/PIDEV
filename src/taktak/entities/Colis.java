@@ -24,7 +24,8 @@ public class Colis {
     public Colis(){
         
     }
-    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile, String destination, int id_client, int id_paiement) {
+    public Colis(int id, String ref, int hauteur, int largeur, int poids, int prix, boolean fragile, String destination, int id_client, int id_paiement) {
+        this.id= id;
         this.ref = ref;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -74,7 +75,7 @@ public class Colis {
         return this.id_client;
     }
 
-    public int getId_paiment() {
+    public int getId_paiement() {
         return this.id_paiement;
     }
     //setters

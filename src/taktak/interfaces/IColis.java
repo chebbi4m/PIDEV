@@ -14,7 +14,7 @@ import taktak.entities.Colis;
  */
 public interface IColis {
     public void ajouterColis(Colis cls);
-    public void modifierColis(Colis cls);
     public void supprimerColis(Colis cls);
+    public void modifierColis(Colis cls);
     public List<Colis> afficherColis();
 }
