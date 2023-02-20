@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class MyConnection {
     
-    static String url="jdbc:mysql://localhost:3306/taktak";
+    static String url="jdbc:mysql://localhost:3306/taktak2";
     static String login="root";
     static String password;
     static Connection myConnexBD;

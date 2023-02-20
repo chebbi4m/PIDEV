@@ -10,6 +10,8 @@ import java.util.List;
 import taktak.interfaces.IColis;
 import taktak.utils.MyConnection;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author LENOVO THINKPAD E15
@@ -21,7 +23,7 @@ public class ColisService implements IColis{
     @Override
     public void ajouterColis(Colis cls) {
         try {
-            String sql="insert into colis values(null,?,?,?,?,?,?,?,?,?,?,?)"; 
+            String sql="insert into colis values(null,?,?,?,?,?,?,?,?,?,?,?,?)"; 
             PreparedStatement ste= myconn.prepareStatement(sql);
             ste.setString(1, cls.getRef());
             ste.setInt(2, cls.getHauteur());
@@ -34,6 +36,7 @@ public class ColisService implements IColis{
             ste.setString(9, cls.getNom_receveur());
             ste.setInt(10, cls.getId_client());
             ste.setInt(11, cls.getId_paiment());
+            ste.setInt(12, cls.getId_livreur());
             ste.executeUpdate();
             System.out.println("colis ajouté");
         } catch (SQLException ex) {
@@ -43,7 +46,7 @@ public class ColisService implements IColis{
     
      @Override
     public void modifierColis(Colis cls) {
-        String sql="update colis set (?,?,?,?,?,?,?,?,?,?,?) where id= ?";
+        String sql="update colis set (?,?,?,?,?,?,?,?,?,?,?,?) where id= ?";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
                 ste.setString(1, cls.getRef());
@@ -57,15 +60,28 @@ public class ColisService implements IColis{
                 ste.setString(8, cls.getNom_receveur());
                 ste.setInt(9, cls.getId_client());
                 ste.setInt(10, cls.getId_paiment());
+                ste.setInt(11, cls.getId_livreur());
                 ste.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
         }    
     }
     
-    @Override
+    /*@Override
     public void supprimerColis(Colis cls) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }*/
+    
+    @Override
+    public void supprimerColis(Colis cls) {
+                try {
+            PreparedStatement preparedStatement = myconn.prepareStatement("DELETE FROM colis where id = ?");
+            preparedStatement.setInt(1,cls.getId());
+            preparedStatement.executeUpdate();
+             System.out.println("colis supprimé");
+        } catch (SQLException ex) {
+            Logger.getLogger(ColisService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -87,7 +103,8 @@ public class ColisService implements IColis{
                         s.getString("destination"),
                         s.getString("nom_receveur"),
                         s.getInt(11),
-                        s.getInt(12));
+                        s.getInt(12),
+                        s.getInt(13));
                 colis.add(cls);
        
             }

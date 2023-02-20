@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package taktak.entities;
+package gui;
 
 /**
  *
@@ -27,8 +27,8 @@ public class Colis {
     public Colis(){
         
     }
-    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile,String depart, String destination, String nom_receveur, int id_client, int id_paiement, int id_livreur) {
-        
+    public Colis(int id,String ref, int hauteur, int largeur, int poids, int prix, boolean fragile,String depart, String destination, String nom_receveur, int id_client, int id_paiement, int id_livreur) {
+        this.id = id;
         this.ref = ref;
         this.hauteur = hauteur;
         this.largeur = largeur;
@@ -175,8 +175,6 @@ public class Colis {
     @Override
     public String toString() {
         return "Colis{" + "ref=" + ref + ", hauteur=" + hauteur + ", largeur=" + largeur + ", poids=" + poids + ", prix=" + prix + ", fragile=" + fragile + " depart=" + depart + ", destination=" + destination + " nom_receveur=" +nom_receveur + ", id_client=" + id_client + ", id_paiement=" + id_paiement + ", id_livreur=" + id_livreur + '}';
-    }
-    
+    }   
 }
-
 

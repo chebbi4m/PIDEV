@@ -7,6 +7,7 @@ package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author LENOVO THINKPAD E15
  */
-public class ColisFXMLController implements Initializable {
+public class AffichageColisController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,5 +24,11 @@ public class ColisFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+       @FXML
+    public void ajouterColis(){
+    
+            System.out.println("ok");
+}
     
 }
