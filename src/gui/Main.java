@@ -13,10 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author LENOVO THINKPAD E15
- */
+
+
+
 public class Main extends Application {
     
     @Override
