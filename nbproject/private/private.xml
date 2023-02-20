@@ -3,13 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/taktak/entities/Colis.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/gui/ColisFXMLController.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/gui/ColisFXML.fxml</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/taktak/interfaces/IColis.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/taktak/interfaces/Main.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/taktak/utils/MyConnection.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Pidev3A15/src/gui/Main.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/gui/ReclamationFXMLController.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/gui/reclamationFXML.fxml</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/interfaces/Main.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/interfaces/IColis.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/gui/ColisFXML.fxml</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/services/ReclamationService.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/services/ColisService.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/utils/MyConnection.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/entities/reclamation.java</file>
+            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/interfaces/IReclamation.java</file>
         </group>
     </open-files>
 </project-private>
