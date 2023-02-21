@@ -22,6 +22,12 @@ public class Livreur {
     
     //constructors
 
+    public Livreur() {}
+    
+    public Livreur(int id) {
+        this.id = id;
+    }
+    
     public Livreur(int id, String nom, String prenom, String email, String numtel, String login, String mdp) {
         this.id = id;
         this.nom = nom;
