@@ -22,10 +22,10 @@ public class paiementMain extends Application {
      @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("partenaire.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("paiementCrud.fxml"));
             Scene scene = new Scene(root);
 
-            primaryStage.setTitle("Gestion Partenaire");
+            primaryStage.setTitle("Gestion Paiement");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

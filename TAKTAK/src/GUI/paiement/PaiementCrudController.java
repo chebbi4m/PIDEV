@@ -97,7 +97,7 @@ public class PaiementCrudController implements Initializable {
         ResultSet rs = prepareStatement.executeQuery();
         while (rs.next()) {
             Paiement paiement = new Paiement (
-                rs.getInt("ID_colis"),
+                rs.getInt("Id_colis"),
                 rs.getString("Type"),
                 rs.getString("Date"));
             PaiementList.add(paiement);
@@ -112,7 +112,7 @@ public class PaiementCrudController implements Initializable {
   public void afficherPaiement() throws SQLException{
  
      ObservableList<Paiement> List = getPaiementList();
-     colID_colis.setCellValueFactory(new PropertyValueFactory<>("ID_colis"));
+     colID_colis.setCellValueFactory(new PropertyValueFactory<>("Id_colis"));
      colType.setCellValueFactory(new PropertyValueFactory<>("Type"));
      colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
     
@@ -125,19 +125,45 @@ public class PaiementCrudController implements Initializable {
     
   private void ajouterPaiement() throws SQLException{
 
-    String query = "INSERT INTO paiement VALUES ('" + tfID_colis.getText() + "', '" + 
-            tfType.getText() + "',  '" + tfDate.getText() + "')";
-    executeQuery(query);
+   // String query = "INSERT INTO paiement VALUES ('" + tfID_colis.getText() + "', '" + 
+     //       tfType.getText() + "',  '" + tfDate.getText() + "')";
+    //executeQuery(query);
+    try{
+    PreparedStatement stmt = myconn.prepareStatement("INSERT INTO paiement (Id_colis,type, date) VALUES (?, ?, ?)");
+            stmt.setString(1, tfID_colis.getText());
+            stmt.setString(2, tfType.getText());
+            stmt.setString(3, tfDate.getText());
+            
+            stmt.executeUpdate();
+            System.out.println("Paiement insére");
+               } catch (SQLException ex) {
+            System.out.println(ex);
+               }
    afficherPaiement();
 }
 
 
 private void modifierPaiement()throws SQLException{
 
-    String query = "UPDATE paiement SET nom='"  + tfType.getText() +  "'";
+   // String query = "UPDATE paiement SET nom='"  + tfType.getText() +  "'";
 
-    executeQuery(query);
-     afficherPaiement();
+    //executeQuery(query);
+    // afficherPaiement();
+    
+    String sql="UPDATE paiement SET type = ?   WHERE Id_colis = ? ";
+       try{
+            PreparedStatement ste=myconn.prepareStatement(sql);
+            ste.setString(1,tfType.getText());
+            ste.setString(2,tfID_colis.getText());
+
+                ste.executeUpdate();
+                System.out.println(" paiement modifié " );
+    
+    } catch (SQLException ex) {
+            System.out.println(ex);
+        } 
+    
+    
 }
  
 
