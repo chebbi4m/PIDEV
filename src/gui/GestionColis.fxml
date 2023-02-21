@@ -36,7 +36,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="180.0" layoutY="252.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #1130AE;" text="Mes colis" textFill="WHITE">
+            <Button layoutX="180.0" layoutY="252.0" mnemonicParsing="false" onAction="#BtnColis" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #1130AE;" text="Mes colis" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

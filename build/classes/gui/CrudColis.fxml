@@ -11,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #fff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.CrudColisController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CrudColisController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: #7B829F;">
          <children>
@@ -30,20 +29,20 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView layoutX="50.0" layoutY="128.0" prefHeight="211.0" prefWidth="901.0">
+      <TableView fx:id="Colis" layoutX="50.0" layoutY="128.0" prefHeight="211.0" prefWidth="901.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="REF" />
-          <TableColumn prefWidth="75.0" text="HAUTEUR" />
-            <TableColumn prefWidth="75.0" text="LARGEUR" />
-            <TableColumn prefWidth="75.0" text="POIDS" />
-            <TableColumn prefWidth="75.0" text="PRIX" />
-            <TableColumn prefWidth="75.0" text="FRAGILE" />
-            <TableColumn prefWidth="75.0" text="DEPART" />
-            <TableColumn prefWidth="75.0" text="DESTINATION" />
-            <TableColumn prefWidth="75.0" text="NOM RECEVEUR" />
-            <TableColumn prefWidth="75.0" text="ID CLIENT" />
-            <TableColumn prefWidth="75.0" text="ID PARTENAIRE" />
-            <TableColumn prefWidth="75.0" text="ID LIVREUR" />
+          <TableColumn fx:id="refc" prefWidth="75.0" text="REF" />
+          <TableColumn fx:id="hauteurc" prefWidth="75.0" text="HAUTEUR" />
+            <TableColumn fx:id="largeurc" prefWidth="75.0" text="LARGEUR" />
+            <TableColumn fx:id="poidsc" prefWidth="75.0" text="POIDS" />
+            <TableColumn fx:id="prixc" prefWidth="75.0" text="PRIX" />
+            <TableColumn fx:id="fragilec" prefWidth="75.0" text="FRAGILE" />
+            <TableColumn fx:id="departc" prefWidth="75.0" text="DEPART" />
+            <TableColumn fx:id="destinationc" prefWidth="75.0" text="DESTINATION" />
+            <TableColumn fx:id="nomReceveurc" prefWidth="75.0" text="NOM RECEVEUR" />
+            <TableColumn fx:id="idClientc" prefWidth="75.0" text="ID CLIENT" />
+            <TableColumn fx:id="idPartenairec" prefWidth="75.0" text="ID PARTENAIRE" />
+            <TableColumn fx:id="idLivreurc" prefWidth="75.0" text="ID LIVREUR" />
         </columns>
       </TableView>
       <JFXButton buttonType="RAISED" layoutX="702.0" layoutY="409.0" onAction="#AjouterColis" prefHeight="50.0" prefWidth="147.0" style="-fx-background-color: #1130AE;" text="AJOUTER" textFill="WHITE">
@@ -52,11 +51,6 @@
          </font>
       </JFXButton>
       <JFXButton layoutX="163.0" layoutY="403.0" onAction="#SupprimerColis" prefHeight="50.0" prefWidth="147.0" style="-fx-background-color: red;" text="SUPPRIMER" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="16.0" />
-         </font>
-      </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="437.0" layoutY="405.0" onAction="#ModifierColis" prefHeight="50.0" prefWidth="147.0" style="-fx-background-color: #000;" text="MODIFIER" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
