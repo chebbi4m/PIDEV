@@ -75,6 +75,7 @@ public class LivreurController implements Initializable {
         updateBtn.setOnAction(this::handleUpdateButton);
     }
 
+    @FXML
     public void handleAddButton(ActionEvent event) {
         Livreur newLivreur = new Livreur();
         newLivreur.setId(Integer.parseInt(tfid.getText()));
@@ -92,6 +93,7 @@ public class LivreurController implements Initializable {
         livreurObservableList.addAll(livreurList);
     }
 
+    @FXML
     public void handleDeleteButton(ActionEvent event) {
         Livreur newLivreur = new Livreur();
         newLivreur.setId(Integer.parseInt(tfid.getText()));
@@ -103,6 +105,7 @@ public class LivreurController implements Initializable {
         livreurObservableList.addAll(livreurList);
     }
 
+    @FXML
     public void handleUpdateButton(ActionEvent event) {
         Livreur newLivreur = new Livreur();
         newLivreur.setId(Integer.parseInt(tfid.getText()));

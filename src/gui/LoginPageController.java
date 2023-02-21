@@ -102,8 +102,8 @@ public class LoginPageController implements Initializable {
                 System.out.println("in database");
                 System.out.println(mdp);
                 System.out.println(login);
-                if (login == loginco.getText()){
-                    if(mdp == mdpco.getText()){
+                if (login.equals( loginco.getText())){
+                    if(mdp.equals( mdpco.getText())){
                          mpdtemp = true;
                          logintemp = true;
                          break;
