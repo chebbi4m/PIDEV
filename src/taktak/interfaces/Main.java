@@ -23,7 +23,7 @@ public class Main {
        
 
        ColisService cs = new ColisService();
-       cs.ajouterColis(cls);
+       //cs.ajouterColis(cls);
        //cs.supprimerColis(cls);
         
        System.out.println(cs.afficherColis());

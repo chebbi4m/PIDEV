@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ColisFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GestionColisController">
    <children>
-      <Button layoutX="252.0" layoutY="274.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="190.0" text="AJOUTER COLIS">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Text fill="#1130ae" layoutX="390.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTION COLIS">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Text>
-      <Button layoutX="582.0" layoutY="274.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="190.0" text="AFFICHER COLIS">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
+      <AnchorPane prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #7B829F;">
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="165.0" fitWidth="311.0" layoutX="204.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/taktakLogo.png" />
+               </image>
+            </ImageView>
+            <Text fill="#f5f0f0" layoutX="477.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GESTION DES COLIS">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="200.0" prefHeight="426.0" prefWidth="1000.0" style="-fx-background-color: #FFF;">
+         <children>
+            <Button layoutX="400.0" layoutY="89.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #000;" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="626.0" layoutY="252.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #1130AE;" text="Historique" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="180.0" layoutY="252.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #1130AE;" text="Mes colis" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="436.0" layoutY="130.0" size="18" />
+            <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" layoutX="665.0" layoutY="293.0" size="18" />
+            <FontAwesomeIconView fill="WHITE" glyphName="CUBE" layoutX="224.0" layoutY="293.0" size="18" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
