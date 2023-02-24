@@ -156,25 +156,25 @@ private void modifierPaiement()throws SQLException{
             ste.setString(1,tfType.getText());
             ste.setString(2,tfID_colis.getText());
 
-                ste.executeUpdate();
-                System.out.println(" paiement modifié " );
+            ste.executeUpdate();
+            System.out.println(" paiement modifié " );
     
     } catch (SQLException ex) {
             System.out.println(ex);
         } 
     
-    
+    afficherPaiement();
 }
  
 
-    private void executeQuery(String query) throws SQLException {
+   // private void executeQuery(String query) throws SQLException {
   
-            Statement st;
+     //       Statement st;
             
-            st=myconn.createStatement();
-            st.executeUpdate(query);
-             st.close();
-    }
+       //     st=myconn.createStatement();
+          //  st.executeUpdate(query);
+        //     st.close();
+    //}
     
     
     //click on table the query showed on textfield 

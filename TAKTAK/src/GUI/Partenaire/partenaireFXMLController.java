@@ -150,7 +150,8 @@ public class partenaireFXMLController implements Initializable {
  public void afficherPartenaire() throws SQLException{
  
      ObservableList<Partenaire> List = getPartenaireList();
-     colID.setCellValueFactory(new PropertyValueFactory<Partenaire , Integer>("id"));
+
+        colID.setCellValueFactory(new PropertyValueFactory<Partenaire , Integer>("id"));
      colNom.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("nom"));
      colAdresse.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("adresse"));
      colEmail.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("email"));
