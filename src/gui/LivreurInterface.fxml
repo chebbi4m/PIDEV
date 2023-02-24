@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFF7E9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurInterfaceController">
+   <children>
+      <VBox fx:id="LIvreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #D3CEDF;">
+         <children>
+            <HBox fx:id="ListeCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
+               <VBox.margin>
+                  <Insets top="61.0" />
+               </VBox.margin>
+               <children>
+                  <Label text="Liste des colis">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="HistoriqueCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
+               <children>
+                  <Label text="Historique">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="ReclamationsCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
+               <children>
+                  <Label text="Voir les réclamations" textOverrun="CLIP">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="38.0" right="30.0" top="20.0" />
+         </padding>
+      </VBox>
+      <HBox prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #D3CEDF;">
+         <children>
+            <ImageView fx:id="LogoCont" fitHeight="92.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/image_2023-02-24_095333949-removebg-preview.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <HBox prefHeight="75.0" prefWidth="278.0" spacing="30.0">
+               <children>
+                  <Label fx:id="LivreurCont" prefWidth="111.0" text="LIVREUR" textFill="#4b56d2">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="LivreurLogo" fitHeight="64.0" fitWidth="57.0" onMouseClicked="#OpenProfile" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo_user-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="LogoutBtn" mnemonicParsing="false" prefWidth="129.0" text="Logout" textFill="#4b56d2">
+                     <HBox.margin>
+                        <Insets top="14.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets left="-25.0" right="27.0" top="31.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
+      <TableView fx:id="LivreurTable" layoutX="265.0" layoutY="205.0" prefHeight="482.0" prefWidth="765.0">
+        <columns>
+          <TableColumn fx:id="RefCol" prefWidth="128.0" style="-fx-background-color: #865DFF;" text="Ref" />
+          <TableColumn fx:id="NomCol" prefWidth="165.0" style="-fx-background-color: #865DFF;" text="Nom" />
+            <TableColumn fx:id="DestinationCol" prefWidth="174.0" style="-fx-background-color: #865DFF;" text="Destination" />
+            <TableColumn fx:id="PayementCol" prefWidth="129.0" style="-fx-background-color: #865DFF;" text="Payement" />
+            <TableColumn fx:id="EtatCol" prefWidth="168.0" style="-fx-background-color: #865DFF;" text="Etat" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

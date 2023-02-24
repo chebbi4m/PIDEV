@@ -75,7 +75,7 @@
                   <Image url="@../../../../AppData/Local/Temp/icons8_lock_512px.png" />
                </image>
             </ImageView>
-            <Button fx:id="btncreer" layoutX="93.0" layoutY="428.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #3120E0;" text="S'inscrire" />
+            <Button fx:id="btncreer" layoutX="123.0" layoutY="424.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="30.0" prefWidth="114.0" style="-fx-background-color: #3120E0;" text="S'inscrire" />
             <TextField fx:id="creerEmail" layoutX="81.0" layoutY="206.0" promptText="Email" style="-fx-border-color: #3120E0;" />
             <ImageView fitHeight="22.0" fitWidth="27.0" layoutX="42.0" layoutY="208.0">
                <image>

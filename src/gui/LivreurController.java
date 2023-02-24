@@ -128,7 +128,6 @@ public void loadData() {
     livreurList.addAll(livreurService.afficherLivreur());
     livreurObservableList.clear();
     livreurObservableList.addAll(livreurList);
-
     idcol.setCellValueFactory(new PropertyValueFactory<>("id"));
     nomcol.setCellValueFactory(new PropertyValueFactory<>("nom"));
     prenomcol.setCellValueFactory(new PropertyValueFactory<>("prenom"));
