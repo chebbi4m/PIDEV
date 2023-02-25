@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.ColisController">
+   <children>
+      <AnchorPane prefHeight="67.0" prefWidth="1080.0" style="-fx-background-color: #7B829F;">
+         <children>
+            <ImageView fitHeight="82.0" fitWidth="160.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/taktakLogo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="82.0" prefHeight="642.0" prefWidth="188.0" style="-fx-background-color: #7B829F;">
+         <children>
+            <VBox layoutX="17.0" layoutY="159.0" prefHeight="324.0" prefWidth="155.0" spacing="20.0">
+               <children>
+                  <JFXButton prefHeight="60.0" prefWidth="165.0" style="-fx-background-color: black;" text="ACCUEIL" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="165.0" style="-fx-background-color: #D8D8D8;" text="COLIS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="70.0" prefHeight="60.0" prefWidth="165.0" style="-fx-background-color: black;" text="HISTORIQUE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="165.0" style="-fx-background-color: black;" text="RECLAMATION" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

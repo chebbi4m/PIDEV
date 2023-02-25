@@ -29,7 +29,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView fx:id="Colis" layoutX="50.0" layoutY="128.0" prefHeight="211.0" prefWidth="901.0">
+      <TableView fx:id="tablev" layoutX="50.0" layoutY="128.0" prefHeight="211.0" prefWidth="901.0">
         <columns>
           <TableColumn fx:id="refc" prefWidth="75.0" text="REF" />
           <TableColumn fx:id="hauteurc" prefWidth="75.0" text="HAUTEUR" />
@@ -50,7 +50,7 @@
             <Font name="Arial Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="163.0" layoutY="403.0" onAction="#SupprimerColis" prefHeight="50.0" prefWidth="147.0" style="-fx-background-color: red;" text="SUPPRIMER" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="230.0" layoutY="409.0" onAction="#RafraichirColis" prefHeight="50.0" prefWidth="147.0" style="-fx-background-color: black;" text="RAFRAICHIR" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>

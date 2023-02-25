@@ -40,7 +40,7 @@ import javafx.stage.StageStyle;
 public class CrudColisController implements Initializable {
     
      @FXML
-    private TableView<?> tablev;
+    private TableView<Colis> tablev;
     
      @FXML
     private TableColumn<Colis, String> refc;
@@ -93,11 +93,11 @@ public class CrudColisController implements Initializable {
         }
     }
 
-    @FXML
-    void SupprimerColis(ActionEvent event) {
+     @FXML
+    void RafraichirColis(ActionEvent event) {
 
     }
-
+    
     @FXML
     void AjouterColis(ActionEvent event) {
         try{
@@ -126,13 +126,13 @@ public class CrudColisController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
-        //afficherColis();
+        afficherColis();
     }
     
      public ObservableList <Colis> afficherListColis() {
         ObservableList<Colis> colis = FXCollections.observableArrayList();
         try {
-            String sql = "select * from colis";
+            String sql = "select from colis order by id desc";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -143,12 +143,14 @@ public class CrudColisController implements Initializable {
                         s.getInt(5),
                         s.getInt(6),
                         s.getBoolean(7),
+                        s.getBoolean(8),
                         s.getString("depart"),
                         s.getString("destination"),
-                        s.getString("nom_receveur"),
-                        s.getInt(11),
-                        s.getInt(12),
-                        s.getInt(13));
+                        s.getString("etat_colis"),
+                        s.getString("zone"),
+                        s.getBoolean(13),
+                        s.getInt(14),
+                        s.getInt(15));
                 colis.add(cls);
        
             }
@@ -159,7 +161,7 @@ public class CrudColisController implements Initializable {
 
         }
      
-        /*public void afficherColis (){
+        public void afficherColis (){
                 ObservableList<Colis> list = afficherListColis();
                 refc.setCellValueFactory(new PropertyValueFactory<Colis,String>("ref"));
                 hauteurc.setCellValueFactory(new PropertyValueFactory<Colis,Integer>("hauteur"));
@@ -174,7 +176,7 @@ public class CrudColisController implements Initializable {
                 idPartenairec.setCellValueFactory(new PropertyValueFactory<Colis,Integer>("id_partenaire"));
                 idLivreurc.setCellValueFactory(new PropertyValueFactory<Colis,Integer>("id_livreur"));
                 tablev.setItems(list);
-        }*/
+        }
     
      public void retour (ActionEvent e) throws IOException{
             Stage stage = new Stage ();

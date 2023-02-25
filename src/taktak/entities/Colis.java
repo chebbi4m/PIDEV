@@ -17,17 +17,19 @@ public class Colis {
     private int poids;
     private int prix;
     private boolean fragile;
+    private boolean inflammable;
     private String depart;
     private String destination;
-    private String nom_receveur;
+    private String etat_colis;
+    private String zone;
+    private boolean urgent;
     private int id_client;
-    private int id_paiement;
     private int id_livreur;
     
     public Colis(){
         
     }
-    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile,String depart, String destination, String nom_receveur, int id_client, int id_paiement, int id_livreur) {
+    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile, boolean inflammable ,String depart, String destination, String etat_colis, String zone, boolean urgent, int id_client, int id_livreur) {
         
         this.ref = ref;
         this.hauteur = hauteur;
@@ -35,11 +37,13 @@ public class Colis {
         this.poids = poids;
         this.prix = prix;
         this.fragile = fragile;
+        this.inflammable = inflammable;
         this.depart = depart;
         this.destination = destination;
-        this.nom_receveur = nom_receveur;
+        this.etat_colis = etat_colis;
+        this.zone = zone;
+        this.urgent = urgent;
         this.id_client = id_client;
-        this.id_paiement = id_paiement;
         this.id_livreur = id_livreur;
     }
     
@@ -73,6 +77,10 @@ public class Colis {
         return this.fragile;
     }
     
+    public boolean getInflammable(){
+        return this.inflammable;
+    }
+    
     public String getDepart() {
         return this.depart;
     }
@@ -81,16 +89,20 @@ public class Colis {
         return this.destination;
     }
     
-    public String getNom_receveur() {
-        return this.nom_receveur;
+    public String getEtat_colis(){
+        return this.etat_colis;
+    }
+    
+    public String getZone(){
+        return this.zone;
+    }
+    
+    public boolean getUrgent(){
+        return this.urgent;
     }
 
     public int getId_client() {
         return this.id_client;
-    }
-
-    public int getId_paiment() {
-        return this.id_paiement;
     }
     
     public int getId_livreur() {
@@ -127,6 +139,10 @@ public class Colis {
         this.fragile = fragile;
     }
     
+    public void setInflammable(boolean inflammable) {
+        this.inflammable = inflammable;
+    }
+    
     public void setDepart(String depart) {
         this.depart = depart;
     }
@@ -135,16 +151,20 @@ public class Colis {
         this.destination = destination;
     }
     
-    public void setNom_receveur(String nom_receveur) {
-        this.nom_receveur = nom_receveur;
+    public void setEtat_colis(String etat_colis) {
+        this.etat_colis = etat_colis;
+    }
+    
+    public void setZone(String zone) {
+        this.zone = zone;
+    }
+    
+    public void setUrgent(boolean urgent) {
+        this.urgent = urgent;
     }
 
     public void setId_client(int id_client) {
         this.id_client = id_client;
-    }
-
-    public void setId_paiement(int id_paiement) {
-        this.id_paiement = id_paiement;
     }
     
     public void setId_livreur(int id_livreur) {
@@ -174,7 +194,7 @@ public class Colis {
 
     @Override
     public String toString() {
-        return "Colis{" + "ref=" + ref + ", hauteur=" + hauteur + ", largeur=" + largeur + ", poids=" + poids + ", prix=" + prix + ", fragile=" + fragile + " depart=" + depart + ", destination=" + destination + " nom_receveur=" +nom_receveur + ", id_client=" + id_client + ", id_paiement=" + id_paiement + ", id_livreur=" + id_livreur + '}';
+        return "Colis{" + "ref=" + ref + ", destination=" + destination + " etat_colis=" +etat_colis +'}';
     }
     
 }

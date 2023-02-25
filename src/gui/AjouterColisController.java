@@ -7,6 +7,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -82,7 +83,17 @@ public class AjouterColisController implements Initializable {
 
     @FXML
     void BtnAnnuler(ActionEvent event) {
-
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CrudColis.fxml"));
+            Parent root = (Parent) loader.load();
+           
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+       } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
         /**
