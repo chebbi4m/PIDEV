@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Crud.MyConnection;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -51,12 +52,17 @@ public class CreateController implements Initializable {
     @FXML private JFXTextField mdp;
 
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        final String numberFormatter = "[\\d*]*";
+        
+        numtel.setTextFormatter(new TextFormatter<>(change ->
+        (change.getControlNewText().matches(numberFormatter)) ? change : null));
+        
     }   
     
 

@@ -22,5 +22,15 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
+      <Label fx:id="nomlogin" layoutX="790.0" layoutY="17.0" prefHeight="31.0" prefWidth="120.0" text="Nom">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="historique" layoutX="410.0" layoutY="377.0" onAction="#hist" onMouseClicked="#hist" prefHeight="79.0" prefWidth="204.0" style="-fx-background-color: #7B829F;" text="Historique" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

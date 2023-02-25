@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package GUI;
-
+import Crud.Client;
+import Crud.MyConnection;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -34,6 +35,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+
+
 /**
  * FXML Controller class
  *
@@ -45,7 +50,7 @@ public class LoginController implements Initializable {
     @FXML private JFXPasswordField mdp;
     @FXML private JFXButton loginButton;
     @FXML private JFXButton fermer;
-       
+ 
 
     
     @Override
@@ -64,12 +69,23 @@ loginButton.setOnAction(e -> {
     }    
     
     public void login(ActionEvent  event) throws IOException, SQLException{
+        String loginName = username.getText();
+
+    // Save the login name in a variable
+        // client.setLoginName(loginName);
+        
+        
          String usernameText = username.getText();
          String mdpText = mdp.getText();
         
          if(usernameText.equals("admin") && mdpText.equals("admin")){
+             //create a new HttpSession object and store the user's username in it
+             
+              //HttpSession session = ((HttpServletRequest) event.getSource()).getSession(true);
+              //session.setAttribute("username", usernameText);
+              //getSession(event);
            Stage stage = new Stage ();
-           Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));  
+           Parent root = FXMLLoader.load(getClass().getResource("ClientCrud.fxml"));  
            Scene scene = new Scene (root);
            stage.setScene(scene);
            stage.initStyle(StageStyle.UNDECORATED);
@@ -158,5 +174,22 @@ loginButton.setOnAction(e -> {
           stage.show();
           ((Node)e.getSource()).getScene().getWindow().hide();
     }
+//        
+//public String getSession(ActionEvent  event) {
+//
+//      HttpSession session = ((HttpServletRequest) event.getSource()).getSession(true);
+//      //session.setAttribute("username", usernameText);
+//
+//    return session.getAttribute("username").toString();
+//}
         
+//        @FXML
+//private void handleLogin(ActionEvent event) {
+//
+//   //username.getText(); 
+//    String loggedInUsername = username.getText();
+//    
+//   
+//}
+
 }

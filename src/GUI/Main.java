@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class NewFXMain extends Application {
+public class Main extends Application {
 
         @Override
         public void start(Stage primaryStage) {
@@ -35,6 +35,7 @@ public class NewFXMain extends Application {
          */
         public static void main(String[] args) {
             launch(args);
+            
         }
 
 }
