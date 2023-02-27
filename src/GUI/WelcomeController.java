@@ -71,7 +71,21 @@ public class WelcomeController implements Initializable {
 
         
         Stage stage = new Stage ();
-        Parent root = FXMLLoader.load(getClass().getResource("Historique.fxml"));  
+        Parent root = FXMLLoader.load(getClass().getResource("HistoriquePartenaire.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        ((Node)e.getSource()).getScene().getWindow().hide();
+    
+}
+       
+       public void histLiv (ActionEvent e) throws IOException{
+        
+
+        
+        Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("HistoriqueLivreur.fxml"));  
         Scene scene = new Scene (root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);

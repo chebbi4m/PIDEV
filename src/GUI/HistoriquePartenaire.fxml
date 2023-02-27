@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FEF7E4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HistoriqueController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FEF7E4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.HistoriquePartenaireController">
    <children>
       <JFXButton fx:id="deconnecter" layoutX="893.0" layoutY="20.0" onAction="#retourner" onMouseClicked="#retourner" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: #7B829F;" text="Deconnecter" textFill="WHITE">
          <font>
@@ -28,10 +28,13 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <TableView fx:id="tablev" layoutX="288.0" layoutY="170.0" prefHeight="482.0" prefWidth="768.0">
+      <TableView fx:id="tablev" layoutX="318.0" layoutY="169.0" prefHeight="482.0" prefWidth="713.0">
         <columns>
           <TableColumn fx:id="nomclient" prefWidth="145.0" text="Nom de client" />
             <TableColumn fx:id="numtel" minWidth="0.0" prefWidth="141.0" text="Numero telephone" />
+            <TableColumn fx:id="nomlivreur" minWidth="0.0" prefWidth="141.0" text="Nom de livreur" />
+            <TableColumn fx:id="refcolis" minWidth="0.0" prefWidth="141.0" text="Reference de colis" />
+            <TableColumn fx:id="prixcolis" minWidth="0.0" prefWidth="141.0" text="Prix de colis" />
         </columns>
       </TableView>
       <JFXTextField fx:id="username" layoutX="307.0" layoutY="60.0" prefHeight="39.0" prefWidth="235.0" promptText="Saisir votre username">

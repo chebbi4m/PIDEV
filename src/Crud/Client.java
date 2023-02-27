@@ -28,6 +28,8 @@ public class Client {
         this.nom = nom;
         this.numtel = numtel;
       }
+      
+     
         public Client(int id , String nom , String prenom,String numtel,String email,String adresse , String login , String mdp) {
         this.id = id;
         this.nom = nom;

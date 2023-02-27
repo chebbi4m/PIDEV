@@ -41,7 +41,7 @@ import java.sql.ResultSetMetaData;
  *
  * @author yasoulanda
  */
-public class HistoriqueController implements Initializable {
+public class HistoriquePartenaireController implements Initializable {
         @FXML private JFXButton fermer;
         //@FXML private JFXButton deconnecter;
         @FXML private JFXTextField username;
@@ -50,7 +50,9 @@ public class HistoriqueController implements Initializable {
       @FXML private TableView<Client> tablev;
       @FXML private TableColumn<Client, String> nomclient;
       @FXML private TableColumn<Client, String> numtel;
-
+      @FXML private TableColumn<Client, String> nomlivreur;
+      @FXML private TableColumn<Client, String> refcolis;
+      @FXML private TableColumn<Client, String> prixcolis;
     
         Connection myconn = MyConnection.getInstance().getConnexion();
 
@@ -100,29 +102,7 @@ public class HistoriqueController implements Initializable {
         numtel.setCellValueFactory(new PropertyValueFactory<Client,String>("numtel"));
         tablev.setItems(list);
         //tablev.setItems(clientList);
-    }
-            
-            private void insert() throws IOException{
-        
-//                try {
-//            //Inserer le client
-//            PreparedStatement stmt = myconn.prepareStatement("INSERT INTO client (nom, prenom, numtel, email, adresse, login, mdp) VALUES (?, ?, ?, ?, ?, ?, ?)");
-//            stmt.setString(1, nom.getText());
-//            stmt.setString(2, prenom.getText());
-//            stmt.setString(3, numtel.getText());
-//            stmt.setString(4, email.getText());
-//            stmt.setString(5, adresse.getText());
-//            stmt.setString(6, login.getText());
-//            stmt.setString(7, mdp.getText());
-//            stmt.executeUpdate();
-//            check(" client inseré ");
-//         } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-//             afficherClients();
-    }
- 
-        
+    }              
     
         public void cancel (ActionEvent e){
                Stage stage = (Stage) fermer.getScene().getWindow();
