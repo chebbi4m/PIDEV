@@ -1,11 +1,4 @@
 package utils;
-
-import entities.colis;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-
-
 import javax.swing.*;
 import java.sql.*;
 

@@ -1,0 +1,15 @@
+/* Style for the Next button */
+.next-button {
+    -fx-background-color: #2E3192;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+/* Style for the Next button on hover */
+.next-button:hover {
+    -fx-background-color: #3F51B5;
+}

@@ -1,0 +1,38 @@
+
+
+/* Style for the TableView control */
+.table-view {
+    -fx-background-color: #F0F0F0;
+}
+
+/* Style for the TableView columns */
+.table-column {
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-size: 14px;
+}
+
+/* Style for the TableView headers */
+.table-header-background {
+    -fx-background-color: #1130AE;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+/* Style for the TableView cells */
+.table-cell {
+    -fx-font-size: 14px;
+}
+
+/* Style for the TableView rows */
+.table-row-cell {
+    -fx-background-color: #7B829F;
+    -fx-font-size: 14px;
+}
+
+/* Style for alternating TableView rows */
+.table-row-cell:even {
+    -fx-background-color: #7B829F;
+}
+.root {
+    -fx-background-color: #7B829F;
+}

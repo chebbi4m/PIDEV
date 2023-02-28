@@ -12,8 +12,6 @@ import java.util.List;
 public interface Icolis {
 
     public void ajoutercolis(colis cls);
-    public void modifiercolis(colis cls);
-    public void supprimercolis(colis cls);
 
 
 }

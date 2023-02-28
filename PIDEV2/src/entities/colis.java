@@ -12,13 +12,13 @@ public class colis {
     private String depart;
     private String destination;
     private int id_client;
-    private int id_paiement;
+    private int id_partenaire;
 
     public colis(){
 
     }
 
-    public colis(int id, String ref, double hauteur, double largeur, double poids, double prix, boolean fragile,String depart, String destination, int id_client, int id_paiement) {
+    public colis(int id, String ref, double hauteur, double largeur, double poids, double prix, boolean fragile,String depart, String destination, int id_client, int id_partenaire) {
         this.id = id;
         this.ref = ref;
         this.hauteur = hauteur;
@@ -29,7 +29,7 @@ public class colis {
         this.depart = depart;
         this.destination = destination;
         this.id_client = id_client;
-        this.id_paiement = id_paiement;
+        this.id_partenaire = id_partenaire;
     }
 
 
@@ -80,8 +80,8 @@ public class colis {
         return this.id_client;
     }
 
-    public int getId_paiment() {
-        return this.id_paiement;
+    public int getId_partenaire() {
+        return this.id_partenaire;
     }
     //setters
 
@@ -121,8 +121,8 @@ public class colis {
         this.id_client = id_client;
     }
 
-    public void setId_paiement(int id_paiement) {
-        this.id_paiement = id_paiement;
+    public void setId_partenaire(int Id_partenaire) {
+        this.id_partenaire= id_partenaire;
     }
 
     @Override
@@ -148,7 +148,7 @@ public class colis {
 
     @Override
     public String toString() {
-        return "Colis{" + "ref=" + ref + ", hauteur=" + hauteur + ", largeur=" + largeur + ", poids=" + poids + ", prix=" + prix + ", fragile=" + fragile + ", destination=" + destination + ", id_client=" + id_client + ", id_paiement=" + id_paiement + '}';
+        return "Colis{" + "ref=" + ref + ", hauteur=" + hauteur + ", largeur=" + largeur + ", poids=" + poids + ", prix=" + prix + ", fragile=" + fragile + ", destination=" + destination + ", id_client=" + id_client + ", id_partenaire=" + id_partenaire + '}';
     }
 
 
