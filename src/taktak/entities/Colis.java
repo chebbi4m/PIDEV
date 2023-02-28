@@ -20,7 +20,7 @@ public class Colis {
     private boolean inflammable;
     private String depart;
     private String destination;
-    private String etat_colis;
+    private String etat_colis = "En cours";
     private String zone;
     private boolean urgent;
     private int id_client;
