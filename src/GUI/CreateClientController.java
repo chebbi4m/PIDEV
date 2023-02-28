@@ -39,7 +39,7 @@ import org.controlsfx.control.Notifications;
  *
  * @author yasoulanda
  */
-public class CreateController implements Initializable {
+public class CreateClientController implements Initializable {
 
     @FXML private JFXButton fermer;
     private Button deja;

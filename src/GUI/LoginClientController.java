@@ -44,7 +44,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author yasoulanda
  */
-public class LoginController implements Initializable {
+public class LoginClientController implements Initializable {
 
     @FXML private JFXTextField username; 
     @FXML private JFXPasswordField mdp;
@@ -61,7 +61,7 @@ loginButton.setOnAction(e -> {
     } catch (IOException ex) {
         ex.printStackTrace();
     } catch (SQLException ex) {
-        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(LoginClientController.class.getName()).log(Level.SEVERE, null, ex);
     }
 });
 
@@ -191,5 +191,25 @@ loginButton.setOnAction(e -> {
 //    
 //   
 //}
+ public void loginlivreur (ActionEvent e) throws IOException{
 
+          Stage stage = new Stage ();
+          Parent root = FXMLLoader.load(getClass().getResource("LoginLivreur.fxml"));  
+          Scene scene = new Scene (root);
+          stage.setScene(scene);
+          stage.initStyle(StageStyle.UNDECORATED);
+          stage.show();
+          ((Node)e.getSource()).getScene().getWindow().hide();
+    }
+ 
+ public void loginpr (ActionEvent e) throws IOException{
+
+          Stage stage = new Stage ();
+          Parent root = FXMLLoader.load(getClass().getResource("LoginPartenaire.fxml"));  
+          Scene scene = new Scene (root);
+          stage.setScene(scene);
+          stage.initStyle(StageStyle.UNDECORATED);
+          stage.show();
+          ((Node)e.getSource()).getScene().getWindow().hide();
+    }
 }

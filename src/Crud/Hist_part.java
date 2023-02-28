@@ -9,15 +9,17 @@ package Crud;
  *
  * @author yasoulanda
  */
-public class Hist_Liv {
+public class Hist_part {
     private String nom; 
         private String numtel;
+        private String login;
         private String ref;
         private String prix;
         
-        public Hist_Liv (String nom, String numtel,String ref, String prixcolis){
+        public Hist_part (String nom, String numtel, String login,String ref, String prixcolis){
         this.nom = nom;
         this.numtel = numtel;
+        this.login = login;
         this.ref = ref;
         this.prix = prixcolis;
       }
@@ -39,11 +41,11 @@ public class Hist_Liv {
     }
 
     public String getRefcolis() {
-        return ref;
+        return login;
     }
 
     public void setRefcolis(String refcolis) {
-        this.ref = refcolis;
+        this.login = refcolis;
     }
 
     public String getPrixcolis() {
@@ -54,6 +56,13 @@ public class Hist_Liv {
         this.prix = prixcolis;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getRef() {
         return ref;
@@ -73,10 +82,8 @@ public class Hist_Liv {
 
     @Override
     public String toString() {
-        return "Hist_Liv{" + "nom=" + nom + ", numtel=" + numtel + ", ref=" + ref + ", prix=" + prix + '}';
+        return "Hist_part{" + "nom=" + nom + ", numtel=" + numtel + ", login=" + login + ", ref=" + ref + ", prix=" + prix + '}';
     }
-
- 
 
   
         

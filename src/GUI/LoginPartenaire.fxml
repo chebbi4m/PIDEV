@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginPartenaireController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #7B829F;">
          <children>
@@ -24,12 +24,12 @@
                   <Font name="System Bold" size="40.0" />
                </font>
             </Label>
-            <JFXButton layoutX="296.0" layoutY="473.0" prefHeight="58.0" prefWidth="91.0" style="-fx-background-color: white;" text="Partenaire" textFill="#004aad">
+            <JFXButton fx:id="lv" layoutX="296.0" layoutY="473.0" onAction="#loginlv" onMouseClicked="#loginlv" prefHeight="58.0" prefWidth="91.0" style="-fx-background-color: white;" text="Livreur" textFill="#004aad">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="128.0" layoutY="473.0" prefHeight="58.0" prefWidth="91.0" style="-fx-background-color: white;" text="Livreur" textFill="#004aad">
+            <JFXButton fx:id="cl" layoutX="128.0" layoutY="473.0" onAction="#loginclient" onMouseClicked="#loginclient" prefHeight="58.0" prefWidth="91.0" style="-fx-background-color: white;" text="Client" textFill="#004aad">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Font size="15.0" />
                </font>
             </JFXTextField>
-            <Label layoutX="85.0" layoutY="113.0" text="Connecter à votre compte" textFill="#1130ae">
+            <Label layoutX="85.0" layoutY="123.0" text="Connecter à votre compte" textFill="#1130ae">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -77,6 +77,11 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
+            <Label layoutX="348.0" layoutY="5.0" prefHeight="30.0" prefWidth="103.0" text="Partenaire" textFill="#1130ae">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

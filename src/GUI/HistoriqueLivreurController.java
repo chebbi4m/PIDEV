@@ -38,17 +38,18 @@ import javafx.stage.StageStyle;
  */
 public class HistoriqueLivreurController implements Initializable {
 
-        @FXML private JFXButton fermer;
+ @FXML private JFXButton fermer;
         //@FXML private JFXButton deconnecter;
         @FXML private JFXTextField username;
         
-      @FXML private TableView  <Hist_Liv> tablev;
+    
+      @FXML private TableView<Hist_Liv> tablev;
       @FXML private TableColumn<Hist_Liv, String> nomclient;
       @FXML private TableColumn<Hist_Liv, String> numtel;
-      @FXML private TableColumn<Hist_Liv, String> ref;
-      @FXML private TableColumn<Hist_Liv, String> prix;
-      
-              Connection myconn = MyConnection.getInstance().getConnexion();
+      @FXML private TableColumn<Hist_Liv, String> refcolis;
+      @FXML private TableColumn<Hist_Liv, String> prixcolis;
+    
+        Connection myconn = MyConnection.getInstance().getConnexion();
 
     /**
      * Initializes the controller class.
@@ -56,60 +57,54 @@ public class HistoriqueLivreurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-//    nomclient.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("nom"));
-//    numtel.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("numtel"));
-//    ref.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("ref"));
-//    prix.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("prix"));
-//
-//    // appel de la méthode pour afficher les clients
-//    afficherClient();
-    }  
+    }    
     
-        public ObservableList<Hist_Liv> afficherListeClients() {
+                   public ObservableList<Hist_Liv> afficherListeClients() {
         tablev.getItems().clear();
-        ObservableList<Hist_Liv> histor = FXCollections.observableArrayList();
+        ObservableList<Hist_Liv> hists = FXCollections.observableArrayList();
                 
         try {
             Statement stmt = myconn.createStatement();
-            String query = "SELECT client.nom, client.numtel, colis.ref, colis.prix " +
+                       String query = "SELECT client.nom, client.numtel, colis.ref, colis.prix " +
                            "FROM client, colis, livreur " +
                            "WHERE livreur.login = '" + username.getText() +"'  "+
                            "AND colis.id_livreur = livreur.id "+
                            "AND client.id = colis.id_client " ;
-            // stmt(1, username.getText());
+             // stmt(1, username.getText());
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                String nom = rs.getString("client.nom");
-                String numtel = rs.getString("client.numtel");
-                String ref = rs.getString("colis.ref");
-                String prix =  rs.getString("colis.prix");
+                String nom = rs.getString("nom");
+                String numtel = rs.getString("numtel");
+                String ref = rs.getString("ref");
+                String prix = rs.getString("prix");
+
                 Hist_Liv cl = new Hist_Liv(
                     rs.getString("nom"),
                     rs.getString("numtel"),
                     rs.getString("ref"),
-                    rs.getString("prix"));  
-                histor.add(cl);  
+                    rs.getString("prix"));
+                hists.add(cl);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
          
-        return histor;
+        return hists;
     }
-        
-            public void afficherClient (){
+            
+    public void afficherClients (){
         ObservableList<Hist_Liv> list = afficherListeClients();
-        System.out.println(list);
+        
         nomclient.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("nom"));
         numtel.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("numtel"));
-        ref.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("ref"));  
-        prix.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("prix"));
+        refcolis.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("ref"));
+        prixcolis.setCellValueFactory(new PropertyValueFactory<Hist_Liv,String>("prix"));
         tablev.setItems(list);
         //tablev.setItems(clientList);
-    }
+    }              
     
-     public void cancel (ActionEvent e){
+        public void cancel (ActionEvent e){
                Stage stage = (Stage) fermer.getScene().getWindow();
                stage.close();
     }
@@ -128,5 +123,9 @@ public class HistoriqueLivreurController implements Initializable {
         ((Node)e.getSource()).getScene().getWindow().hide();
     
 }
+    
+    
+    
+    
     
 }

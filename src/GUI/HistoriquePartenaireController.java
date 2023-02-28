@@ -5,12 +5,11 @@
  */
 package GUI;
 
-import Crud.Client;
+import Crud.Hist_part;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,8 +30,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.sql.Connection;
 import Crud.MyConnection;
-import static com.mysql.cj.Messages.getString;
-import java.sql.ResultSetMetaData;
+
 
 
 
@@ -47,12 +45,12 @@ public class HistoriquePartenaireController implements Initializable {
         @FXML private JFXTextField username;
         
     
-      @FXML private TableView<Client> tablev;
-      @FXML private TableColumn<Client, String> nomclient;
-      @FXML private TableColumn<Client, String> numtel;
-      @FXML private TableColumn<Client, String> nomlivreur;
-      @FXML private TableColumn<Client, String> refcolis;
-      @FXML private TableColumn<Client, String> prixcolis;
+      @FXML private TableView<Hist_part> tablev;
+      @FXML private TableColumn<Hist_part, String> nomclient;
+      @FXML private TableColumn<Hist_part, String> numtel;
+      @FXML private TableColumn<Hist_part, String> nomlivreur;
+      @FXML private TableColumn<Hist_part, String> refcolis;
+      @FXML private TableColumn<Hist_part, String> prixcolis;
     
         Connection myconn = MyConnection.getInstance().getConnexion();
 
@@ -64,15 +62,15 @@ public class HistoriquePartenaireController implements Initializable {
         // TODO
     }    
     
-                   public ObservableList<Client> afficherListeClients() {
+                   public ObservableList<Hist_part> afficherListeClients() {
         tablev.getItems().clear();
-        ObservableList<Client> clients = FXCollections.observableArrayList();
+        ObservableList<Hist_part> hists = FXCollections.observableArrayList();
                 
         try {
             Statement stmt = myconn.createStatement();
-            String query = "SELECT client.nom, client.numtel " +
+            String query = "SELECT client.nom, client.numtel , livreur.login ,colis.ref,colis.prix " +
                            "FROM client, colis, livreur, partenaire " +
-                           "WHERE client.login ='" + username.getText() + "' "+
+                           "WHERE partenaire.login ='" + username.getText() + "' "+
                            "AND client.id = colis.id_client " +
                            "AND colis.id_livreur = livreur.id " +
                            "AND livreur.id_partenaire = partenaire.id";
@@ -82,24 +80,33 @@ public class HistoriquePartenaireController implements Initializable {
             while (rs.next()) {
                 String nom = rs.getString("nom");
                 String numtel = rs.getString("numtel");
+                String login = rs.getString("login");
+                String ref = rs.getString("ref");
+                String prix = rs.getString("prix");
 
-                Client cl = new Client(
+                Hist_part cl = new Hist_part(
                     rs.getString("nom"),
-                    rs.getString("numtel"));
-                clients.add(cl);
+                    rs.getString("numtel"),
+                    rs.getString("login"),
+                    rs.getString("ref"),
+                    rs.getString("prix"));
+                hists.add(cl);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
          
-        return clients;
+        return hists;
     }
             
     public void afficherClients (){
-        ObservableList<Client> list = afficherListeClients();
+        ObservableList<Hist_part> list = afficherListeClients();
         
-        nomclient.setCellValueFactory(new PropertyValueFactory<Client,String>("nom"));
-        numtel.setCellValueFactory(new PropertyValueFactory<Client,String>("numtel"));
+        nomclient.setCellValueFactory(new PropertyValueFactory<Hist_part,String>("nom"));
+        numtel.setCellValueFactory(new PropertyValueFactory<Hist_part,String>("numtel"));
+        nomlivreur.setCellValueFactory(new PropertyValueFactory<Hist_part,String>("login"));
+        refcolis.setCellValueFactory(new PropertyValueFactory<Hist_part,String>("ref"));
+        prixcolis.setCellValueFactory(new PropertyValueFactory<Hist_part,String>("prix"));
         tablev.setItems(list);
         //tablev.setItems(clientList);
     }              
