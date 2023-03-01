@@ -7,7 +7,7 @@ package taktak.interfaces;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import taktak.entities.Compte;
+
 import taktak.entities.Colis;
 import taktak.entities.Partenaire;
 import taktak.entities.Client;
@@ -17,6 +17,8 @@ import taktak.services.ClientService;
 import taktak.services.PaiementService;
 import taktak.services.PartenaireService;
 import java.text.SimpleDateFormat;
+import taktak.entities.LivreurInterface;
+import taktak.services.LivreurInterfaceService;
 /**
  *
  * @author yasoulanda
@@ -40,26 +42,26 @@ import java.text.SimpleDateFormat;
 
 
 
-//Colis cls = new Colis (10,"latifa", 999, 30, 50, 2,false,"Tunis", "Ariena", 2, 2);
+//Colis cls = new Colis ("10@hhh", 999, 30, 50, 2000,false,"Tunis", "Ariena","ahmeed", 2,3,5);
  
-    //  ColisService cs = new ColisService();
+    // ColisService cs = new ColisService();
      //cs.ajouterColis(cls);
       //Colis cl = new Colis (13,"chapeau", 100, 100, 50, 2, true,"Tunis", "Sousse", 2, 2);
       //cs.modifierColis(cls);
      //cs.supprimerColis(cls);
     
       
-      // System.out.println(cs.afficherColis());
+     //  System.out.println(cs.afficherColis());
       
       
       
       
-      Partenaire p1 = new Partenaire  (1,"salah","123 Main St","johnpleàà@.com", 4587662,"najetcheebi","ddvgg4dg");
-    PartenaireService ps= new PartenaireService() ;
-     //ps.ajouterPartenaire(p1);//cb
-    //ps.modifierPartenaire(p1);
-      //ps.supprimerPartenaire(p1);//cb
-     // System.out.println(ps.afficherPartenaire());
+    //  Partenaire p1 = new Partenaire  (2,"hello","johnpleàà@.com", 4587662,"voiture","africa",4.45,5.45,true,true,"najetcheebi","ddvgg4dg");
+    //PartenaireService ps= new PartenaireService() ;
+    // ps.ajouterPartenaire(p1);//cb
+   // ps.modifierPartenaire(p1);
+    //  ps.supprimerPartenaire(p1);//cb
+     //System.out.println(ps.afficherPartenaire());
       
   
 
@@ -70,8 +72,17 @@ import java.text.SimpleDateFormat;
    // ps.ModifierPaiement(pa);
       // System.out.println(pss.AfficherPaiement());
       
+   //  LivreurInterface liv = new LivreurInterface (2,"ali","bensalah","ali@gmail.com","1234567","ali123","hgf5");
+     LivreurInterfaceService ls= new LivreurInterfaceService();
+    //  ls.chercherLivreur(liv);
       
-      
+       // System.out.println(ls.chercherLivreur(liv.getNom("ali")));
+       
+       
+       
+       
+       
+       
     }
 }
 

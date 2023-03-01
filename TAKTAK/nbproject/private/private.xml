@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Najet/Desktop/Nouveau%20dossier/TAKTAK/src/GUI/Partenaire/partenaireFXMLController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/Nouveau%20dossier/TAKTAK/src/GUI/paiement/paiementMain.java</file>
-            <file>file:/C:/Users/Najet/Desktop/Nouveau%20dossier/TAKTAK/src/GUI/Partenaire/partenaireMain.java</file>
-            <file>file:/C:/Users/Najet/Desktop/Nouveau%20dossier/TAKTAK/src/taktak/entities/Partenaire.java</file>
-            <file>file:/C:/Users/Najet/Desktop/Nouveau%20dossier/TAKTAK/src/GUI/paiement/PaiementCrudController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/Nouveau%20dossier/TAKTAK/src/taktak/entities/Paiement.java</file>
+            <file>file:/C:/Users/Najet/Desktop/origin/TAKTAK/src/GUI/Partenaire/Colis.fxml</file>
+            <file>file:/C:/Users/Najet/Desktop/origin/TAKTAK/src/GUI/Partenaire/Livreurs.fxml</file>
+            <file>file:/C:/Users/Najet/Desktop/origin/TAKTAK/src/GUI/Partenaire/partenaireinterfaceController.java</file>
+            <file>file:/C:/Users/Najet/Desktop/origin/TAKTAK/src/GUI/Partenaire/LivreursController.java</file>
         </group>
     </open-files>
 </project-private>

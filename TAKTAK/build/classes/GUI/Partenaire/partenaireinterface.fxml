@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFDE59;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Partenaire.partenaireinterfaceController">
+   <children>
+      <VBox layoutX="212.0" layoutY="234.0" prefHeight="207.0" prefWidth="61.0" spacing="20.0">
+         <children>
+            <Label text="Nom">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label text="Email" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Numtel">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="194.0" text="Mdp">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="286.0" layoutY="239.0" prefHeight="181.0" prefWidth="157.0" spacing="10.0">
+         <children>
+            <TextField fx:id="tfNom" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfEmail" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfNumtel" layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfMdp" layoutX="10.0" layoutY="240.0" prefHeight="36.0" prefWidth="231.0" />
+         </children>
+      </VBox>
+      <Button fx:id="btnModifier" layoutX="531.0" layoutY="458.0" mnemonicParsing="false" onAction="#modifierPartenaire" prefHeight="52.0" prefWidth="94.0" text="Modifier" textFill="#0798d7" textOverrun="CLIP">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/modifier.jpg" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <HBox alignment="TOP_RIGHT" layoutX="124.0" layoutY="-1.0" prefHeight="97.0" prefWidth="956.0" style="-fx-background-color: grey;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Partenaire">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <FontAwesomeIconView glyphName="USER" size="35">
+               <HBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            
+            <Button fx:id="btnlogout" mnemonicParsing="false" prefHeight="43.0" prefWidth="77.0" text="logout">
+               <HBox.margin>
+                  <Insets right="20.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <VBox layoutY="-1.0" prefHeight="720.0" prefWidth="174.0" spacing="30.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <ImageView fx:id="logo" fitHeight="69.0" fitWidth="132.0">
+               <image>
+                  <Image url="@../../img/logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnlivreurs" mnemonicParsing="false" onAction="#livreurs" prefHeight="59.0" prefWidth="113.0" text="Mes Livreurs">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btncolis" mnemonicParsing="false" onAction="#Colis" prefHeight="59.0" prefWidth="113.0" text="Les Colis">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnhistorique" mnemonicParsing="false" onAction="#Historique" prefHeight="59.0" prefWidth="113.0" text="Historique ">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnreclamation" mnemonicParsing="false" onAction="#Reclamations" prefHeight="59.0" prefWidth="113.0" text=" Reclamations">
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="40.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="470.0" layoutY="233.0" prefHeight="210.0" prefWidth="161.0" spacing="20.0">
+         <children>
+            <Label text="Moyen de transport ">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label text="Zone de transport " textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Prix par poids ">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Prix par zone">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="629.0" layoutY="237.0" prefHeight="180.0" prefWidth="157.0" spacing="10.0">
+         <children>
+            <TextField fx:id="tfMoyen_transport" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfZone" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfPrix_poids" layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfPrix_zone" layoutX="10.0" layoutY="154.0" prefHeight="36.0" prefWidth="231.0" />
+         </children>
+      </VBox>
+      <Text layoutX="817.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis inflammable  : " wrappingWidth="191.2499976530671">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="818.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis fragile :" textAlignment="CENTER" wrappingWidth="143.43750382214785">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tfInflammable" layoutX="860.0" layoutY="282.0" prefHeight="36.0" prefWidth="108.0" />
+      <TextField fx:id="tfFragile" layoutX="860.0" layoutY="375.0" prefHeight="36.0" prefWidth="108.0" />
+      <RadioButton fx:id="radioOui" layoutX="827.0" layoutY="476.0" mnemonicParsing="false" onAction="#radio" text="Oui">
+         <toggleGroup>
+            <ToggleGroup fx:id="colis" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioNon" layoutX="900.0" layoutY="476.0" mnemonicParsing="false" onAction="#radio" prefHeight="17.0" prefWidth="61.0" text="Non" toggleGroup="$colis" />
+      <ChoiceBox fx:id="CBZone" layoutX="395.0" layoutY="542.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="CBMoy_transport" layoutX="395.0" layoutY="582.0" prefWidth="150.0" />
+      <RadioButton fx:id="Oui" layoutX="827.0" layoutY="546.0" mnemonicParsing="false" onAction="#radio" text="Oui">
+         <toggleGroup>
+            <ToggleGroup fx:id="test" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="Non" layoutX="906.0" layoutY="546.0" mnemonicParsing="false" onAction="#radio" prefHeight="17.0" prefWidth="61.0" text="Non" toggleGroup="$test" />
+   </children>
+</AnchorPane>

@@ -1,21 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package taktak.interfaces;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
-
-
-
-import taktak.entities.Colis;
 import java.util.List;
+import taktak.entities.Colis;
 
 /**
  *
- * @author yasoulanda
+ * @author LENOVO THINKPAD E15
  */
 public interface IColis {
-     public void ajouterColis(Colis cls);
+    public void ajouterColis(Colis cls);
     public void modifierColis(Colis cls);
     public void supprimerColis(Colis cls);
     public List<Colis> afficherColis();
