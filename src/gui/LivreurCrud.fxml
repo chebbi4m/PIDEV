@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1080.0" style="-fx-background-color: #FFF7E9;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="gui.LivreurCrudController">
+<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1080.0" style="-fx-background-color: #FFF7E9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurCrudController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="99.0" layoutY="65.0" prefHeight="100.0" prefWidth="417.0" />
       <Label layoutX="448.0" layoutY="165.0" prefHeight="35.0" prefWidth="381.0" text="Vos informations sur le compte" textFill="#4e31aa">
@@ -45,7 +44,7 @@
                         <Image url="@../images/logo_user-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="LogoutBtn" mnemonicParsing="false" prefWidth="129.0" text="Logout" textFill="#4b56d2">
+                  <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#LogoutClick" prefWidth="129.0" text="Logout" textFill="#4b56d2">
                      <HBox.margin>
                         <Insets top="14.0" />
                      </HBox.margin>
@@ -62,7 +61,7 @@
       </HBox>
       <VBox fx:id="LivreurFonct" layoutY="127.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #D3CEDF;">
          <children>
-            <HBox fx:id="ListeCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
+            <HBox fx:id="ListeCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" onMouseClicked="#OpenListeColis" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
                <VBox.margin>
                   <Insets top="61.0" />
                </VBox.margin>
@@ -104,9 +103,9 @@
          <children>
             <TextField fx:id="NomAffich" prefHeight="31.0" prefWidth="581.0" promptText="Nom" />
             <TextField fx:id="PrenomAffich" prefHeight="31.0" prefWidth="252.0" promptText="Prenom" />
-            <TextField fx:id="LoginAffich" promptText="Login" />
             <TextField fx:id="EmailAffich" promptText="Email" />
             <TextField fx:id="NumtelAffich" promptText="Numtel" />
+            <TextField fx:id="LoginAffich" promptText="Login" />
             <TextField fx:id="MdpAffich" promptText="Mot de passe" />
             <Button fx:id="UpdateeBtn" mnemonicParsing="false" onAction="#modifierLivreurDNew" prefWidth="129.0" text="Modifier" textFill="#4b56d2">
                <font>
@@ -131,17 +130,17 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label text="Login :" textFill="#362fd9">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
             <Label text="Email :" textFill="#362fd9">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
             <Label text="Numtel :" textFill="#362fd9">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label text="Login :" textFill="#362fd9">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

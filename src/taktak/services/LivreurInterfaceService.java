@@ -22,23 +22,6 @@ import taktak.utils.MyConnection;
  */
 public class LivreurInterfaceService implements ILivreurInterface{
     Connection myconn = MyConnection.getInstance().getConnexion();
-    public void modifierLivreurD(LivreurInterface lv, int id) {
-       try {
-        String sql = "UPDATE livreur SET nom=?, prenom=?, email=?, numtel=?, login=?, mdp=? WHERE id = ? ";
-        PreparedStatement ste = myconn.prepareStatement(sql);
-        ste.setString(1, lv.getNom());
-        ste.setString(2, lv.getPrenom());
-        ste.setString(3, lv.getEmail());
-        ste.setString(4, lv.getNumtel());
-        ste.setString(5, lv.getLogin());
-        ste.setString(6, lv.getMdp());
-        ste.executeUpdate();
-    }
-       catch (SQLException e) {
-        System.out.println(e);
-    }
-    }
-
     @Override
     public List<LivreurInterface> afficherLivreurD() {
        List <LivreurInterface> LivreurD = new ArrayList<>();
@@ -59,7 +42,8 @@ public class LivreurInterfaceService implements ILivreurInterface{
                         LivreurD.add(lv);           
                 
             }
-        }catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return LivreurD; 
@@ -67,7 +51,24 @@ public class LivreurInterfaceService implements ILivreurInterface{
 
     @Override
     public void modifierLivreurD(LivreurInterface lv) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+               try {
+        String sql = "UPDATE livreur SET nom=?, prenom=?, email=?, numtel=?, login=?, mdp=? WHERE id = ? ";
+        PreparedStatement ste = myconn.prepareStatement(sql);
+        ste.setString(1, lv.getNom());
+        ste.setString(2, lv.getPrenom());
+        ste.setString(3, lv.getEmail());
+        ste.setString(4, lv.getNumtel());
+        ste.setString(5, lv.getLogin());
+        ste.setString(6, lv.getMdp());
+        ste.setInt(7, 1);
+        ste.executeUpdate();
     }
+       catch (SQLException e) {
+        System.out.println(e);
+    }
+    
+    }
+
+    
     
 }

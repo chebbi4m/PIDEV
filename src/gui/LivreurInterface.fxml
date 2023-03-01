@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFF7E9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurInterfaceController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #e8ecef;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurInterfaceController">
    <children>
       <VBox fx:id="LIvreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #D3CEDF;">
          <children>
@@ -21,7 +21,7 @@
                   <Insets top="61.0" />
                </VBox.margin>
                <children>
-                  <Label text="Liste des colis">
+                  <Label text="Liste des colis" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -33,7 +33,7 @@
             </HBox>
             <HBox fx:id="HistoriqueCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
                <children>
-                  <Label text="Historique">
+                  <Label text="Historique" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -42,7 +42,7 @@
             </HBox>
             <HBox fx:id="ReclamationsCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
                <children>
-                  <Label text="Voir les réclamations" textOverrun="CLIP">
+                  <Label text="Voir les réclamations" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -79,7 +79,7 @@
                         <Image url="@../images/logo_user-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="LogoutBtn" mnemonicParsing="false" prefWidth="129.0" text="Logout" textFill="#4b56d2">
+                  <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#LogoutClick" prefWidth="129.0" text="Logout" textFill="#4b56d2">
                      <HBox.margin>
                         <Insets top="14.0" />
                      </HBox.margin>
@@ -94,7 +94,7 @@
             </HBox>
          </children>
       </HBox>
-      <TableView fx:id="LivreurTable" layoutX="265.0" layoutY="205.0" prefHeight="482.0" prefWidth="765.0">
+      <TableView fx:id="LivreurTable" layoutX="278.0" layoutY="188.0" prefHeight="482.0" prefWidth="765.0">
         <columns>
           <TableColumn fx:id="RefCol" prefWidth="128.0" style="-fx-background-color: #865DFF;" text="Ref" />
           <TableColumn fx:id="NomCol" prefWidth="165.0" style="-fx-background-color: #865DFF;" text="Nom" />

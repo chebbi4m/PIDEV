@@ -27,6 +27,9 @@ public class LivreurInterface {
         this.login = login;
         this.mdp = mdp;
     }
+
+    public LivreurInterface() {
+    }
     
     //Getters
 

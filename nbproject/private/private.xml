@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/gui/LoginPageController.java</file>
-            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/taktak/services/LivreurService.java</file>
-            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/taktak/interfaces/ILivreur.java</file>
+            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/gui/LivreurCrudController.java</file>
+            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/gui/LivreurInterfaceController.java</file>
             <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/gui/LivreurController.java</file>
-            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/taktak/entities/Livreur.java</file>
+            <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/taktak/services/LivreurInterfaceService.java</file>
             <file>file:/C:/Users/Cheima/Desktop/PIDEV/src/gui/Main.java</file>
         </group>
     </open-files>

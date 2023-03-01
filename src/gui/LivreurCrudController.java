@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -26,7 +27,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import taktak.entities.Livreur;
 import taktak.entities.LivreurInterface;
 import taktak.services.LivreurInterfaceService;
 import taktak.utils.MyConnection;
@@ -60,11 +60,11 @@ public class LivreurCrudController implements Initializable {
     @FXML
     private TextField PrenomAffich;
     @FXML
-    private TextField LoginAffich;
-    @FXML
     private TextField EmailAffich;
     @FXML
     private TextField NumtelAffich;
+    @FXML
+    private TextField LoginAffich;
     @FXML
     private TextField MdpAffich;
     @FXML
@@ -72,6 +72,7 @@ public class LivreurCrudController implements Initializable {
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        livreurInterfaceService = new LivreurInterfaceService();
         afficherLivreurById(1);
         
     } 
@@ -101,11 +102,10 @@ public class LivreurCrudController implements Initializable {
             String mdp = rs.getString("mdp");
             NomAffich.setText(nom);
             PrenomAffich.setText(prenom);
-            LoginAffich.setText(login);
             EmailAffich.setText(email);
             NumtelAffich.setText(numtel);
+            LoginAffich.setText(login);
             MdpAffich.setText(mdp);
-            System.out.println(mdp);
         } else {
             System.out.println("No livreur found with id " + id);
         }
@@ -119,25 +119,39 @@ public class LivreurCrudController implements Initializable {
           try{      
         String sql = "UPDATE livreur SET nom=?, prenom=?, email=?, numtel=?, login=?, mdp=? WHERE id = ? ";
         PreparedStatement ste = myconn.prepareStatement(sql);
-        Livreur newLivreur = new Livreur();
-        newLivreur.setId(Integer.parseInt(tfid.getText()));
-        newLivreur.setNom(tfnom.getText());           
-        newLivreur.setPrenom(tfprenom.getText());
-        newLivreur.setEmail(tfemail.getText());
-        newLivreur.setNumtel(tfnumtel.getText());
-        newLivreur.setLogin(tflogin.getText());
-        newLivreur.setMdp(tfmdp.getText());
-        livreurService.modifierLivreur(newLivreur);
-        livreurList.clear();
-        livreurList.addAll(livreurService.afficherLivreur());
-        livreurObservableList.clear();
-        livreurObservableList.addAll(livreurList);
-        loadData();
+        LivreurInterface newLivreur = new LivreurInterface();
+        newLivreur.setNom(NomAffich.getText());           
+        newLivreur.setPrenom(PrenomAffich.getText());
+        newLivreur.setEmail(EmailAffich.getText());
+        newLivreur.setNumtel(NumtelAffich.getText());
+        newLivreur.setLogin(LoginAffich.getText());
+        newLivreur.setMdp(MdpAffich.getText());
+        livreurInterfaceService.modifierLivreurD(newLivreur);
+        afficherLivreurById(1);
         System.out.println("livreur updated successfully!");
+        
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Update successful");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Update successful");
+                    alert.showAndWait();
          }
          catch(SQLException e) {
         System.out.println(e);
     }
+    }
+    @FXML
+    private void OpenListeColis(MouseEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("LivreurInterface.fxml"));
+        Parent root = loader.load();
+        Stage CurrentStage = (Stage) ListeCont.getScene().getWindow();
+        Scene scene = new Scene(root,1080,720);
+        CurrentStage.setScene(scene);
+        CurrentStage.show();
+    }
+
+    @FXML
+    private void LogoutClick(ActionEvent event) {
     }
 
 
