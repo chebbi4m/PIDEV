@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/gui/ReclamationFXMLController.java</file>
-            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/services/ReclamationService.java</file>
-            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/utils/MyConnection.java</file>
-            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/entities/reclamation.java</file>
-            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/gui/Main.java</file>
-            <file>file:/C:/Users/chebbi4m/Desktop/New%20folder%20(6)/src/taktak/interfaces/IReclamation.java</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/gui/HomePage.fxml</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/gui/VisualiserDevis.fxml</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/gui/VisualiserDevisController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/gui/Main.java</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/taktak/entities/reclamation.java</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/gui/ReclamationFXMLController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/suivie/New%20folder%20(6)/src/gui/HomePageController.java</file>
         </group>
     </open-files>
 </project-private>

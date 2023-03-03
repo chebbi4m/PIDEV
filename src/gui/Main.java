@@ -35,7 +35,7 @@ public class Main extends Application {
 //        rs.ajouterReclamation(rec);
 //        rs.deleteReclamation(1);
 //        rs.updateReclamation(rec);
-        System.out.println(rs.afficherReclamation());
+//        System.out.println(rs.afficherReclamation());
         launch(args);
 //        System.out.println(cs.afficherColis());
     }
@@ -44,8 +44,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("reclamationFXML.fxml"));
         primaryStage.setTitle("taktak");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        primaryStage.setScene(new Scene(root, 1080, 650));
         primaryStage.show();
     }
+   
     
 }

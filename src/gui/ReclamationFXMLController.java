@@ -61,6 +61,7 @@ public class ReclamationFXMLController implements Initializable {
         reclamation rec = new reclamation(1, text, nomPersonne, refColis);
 
         rs.ajouterReclamation(rec);
+        handleRefreshButtonAction();
     }
 
     @FXML
