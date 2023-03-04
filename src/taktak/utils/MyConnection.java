@@ -6,7 +6,7 @@ package taktak.utils;
 
 /**
  *
- * @author ASUS
+ * @author LENOVO THINKPAD E15
  */
 import java.sql.*;
 

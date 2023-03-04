@@ -22,7 +22,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Colis.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("TableView.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.initStyle(StageStyle.UNDECORATED);

@@ -2,7 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -138,8 +138,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <ChoiceBox fx:id="CbZone" layoutX="313.0" layoutY="330.0" prefWidth="150.0" />
-            <TextField fx:id="fxZone" layoutX="46.0" layoutY="330.0" />
+            <ComboBox fx:id="cbZone" layoutX="46.0" layoutY="328.0" onAction="#selectZone" prefWidth="150.0" />
          </children></AnchorPane>
       <AnchorPane layoutX="223.0" layoutY="134.0" prefHeight="42.0" prefWidth="168.0" style="-fx-background-color: #1130AE;">
          <children>

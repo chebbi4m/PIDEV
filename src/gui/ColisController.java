@@ -8,6 +8,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -73,8 +74,8 @@ public class ColisController implements Initializable {
     }
     
     @FXML
-    void BtnSupprimer(ActionEvent event) {
-
+    void BtnSupprimer(ActionEvent event) throws IOException {
+        delete();
     }
     
     @FXML
@@ -148,5 +149,19 @@ public class ColisController implements Initializable {
                 etatc.setCellValueFactory(new PropertyValueFactory<>("etat_colis"));
                 tableV.setItems(list);
         }
+        
+        private void delete() throws IOException{
+       
+        try {
+            PreparedStatement preparedStatement = myconn.prepareStatement("DELETE FROM client where ref = ?");
+            preparedStatement.setString(1,refc.getText());
+            preparedStatement.executeUpdate();
+              //check(" client supprimé " );
+        } catch (SQLException ex) {
+              System.out.println(ex);
+        }
+        afficherColis();
+    }
+        
     
 }

@@ -7,14 +7,17 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -49,6 +52,16 @@ public class Etape1Controller implements Initializable {
     private RadioButton fxFragileOui, fxFragileNon;
     
     @FXML
+    private ComboBox <?> cbZone;
+    
+    String s;
+    
+    @FXML
+    void selectZone(ActionEvent event) {
+        //s = cbZone.getSelectionModel().getSelectedItem();
+    }
+    
+    @FXML
     void getFragile(ActionEvent event) {
         if(fxFragileOui.isSelected()){
             setFragile = fxFragileOui.getText();
@@ -72,11 +85,10 @@ public class Etape1Controller implements Initializable {
            setInflammable = fxInflammableNon.getText();
         }
     }
-    
+         
     @FXML
     private TextField fxZone;
     
-    String myZone;
     
     /*@FXML
     private ChoiceBox<String> CbZone;
@@ -120,12 +132,39 @@ public class Etape1Controller implements Initializable {
     @FXML
     void BtnSuivant(ActionEvent event) {
         try{
-            if(Integer.parseInt(fxPoids.getText()) > 5){
+            /*if(Integer.parseInt(fxPoids.getText()) > 5){
                 setPrix = 20;
             }
             else{
                 setPrix =30;
-            }
+            }*/
+            
+            /* if(Integer.parseInt(fxPoids.getText())<= 5 && "Internationale".equals(fxZone.getText())){
+           int[] array = new int[] {170, 150, 100, 80};
+           Random rand = new Random();
+           setPrix=(array[rand.nextInt(array.length)]);
+       }
+       else if(Integer.parseInt(fxPoids.getText())<= 5 && "Nationale".equals(fxZone.getText())){
+           int[] array = new int[] {10, 9, 8, 7};
+           Random rand = new Random();
+           setPrix=(array[rand.nextInt(array.length)]);
+       }
+       
+       else if(Integer.parseInt(fxPoids.getText())> 5 && "Internationale".equals(fxZone.getText())){
+           int[] array = new int[] {180, 185, 186, 187};
+           Random rand = new Random();
+           setPrix=(array[rand.nextInt(array.length)]);
+       }
+       
+       else if(Integer.parseInt(fxPoids.getText())> 5 && "Nationale".equals(fxZone.getText())){
+           int[] array = new int[] {15, 16, 17, 18};
+           Random rand = new Random();
+           setPrix=(array[rand.nextInt(array.length)]);
+       }
+       
+       else{
+           System.out.println("Vérifier le prix et la zone");
+       }*/
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Etape3.fxml"));
             Parent root = (Parent) loader.load();
@@ -150,7 +189,8 @@ public class Etape1Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //CbZone.getItems().addAll(zone);
+        //ObservableList<String> list = FXCollections.observableArrayList("Nationale", "Internationale");
+        //cbZone.setItems(list);
     }    
     
 }

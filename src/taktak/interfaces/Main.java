@@ -22,7 +22,7 @@ public class Main {
        RandomGenerator generator = new RandomGenerator();
        String randomString = generator.generateRandomString();
        
-    
+         
        Colis cls = new Colis();
        cls.setRef(randomString);
        cls.setHauteur(10);
@@ -33,26 +33,42 @@ public class Main {
        cls.setDepart("Sousse");
        cls.setDestination("Paris");
        cls.setEtat_colis(cls.getEtat_colis());
-       cls.setZone("Internationale");
+       cls.setZone("Nationale");
        cls.setUrgent(false);
        cls.setId_client(1);
        cls.setId_livreur(0);
        
-       if(cls.getPoids()<= 5){
-           int[] array = new int[] {20, 30, 45, 50};
+       if(cls.getPoids()<= 5 && "Internationale".equals(cls.getZone())){
+           int[] array = new int[] {170, 150, 100, 80};
            Random rand = new Random();
            cls.setPrix(array[rand.nextInt(array.length)]);
        }
-       else{
-           int[] array = new int[] {60, 70, 80, 90};
+       else if(cls.getPoids()<= 5 && "Nationale".equals(cls.getZone())){
+           int[] array = new int[] {10, 9, 8, 7};
            Random rand = new Random();
            cls.setPrix(array[rand.nextInt(array.length)]);
+       }
+       
+       else if(cls.getPoids()> 5 && "Internationale".equals(cls.getZone())){
+           int[] array = new int[] {180, 185, 186, 187};
+           Random rand = new Random();
+           cls.setPrix(array[rand.nextInt(array.length)]);
+       }
+       
+       else if(cls.getPoids()> 5 && "Nationale".equals(cls.getZone())){
+           int[] array = new int[] {15, 16, 17, 18};
+           Random rand = new Random();
+           cls.setPrix(array[rand.nextInt(array.length)]);
+       }
+       
+       else{
+           System.out.println("Vérifier le prix et la zone");
        }
        cls.setPrix(cls.getPrix());
-       System.out.println("Votre prix est de " +cls.getPrix());
+       System.out.println("Votre prix est de " +cls.getPrix() + "dt");
        
        ColisService cs = new ColisService();
-       cs.ajouterColis(cls);
+       //cs.ajouterColis(cls);
        //cs.supprimerColis(cls);
         
        System.out.println(cs.afficherColis());
