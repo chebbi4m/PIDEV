@@ -28,7 +28,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LivreurCrud.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LivreurInterface.fxml"));
         primaryStage.setTitle("taktak");
         primaryStage.setScene(new Scene(root, 1080, 720));
         primaryStage.show();

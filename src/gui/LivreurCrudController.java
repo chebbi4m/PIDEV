@@ -151,9 +151,18 @@ public class LivreurCrudController implements Initializable {
     }
 
     @FXML
-    private void LogoutClick(ActionEvent event) {
-    }
+    private void LogoutClick(ActionEvent event) throws IOException {
+    Stage currentStage = (Stage) LogoutBtn.getScene().getWindow();
+    currentStage.close();
 
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("LivreurCrud.fxml"));
+    Parent root = loader.load();
+    Stage loginStage = new Stage();
+    Scene scene = new Scene(root,1080,720);
+    loginStage.setScene(scene);
+    loginStage.show();
+    }
+    
 
 
 }
