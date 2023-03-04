@@ -110,6 +110,10 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="SavingButton" layoutX="766.0" layoutY="172.0" mnemonicParsing="false" onAction="#saveEtat" style="-fx-background-color: #E5D1FA;" text="Save" textFill="#14279b" />
+      <Button fx:id="SavingButton" layoutX="766.0" layoutY="172.0" mnemonicParsing="false" onAction="#saveEtat" style="-fx-background-color: #E5D1FA;" text="Save" textFill="#4b56d2">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

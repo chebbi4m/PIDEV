@@ -5,16 +5,15 @@
  */
 package gui;
 
-import com.mysql.cj.Session;
-import com.mysql.cj.protocol.Message;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.*;
 import java.io.IOException;
-import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +23,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -128,7 +129,6 @@ public class LivreurInterfaceController implements Initializable {
     ps.setInt(1,1); 
     ResultSet rs = ps.executeQuery();
     ObservableList<LivreurTableViewData> dataList = FXCollections.observableArrayList();
-    System.out.println("bbbbb");
     while (rs.next()) {
         String ref = rs.getString("ref");
         String nom = rs.getString("nom");
@@ -137,7 +137,6 @@ public class LivreurInterfaceController implements Initializable {
         String etat_colis = rs.getString("etat_colis");
         LivreurTableViewData data = new LivreurTableViewData(ref,nom, destination, type, etat_colis);
         dataList.add(data); 
-        System.out.println("ccccc");
     }
     RefCol.setCellValueFactory(new PropertyValueFactory<>("ref"));
     NomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -159,57 +158,54 @@ public class LivreurInterfaceController implements Initializable {
         int rowsAffected = ps.executeUpdate();
         if (rowsAffected > 0) {
             System.out.println("Successfully updated the etat_colis column in the database.");
-            
-            // Send notification email to the client
-        String clientEmail = selectedData.getEmail();
-        String subject = "Delivery status update";
-        String message = "Dear " + selectedData.getNom() + ",\n\nThe status of your delivery with reference number " 
-                        + selectedData.getRef() + " has been updated to \"" + newEtat + "\".\n\nBest regards,\nLivreurApp team";
-        EmailSender.sendEmail(clientEmail, subject, message);
-        System.out.println("Notification email sent successfully!");
-    } catch (SQLException e) {
-        System.out.println("Error updating delivery status: " + e.getMessage());
-    } catch (Exception e) {
-        System.out.println("Error sending notification email: " + e.getMessage());
+            // get email and password from user input or configuration
+                String username = "cheima.douiss@esprit.tn";
+                String password = "12345654321280458";
+
+            // create properties object to configure email server and protocol
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+
+                // create session with authentication information
+                Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+                try {
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(username));
+                    message.setRecipients(
+                        Message.RecipientType.TO,
+                        InternetAddress.parse("cheima.douiss@esprit.tn")
+                    );
+                    message.setSubject("Hello from Java");
+                    message.setText("Le colis est "+ selectedEtat);
+
+                    // send email
+                    Transport.send(message);
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Email sent");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Email sent successfully.");
+                    alert.showAndWait();
+
+                } catch (MessagingException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Email error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Failed to send email.");
+                    alert.showAndWait();
+                    System.out.println(e);
+                }  
         } else {
             System.out.println("Failed to update the etat_colis column in the database.");
         }
     } else {
         System.out.println("Please select a row and an etat value.");
-    }
-}
-    
-    public class EmailSender {
-
-    public void sendEmail(String to, String subject, String message) {
-
-        String from = "your-email@example.com";
-        String password = "your-email-password";
-        String host = "smtp.gmail.com";
-
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "587");
-
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, password);
-            }
-        });
-
-        try {
-            MimeMessage mimeMessage = new MimeMessage(session);
-            mimeMessage.setFrom(new InternetAddress(from));
-            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            mimeMessage.setSubject(subject);
-            mimeMessage.setText(message);
-            Transport.send(mimeMessage);
-            System.out.println("Email sent successfully.");
-        } catch (MessagingException ex) {
-            System.out.println("Failed to send email: " + ex.getMessage());
-        }
     }
 }
 
