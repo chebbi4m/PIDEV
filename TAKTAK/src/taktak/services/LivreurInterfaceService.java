@@ -22,6 +22,8 @@ import taktak.utils.MyConnection;
  */
 public class LivreurInterfaceService implements ILivreurInterface{
     Connection myconn = MyConnection.getInstance().getConnexion();
+    
+    
     public void modifierLivreurD(LivreurInterface lv, int id) {
        try {
         String sql = "UPDATE livreur SET nom=?, prenom=?, email=?, numtel=?, login=?, mdp=? WHERE id = ? ";
@@ -66,12 +68,10 @@ public class LivreurInterfaceService implements ILivreurInterface{
         return LivreurD; 
     }
 
-    @Override
-    public void modifierLivreurD(LivreurInterface lv) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
       
+    @Override
     public void chercherLivreur(LivreurInterface lv){
         try{
         String sql = "SELECT * FROM livreur where nom=? ";
@@ -83,10 +83,79 @@ public class LivreurInterfaceService implements ILivreurInterface{
         System.out.println(e);
         }
     }
+ @Override
+    public void modifierLivreurD(LivreurInterface lv) {
+       String sql ="UPDATE livreur SET nom = ? ,prenom=?, email = ? ,numtel = ?, nbre_reclamation=?,nbre_colis_total=?,nbre_colis_courant=?  where id =?";
+        try{
+            PreparedStatement ste = myconn.prepareStatement(sql);
 
+        ste.setString(1,lv.getNom());
+        ste.setString(2,lv.getPrenom());
+        ste.setString(3,lv.getEmail());
+        ste.setString(4,lv.getNumtel());   
+        ste.setInt(5,lv.getNbre_reclamation());
+        ste.setInt(6,lv.getNbre_colis_total());
+        ste.setInt(7,lv.getNbre_colis_courant());
+        ste.setInt(8,lv.getId());
+        ste.executeUpdate();
+                    System.out.println("Livreur modifier");
+        }
+        catch(SQLException ex){
+            System.out.println(ex);
+        }
+    }
     @Override
     public void ajouterLivreur(LivreurInterface lv) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql ="INSERT INTO livreur (id, nom, prenom, email, numtel) VALUES (?, ?, ?, ?,?)";
+        try{
+            PreparedStatement ste = myconn.prepareStatement(sql);
+            ste.setInt(1,lv.getId());
+            ste.setString(2,lv.getNom());
+            ste.setString(3,lv.getPrenom());
+            ste.setString(4,lv.getEmail());
+            ste.setString(5,lv.getNumtel());         
+            
+            ste.executeUpdate();
+                System.out.println("Livreur ajouter");
+        }
+        catch(SQLException ex){
+                System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void supprimerLivreur(LivreurInterface lv) {
+        String sql ="delete from livreur  where id =?";
+        try{
+            PreparedStatement ste = myconn.prepareStatement(sql);      
+            ste.setInt(1,lv.getId());
+            ste.executeUpdate();
+            System.out.println("Livreur Supprimer");
+        }
+        catch(SQLException ex){
+            System.out.println(ex);
+        }
+          
     }
     
+    
+    
+    
+  
+
+//    public void checkDisponibility(LivreurInterface livreur) {
+//        if (livreur.getNbre_colis_courant() <= 5) {
+//            livreur.setNbre_colis_courant(livreur.getNbre_colis_courant() + 1);
+//            System.out.println(" livreur disponible");
+//        } else {
+//            System.out.println("livreur non disponible");
+//        }
+//    }
+
+
+
+
+
+
+
 }

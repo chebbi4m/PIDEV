@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import taktak.entities.LivreurInterface;
 
 /**
  *
@@ -43,5 +44,14 @@ public class partenaireMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+       LivreurInterface livreur = new LivreurInterface();
+    public void checkAvailability() {
+    if (livreur.getNbre_colis_courant() <= 5) {
+        livreur.setNbre_colis_courant(livreur.getNbre_colis_courant() + 1);
+        System.out.println("Livreur disponible");
+    } else {
+        System.out.println("Livreur non disponible");
+    }
+}
     
 }

@@ -56,9 +56,9 @@ import taktak.services.LivreurInterfaceService;
       
       
       
-    //  Partenaire p1 = new Partenaire  (2,"hello","johnpleàà@.com", 4587662,"voiture","africa",4.45,5.45,true,true,"najetcheebi","ddvgg4dg");
-    //PartenaireService ps= new PartenaireService() ;
-    // ps.ajouterPartenaire(p1);//cb
+      Partenaire p1 = new Partenaire  (4,"salah","salah@.com", 9998762,"Voiture","Internationnale",7.58,5.45,false,true,"salah","salah123");
+    PartenaireService ps= new PartenaireService() ;
+     ps.ajouterPartenaire(p1);//cb
    // ps.modifierPartenaire(p1);
     //  ps.supprimerPartenaire(p1);//cb
      //System.out.println(ps.afficherPartenaire());
@@ -72,10 +72,10 @@ import taktak.services.LivreurInterfaceService;
    // ps.ModifierPaiement(pa);
       // System.out.println(pss.AfficherPaiement());
       
-   //  LivreurInterface liv = new LivreurInterface (2,"ali","bensalah","ali@gmail.com","1234567","ali123","hgf5");
-     LivreurInterfaceService ls= new LivreurInterfaceService();
+  // LivreurInterface liv = new LivreurInterface (3,"ali","janjoun","ali@gmail.com","1234567");
+    // LivreurInterfaceService ls= new LivreurInterfaceService();
     //  ls.chercherLivreur(liv);
-      
+     // ls.ajouterLivreur(liv);
        // System.out.println(ls.chercherLivreur(liv.getNom("ali")));
        
        

@@ -5,12 +5,18 @@
  */
 package taktak.entities;
 
+import javafx.collections.ObservableList;
+
 
 /**
  *
  * @author Najet
  */
 public class Partenaire {
+
+    public static void setItems(ObservableList<Partenaire> List) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int id ; 
     private String nom; 
     private String email;

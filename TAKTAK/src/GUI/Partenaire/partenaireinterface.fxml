@@ -3,7 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -18,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFDE59;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Partenaire.partenaireinterfaceController">
    <children>
-      <VBox layoutX="212.0" layoutY="234.0" prefHeight="207.0" prefWidth="61.0" spacing="20.0">
+      <VBox layoutX="210.0" layoutY="246.0" prefHeight="124.0" prefWidth="71.0" spacing="20.0">
          <children>
             <Label text="Nom">
                <font>
@@ -35,34 +35,21 @@
                   <Font name="System Italic" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="194.0" text="Mdp">
-               <font>
-                  <Font name="System Italic" size="17.0" />
-               </font>
-            </Label>
          </children>
       </VBox>
-      <VBox layoutX="286.0" layoutY="239.0" prefHeight="181.0" prefWidth="157.0" spacing="10.0">
+      <VBox layoutX="316.0" layoutY="247.0" prefHeight="131.0" prefWidth="207.0" spacing="10.0">
          <children>
             <TextField fx:id="tfNom" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="377.0" />
             <TextField fx:id="tfEmail" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="377.0" />
             <TextField fx:id="tfNumtel" layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="377.0" />
-            <TextField fx:id="tfMdp" layoutX="10.0" layoutY="240.0" prefHeight="36.0" prefWidth="231.0" />
          </children>
       </VBox>
-      <Button fx:id="btnModifier" layoutX="531.0" layoutY="458.0" mnemonicParsing="false" onAction="#modifierPartenaire" prefHeight="52.0" prefWidth="94.0" text="Modifier" textFill="#0798d7" textOverrun="CLIP">
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../img/modifier.jpg" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <HBox alignment="TOP_RIGHT" layoutX="124.0" layoutY="-1.0" prefHeight="97.0" prefWidth="956.0" style="-fx-background-color: grey;">
+      <Button fx:id="btnModifier" layoutX="825.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="94.0" text="    Confirmer" textFill="#0798d7" textOverrun="CLIP" />
+      <HBox alignment="TOP_RIGHT" layoutX="161.0" layoutY="-1.0" prefHeight="97.0" prefWidth="919.0" style="-fx-background-color: grey;">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Partenaire">
                <HBox.margin>
-                  <Insets right="10.0" top="10.0" />
+                  <Insets right="20.0" top="25.0" />
                </HBox.margin>
                <font>
                   <Font size="28.0" />
@@ -70,30 +57,30 @@
             </Text>
             <FontAwesomeIconView glyphName="USER" size="35">
                <HBox.margin>
-                  <Insets right="10.0" top="10.0" />
+                  <Insets right="20.0" top="25.0" />
                </HBox.margin>
             </FontAwesomeIconView>
             
             <Button fx:id="btnlogout" mnemonicParsing="false" prefHeight="43.0" prefWidth="77.0" text="logout">
                <HBox.margin>
-                  <Insets right="20.0" top="10.0" />
+                  <Insets right="20.0" top="25.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
       <VBox layoutY="-1.0" prefHeight="720.0" prefWidth="174.0" spacing="30.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <ImageView fx:id="logo" fitHeight="69.0" fitWidth="132.0">
+            <ImageView fx:id="logo" fitHeight="100.0" fitWidth="176.0">
                <image>
                   <Image url="@../../img/logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnlivreurs" mnemonicParsing="false" onAction="#livreurs" prefHeight="59.0" prefWidth="113.0" text="Mes Livreurs">
+            <Button fx:id="btncolis" mnemonicParsing="false" onAction="#Colis" prefHeight="59.0" prefWidth="113.0" text="Accueil">
                <VBox.margin>
-                  <Insets bottom="20.0" left="30.0" top="50.0" />
+                  <Insets bottom="20.0" left="30.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btncolis" mnemonicParsing="false" onAction="#Colis" prefHeight="59.0" prefWidth="113.0" text="Les Colis">
+            <Button fx:id="btnlivreurs" mnemonicParsing="false" onAction="#livreurs" prefHeight="59.0" prefWidth="113.0" text="Mes Livreurs">
                <VBox.margin>
                   <Insets bottom="20.0" left="30.0" />
                </VBox.margin>
@@ -113,7 +100,7 @@
             <Insets bottom="40.0" />
          </padding>
       </VBox>
-      <VBox layoutX="470.0" layoutY="233.0" prefHeight="210.0" prefWidth="161.0" spacing="20.0">
+      <VBox layoutX="576.0" layoutY="238.0" prefHeight="175.0" prefWidth="152.0" spacing="20.0">
          <children>
             <Label text="Moyen de transport ">
                <font>
@@ -137,39 +124,36 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="629.0" layoutY="237.0" prefHeight="180.0" prefWidth="157.0" spacing="10.0">
+      <VBox layoutX="806.0" layoutY="249.0" prefHeight="165.0" prefWidth="214.0" spacing="10.0">
          <children>
-            <TextField fx:id="tfMoyen_transport" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="377.0" />
-            <TextField fx:id="tfZone" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="377.0" />
+            <ComboBox fx:id="listeMoy_transport" prefHeight="25.0" prefWidth="214.0" />
+            <ComboBox fx:id="listeZone" prefHeight="25.0" prefWidth="225.0" />
             <TextField fx:id="tfPrix_poids" layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="377.0" />
             <TextField fx:id="tfPrix_zone" layoutX="10.0" layoutY="154.0" prefHeight="36.0" prefWidth="231.0" />
          </children>
       </VBox>
-      <Text layoutX="817.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis inflammable  : " wrappingWidth="191.2499976530671">
+      <Text layoutX="491.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis inflammable  : " wrappingWidth="191.2499976530671">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <Text layoutX="818.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis fragile :" textAlignment="CENTER" wrappingWidth="143.43750382214785">
+      <Text layoutX="492.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis fragile :" textAlignment="CENTER" wrappingWidth="143.43750382214785">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="tfInflammable" layoutX="860.0" layoutY="282.0" prefHeight="36.0" prefWidth="108.0" />
-      <TextField fx:id="tfFragile" layoutX="860.0" layoutY="375.0" prefHeight="36.0" prefWidth="108.0" />
-      <RadioButton fx:id="radioOui" layoutX="827.0" layoutY="476.0" mnemonicParsing="false" onAction="#radio" text="Oui">
+      <RadioButton fx:id="Ouiinflammable" layoutX="521.0" layoutY="533.0" mnemonicParsing="false" onAction="#inflammable" text="Oui">
          <toggleGroup>
             <ToggleGroup fx:id="colis" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioNon" layoutX="900.0" layoutY="476.0" mnemonicParsing="false" onAction="#radio" prefHeight="17.0" prefWidth="61.0" text="Non" toggleGroup="$colis" />
-      <ChoiceBox fx:id="CBZone" layoutX="395.0" layoutY="542.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="CBMoy_transport" layoutX="395.0" layoutY="582.0" prefWidth="150.0" />
-      <RadioButton fx:id="Oui" layoutX="827.0" layoutY="546.0" mnemonicParsing="false" onAction="#radio" text="Oui">
+      <RadioButton fx:id="Noninflammable" layoutX="594.0" layoutY="533.0" mnemonicParsing="false" onAction="#inflammable" prefHeight="17.0" prefWidth="61.0" text="Non" toggleGroup="$colis" />
+      <RadioButton fx:id="Ouifragile" layoutX="526.0" layoutY="625.0" mnemonicParsing="false" onAction="#fragile" text="Oui">
          <toggleGroup>
             <ToggleGroup fx:id="test" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="Non" layoutX="906.0" layoutY="546.0" mnemonicParsing="false" onAction="#radio" prefHeight="17.0" prefWidth="61.0" text="Non" toggleGroup="$test" />
+      <RadioButton fx:id="Nonfragile" layoutX="605.0" layoutY="625.0" mnemonicParsing="false" onAction="#fragile" prefHeight="17.0" prefWidth="61.0" text="Non" toggleGroup="$test" />
+      <FontAwesomeIconView fill="#02c31c" glyphName="CHECK" layoutX="829.0" layoutY="504.0" size="18" text="" />
    </children>
 </AnchorPane>

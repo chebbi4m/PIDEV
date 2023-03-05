@@ -22,8 +22,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 
 
@@ -54,11 +56,10 @@ Connection myconn = MyConnection.getInstance().getConnexion();
     @FXML
     private TextField tfNumtel;
 
-    @FXML
     private TextField tfMdp;
 
     @FXML
-    private Button btnModifier;
+    private Button  btnModifier;
 
     @FXML
     private Button btnlogout;
@@ -78,11 +79,6 @@ Connection myconn = MyConnection.getInstance().getConnexion();
     @FXML
     private Button btnreclamation;
 
-    @FXML
-    private TextField tfMoyen_transport;
-
-    @FXML
-    private TextField tfZone;
 
     @FXML
     private TextField tfPrix_poids;
@@ -95,20 +91,54 @@ Connection myconn = MyConnection.getInstance().getConnexion();
 
     @FXML
     private TextField tfFragile;
+
     @FXML
-    private RadioButton radioOui;
+    private ToggleGroup colis;    
     @FXML
-    private ToggleGroup colis;
-    @FXML
-    private RadioButton radioNon;
+    private ToggleGroup test;
     
+    @FXML
+    private ComboBox<String> listeMoy_transport;
+    @FXML
+    private ComboBox<String> listeZone;
+    @FXML
+    private RadioButton Ouiinflammable;
+    @FXML
+    private RadioButton Noninflammable;
+    @FXML
+    private RadioButton Ouifragile;
+    @FXML
+    private RadioButton Nonfragile;
+     @FXML
+     
+     
+     
+     
+    private void inflammable(ActionEvent event) throws SQLException {
+//        try {
+//    PreparedStatement ps = myconn.prepareStatement("UPDATE partenaire SET inflammable = ? WHERE id = ?");
+//    ps.setBoolean(1, Ouiinflammable.isSelected());    
+//    ps.setInt(2, 3);
+//    ps.executeUpdate();
+//    System.out.println("Update successful");
+//} catch (SQLException e) {
+//    System.out.println("Update failed: " + e.getMessage());
+//}
+    }
+//
+   @FXML
+    private void fragile(ActionEvent event) {
+//        try {
+//    PreparedStatement ps = myconn.prepareStatement("UPDATE partenaire SET fragile = ? WHERE id = ?");
+//    ps.setBoolean(1, Ouifragile.isSelected());    
+//    ps.setInt(2, 3);
+//    ps.executeUpdate();
+//    System.out.println("Update successful");
+//} catch (SQLException e) {
+//    System.out.println("Update failed: " + e.getMessage());
+//}
+   }
    
-    @FXML
-    private ChoiceBox<String> CBZone;
-    private String[] zone={"Nationale","Internationale"};
-    @FXML
-    private ChoiceBox<String> CBMoy_transport;
-     private String[] moy_transport={"Voiture","Bateau","Avion"};
     @FXML
     void livreurs(ActionEvent event) {
 
@@ -126,14 +156,13 @@ Connection myconn = MyConnection.getInstance().getConnexion();
     };
     
 
-    @FXML
     void modifierPartenaire(ActionEvent event) {
 
     }
  @FXML
     void Colis(ActionEvent event) {
 try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Colis.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
             Parent root = (Parent) loader.load();
 
             Scene scene = new Scene(root);
@@ -191,24 +220,23 @@ try{
     } catch (SQLException ex) {
         Logger.getLogger(partenaireinterfaceController.class.getName()).log(Level.SEVERE, null, ex);
     }
-          CBMoy_transport.getItems().addAll(moy_transport);
-          CBZone.getItems().addAll(zone);
+          
+          listeMoy_transport.setItems(FXCollections.observableArrayList("Voiture","Bateau","Avion"));
+          listeZone.setItems(FXCollections.observableArrayList("Nationale","Internationale"));
     }    
 
+@FXML
     private void handleButtonAction(ActionEvent event) throws SQLException {
-        // if(event.getSource()== btnAjouter){
-//            ajouterPartenaire();
-//        }
-        if(event.getSource()== btnModifier){
+       
+       
+        if(event.getSource()==  btnModifier){
             modifierPartenaire();
+            Alert();
             
         }
-//        if(event.getSource()== btnSupprimer){
-//            supprimerPartenaire();
-//        }
+//        
 
     }
-    
     
     
     
@@ -253,12 +281,12 @@ try{
      ObservableList<Partenaire> List = getPartenaireList();
 
      
-//     tfNom.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("nom"));   
-//     tfEmail.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("email"));
-//     tfNumtel.setCellValueFactory(new PropertyValueFactory<Partenaire , Integer>("numtel"));     
-//     tfMdp.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("mdp"));
-//     
-   //  Partenaire.setItems(List);
+  //  tfNom.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("nom"));   
+  //   tfEmail.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("email"));
+  //   tfNumtel.setCellValueFactory(new PropertyValueFactory<Partenaire , Integer>("numtel"));     
+  //   tfMdp.setCellValueFactory(new PropertyValueFactory<Partenaire , String>("mdp"));
+    
+    // Partenaire.setItems(List);
      
  }
  
@@ -326,35 +354,86 @@ try{
 //}
 
 
-private void modifierPartenaire() throws SQLException{         
+public void modifierPartenaire() throws SQLException {         
+    String sql = "UPDATE partenaire SET nom = ?, email = ?, numtel = ?, moyen_transport = ?, zone = ?, prix_poids = ?, prix_zone = ?, inflammable = ?, fragile = ?, login = ?, mdp = ? WHERE id = ?";
+    try {
+        PreparedStatement ste = myconn.prepareStatement(sql);
+
+        ste.setString(1, tfNom.getText());
+        ste.setString(2, tfEmail.getText());
+        ste.setString(3, tfNumtel.getText());
+        ste.setString(4, listeMoy_transport.getValue());   
+        ste.setString(5, listeZone.getValue());
+        ste.setDouble(6, Double.parseDouble(tfPrix_poids.getText()));
+        ste.setDouble(7, Double.parseDouble(tfPrix_zone.getText()));
+        ste.setBoolean(8, Ouiinflammable.isSelected());
+        ste.setBoolean(9, Ouifragile.isSelected());
+        ste.setString(10, "jumia");
+        ste.setString(11, "jumia132");
+        ste.setInt(12, 4);
+        
+        ste.executeUpdate();
+        System.out.println("Partenaire modifié");
+    } catch (SQLException ex) {
+        System.out.println(ex);
+    }
     
-            int  id=1;
-            String nom =tfNom.getText() ;
-            String email=tfEmail.getText();
-            int numtel = Integer.parseInt(tfNumtel.getText());
-            String moy_transport = CBMoy_transport.getSelectedItem().toString();
-            String zone =CBZone.getText();
-            Double prix_poids = Double.parseDouble(tfPrix_poids.getText());
-            Double prix_zone = Double.parseDouble(tfPrix_zone.getText());          
-            Boolean inflammable=Boolean.parseBoolean(tfInflammable.getText());
-            Boolean fragile=Boolean.parseBoolean(tfFragile.getText());
-            String login = "yoyo";
-            String mdp=tfMdp.getText();
-            
-            Partenaire partenaire = new Partenaire (
-              id, nom,email,numtel,moy_transport,zone,prix_poids,prix_zone,inflammable,fragile,login,mdp
-            );
-            
-             PartenaireService ps = new PartenaireService();
-            ps.modifierPartenaire(partenaire );
-            
-     afficherPartenaire();      
-   
+    afficherPartenaire();  
 }
 
 
+//            int  id=1;
+//            String nom =tfNom.getText() ;
+//            String email=tfEmail.getText();
+//            int numtel = Integer.parseInt(tfNumtel.getText());
+//            String moy_transport = listeMoy_transport.getValue();
+//            String zone =listeMoy_transport.getValue();
+//            Double prix_poids = Double.parseDouble(tfPrix_poids.getText());
+//            Double prix_zone = Double.parseDouble(tfPrix_zone.getText());          
+//            Boolean inflammable=Boolean.parseBoolean(tfInflammable.getText());
+//            Boolean fragile=Boolean.parseBoolean(tfFragile.getText());
+//            String login = "yoyo";
+//            String mdp=  "yoyo";
+//            
+//            Partenaire partenaire = new Partenaire (
+//             id, nom,email,numtel,moy_transport,zone,prix_poids,prix_zone,inflammable,fragile,login,mdp
+//            );
+//            
+//             PartenaireService ps = new PartenaireService();
+//            ps.modifierPartenaire(partenaire );
+//            System.out.println("partenaire modifier");
+        
+   
 
 
+
+
+//    @FXML         
+//    private void ajouterPartenaire() throws SQLException{         
+//    
+//            int  id=3;
+//            String nom =tfNom.getText() ;
+//            String email=tfEmail.getText();
+//            int numtel = Integer.parseInt(tfNumtel.getText());
+//            String moy_transport = listeMoy_transport.getValue();
+//            String zone =listeMoy_transport.getValue();
+//            Double prix_poids = Double.parseDouble(tfPrix_poids.getText());
+//            Double prix_zone = Double.parseDouble(tfPrix_zone.getText());          
+//            Boolean inflammable=Boolean.parseBoolean(tfInflammable.getText());
+//            Boolean fragile=Boolean.parseBoolean(tfFragile.getText());
+//            String login = "fawetah";
+//            String mdp=tfMdp.getText();
+//            
+//            Partenaire partenaire = new Partenaire (
+//             id, nom,email,numtel,moy_transport,zone,prix_poids,prix_zone,inflammable,fragile,login,mdp
+//            );
+//            
+//             PartenaireService ps = new PartenaireService();
+//            ps.ajouterPartenaire(partenaire );
+//            
+//     afficherPartenaire();      
+//   
+//}
 
 
 
@@ -406,9 +485,14 @@ private void modifierPartenaire() throws SQLException{
 //              tfMdp.setText(p.getMdp());
 //    }
 
-    @FXML
-    private void radio(ActionEvent event) {
-    }
+   
+
+     public void Alert(){  
+ Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Confirmation des données");
+    alert.setContentText("Vos informations ont été confirmées avec succès.");
+    alert.showAndWait();
+ }
 
     
 

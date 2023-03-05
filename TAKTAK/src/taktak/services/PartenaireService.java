@@ -27,35 +27,30 @@ public class PartenaireService implements IPartenaire{
  
   
     @Override
-    public void ajouterPartenaire(Partenaire p) {
+public void ajouterPartenaire(Partenaire p) {
         
- String sql="insert into partenaire (id,nom,email,numtel,moyen_transport,zone,prix_poids,prix_zone,inflammable,fragile,login,mdp) values(?,?,?,?,?,?,?,?,?,?,?,?)";
-    try{
+    String sql = "insert into partenaire (id, nom, email, numtel, moyen_transport, zone, prix_poids, prix_zone, inflammable, fragile, login, mdp) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try {
         PreparedStatement ste = myconn.prepareStatement(sql);
-        ste.setInt(1,p.getId());
-        ste.setString(2,p.getNom());
-        ste.setString(3,p.getEmail());
-        ste.setInt(4,p.getNumtel());
-        ste.setString(5,p.getMoyen_transport());   
-        ste.setString(6,p.getZone());
-        ste.setDouble(7,p.getPrix_poids());
-        ste.setDouble(8,p.getPrix_zone());
-        ste.setBoolean(9,p.isInflammable());
-        ste.setBoolean(10,p.isFragile());
-        ste.setString(11,p.getLogin());
-        ste.setString(12,p.getMdp());
-       
+        ste.setInt(1, p.getId());
+        ste.setString(2, p.getNom());
+        ste.setString(3, p.getEmail());
+        ste.setInt(4, p.getNumtel());
+        ste.setString(5, p.getMoyen_transport());
+        ste.setString(6, p.getZone());
+        ste.setDouble(7, p.getPrix_poids());
+        ste.setDouble(8, p.getPrix_zone());
+        ste.setBoolean(9, p.isInflammable());
+        ste.setBoolean(10, p.isFragile());
+        ste.setString(11, p.getLogin());
+        ste.setString(12, p.getMdp());
         
         ste.executeUpdate();
-        System.out.println("partenaire ajoutée");
- 
-       }
-    catch(SQLException ex ){
+        System.out.println("Partenaire ajouté");
+    } catch (SQLException ex) {
         System.out.print(ex);
-        }
-    
-    
     }
+}
     @Override
     public void modifierPartenaire(Partenaire p) {
         String sql ="UPDATE partenaire SET nom = ? , email = ? ,numtel = ?, moyen_transport=?,zone=?,prix_poids=?,prix_zone=?,inflammable=?,fragile=?,  login = ? ,mdp = ? where id =?";

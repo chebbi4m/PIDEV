@@ -43,35 +43,36 @@
             <Image url="@../../img/logo.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tvLiveurs" layoutX="374.0" layoutY="138.0" prefHeight="428.0" prefWidth="691.0">
+      <TableView fx:id="tvLiveurs" layoutX="283.0" layoutY="90.0" onMouseClicked="#handleMouseAction" prefHeight="256.0" prefWidth="796.0">
          <columns>
-            <TableColumn fx:id="colnom" prefWidth="75.0" text="Nom" />
-            <TableColumn fx:id="colprenom" prefWidth="75.0" text="prenom" />
-            <TableColumn fx:id="colemail" prefWidth="75.0" text="email" />
-            <TableColumn fx:id="colnumtel" prefWidth="75.0" text="numtel" />
-            <TableColumn fx:id="colNbreColistotal" prefWidth="144.33331298828125" text="nbre_colis_total" />
-            <TableColumn fx:id="colNbreColistotal" prefWidth="119.66668701171875" text="nbre_colis_total" />
-            <TableColumn fx:id="colNbreColisCourant" prefWidth="119.66668701171875" text="nbre_colis_courant" />
+            <TableColumn fx:id="colnom" prefWidth="75.0" text="     Nom" />
+            <TableColumn fx:id="colprenom" prefWidth="75.0" text="  Prenom" />
+            <TableColumn fx:id="colemail" prefWidth="104.66668701171875" text="          email" />
+            <TableColumn fx:id="colnumtel" prefWidth="84.33331298828125" text="      numtel" />
+            <TableColumn fx:id="colNbreReclamation" prefWidth="118.6666259765625" text="nbre_Reclamation" />
+            <TableColumn fx:id="colNbreColistotal" prefWidth="109.3333740234375" text="nbre_colis_total" />
+            <TableColumn fx:id="colNbreColisCourant" prefWidth="120.0" text="nbre_colis_courant" />
+            <TableColumn fx:id="coldisponibilité" prefWidth="120.0" text="disponibilité" />
          </columns>
       </TableView>
-      <Button fx:id="btnModifier" layoutX="470.0" layoutY="585.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="32.0" prefWidth="114.0" text="Modifier">
+      <Button fx:id="btnModifier" layoutX="4.0" layoutY="455.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="32.0" prefWidth="114.0" text="Modifier     ">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </Button>
-      <Button fx:id="btnAjouter" layoutX="317.0" layoutY="585.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="37.0" prefWidth="114.0" text="Ajouter">
+      <Button fx:id="btnAjouter" layoutX="4.0" layoutY="406.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="37.0" prefWidth="114.0" text="Ajouter        ">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </Button>
-      <Button fx:id="btnSupprimer" layoutX="630.0" layoutY="585.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="32.0" prefWidth="132.0" text="Supprimer">
+      <Button fx:id="btnSupprimer" layoutX="4.0" layoutY="502.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="32.0" prefWidth="114.0" text="Supprimer">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </Button>
-      <TextField fx:id="tfLivreur" layoutX="88.0" layoutY="142.0" />
-      <Button fx:id="btnRecherche" layoutX="271.0" layoutY="139.0" mnemonicParsing="false" text="Recherche " />
-      <VBox layoutX="109.0" layoutY="220.0" prefHeight="167.0" prefWidth="100.0" spacing="20.0">
+      <TextField fx:id="tfLivreur" layoutX="27.0" layoutY="99.0" />
+      <Button fx:id="btnRecherche" layoutX="192.0" layoutY="96.0" mnemonicParsing="false" onAction="#chercherLivreur" text="Recherche " />
+      <VBox layoutX="114.0" layoutY="164.0" prefHeight="167.0" prefWidth="100.0" spacing="20.0">
          <children>
             <TextField fx:id="tfNom" />
             <TextField fx:id="tfPrenom" />
@@ -79,7 +80,7 @@
             <TextField fx:id="tfNumtel" />
          </children>
       </VBox>
-      <VBox layoutX="20.0" layoutY="228.0" prefHeight="182.0" prefWidth="67.0" spacing="25.0">
+      <VBox layoutX="24.0" layoutY="173.0" prefHeight="150.0" prefWidth="67.0" spacing="30.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom" />
@@ -87,5 +88,23 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numtel" />
          </children>
       </VBox>
+      <TableView fx:id="tvColis" layoutX="121.0" layoutY="374.0" prefHeight="328.0" prefWidth="961.0">
+         <columns>
+            <TableColumn fx:id="colref" prefWidth="75.0" text="Ref" />
+            <TableColumn fx:id="colhauteur" prefWidth="75.0" text="Hauteur" />
+            <TableColumn fx:id="collargeur" prefWidth="75.0" text="Largeur" />
+            <TableColumn fx:id="colpoids" prefWidth="75.0" text="Poids" />
+            <TableColumn fx:id="colprix" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="colfragile" prefWidth="75.0" text="Fragile" />
+            <TableColumn fx:id="colinflammable" prefWidth="75.0" text="Inflammable" />
+            <TableColumn fx:id="coldepart" prefWidth="75.0" text="Depart" />
+            <TableColumn fx:id="coldestination" prefWidth="75.0" text="Destination" />
+            <TableColumn fx:id="coletat_colis" prefWidth="75.0" text="Etat_colis" />
+            <TableColumn fx:id="colzone" prefWidth="75.0" text="Zone" />
+            <TableColumn fx:id="colurgent" prefWidth="75.0" text="Urgent" />
+            <TableColumn fx:id="collivreur" prefWidth="91.66668701171875" text="Livreur" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnaffecter" layoutY="651.0" mnemonicParsing="false" onAction="#affecterColisAuLivreur" prefHeight="59.0" prefWidth="114.0" text="Affecter un livreur " />
    </children>
 </AnchorPane>

@@ -5,11 +5,12 @@
  */
 package taktak.entities;
 
-/**
- *
- * @author Cheima
- */
+import javafx.collections.ObservableList;
+
+
 public class LivreurInterface {
+
+  
     private int id;
     private String nom;
     private String prenom;
@@ -17,13 +18,15 @@ public class LivreurInterface {
     private String numtel;
     private int nbre_reclamation;
     private int nbre_colis_total;
-    private int nbre_colis_courant;
+     int nbre_colis_courant=4;
     private String login;
     private String mdp;
-   
+    private Boolean disponible;
     //Constructors
-
-    public LivreurInterface(int id, String nom, String prenom, String email, String numtel, int nbre_reclamation, int nbre_colis_total, int nbre_colis_courant, String login, String mdp) {
+    
+    public LivreurInterface(){}
+    
+    public LivreurInterface(int id, String nom, String prenom, String email, String numtel, int nbre_reclamation, int nbre_colis_total, int nbre_colis_courant, String login, String mdp,Boolean disponible) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -34,10 +37,33 @@ public class LivreurInterface {
         this.nbre_colis_courant = nbre_colis_courant;
         this.login = login;
         this.mdp = mdp;
+        this.disponible = disponible;
     }
+
+    
+   
+
+
+   
+  
+   
+   
+   
+   public Boolean getDisponible() {
+        return disponible;
+    }
+
+   
+   
+   
+ 
 
     public int getNbre_reclamation() {
         return nbre_reclamation;
+    }
+
+    public void setDisponible(Boolean disponible) {
+        this.disponible = disponible;
     }
 
     public void setNbre_reclamation(int nbre_reclamation) {
@@ -127,8 +153,9 @@ public class LivreurInterface {
 
     @Override
     public String toString() {
-        return "LivreurInterface{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", numtel=" + numtel + ", nbre_reclamation=" + nbre_reclamation + ", nbre_colis_total=" + nbre_colis_total + ", nbre_colis_courant=" + nbre_colis_courant + ", login=" + login + ", mdp=" + mdp + '}';
+        return "LivreurInterface{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", numtel=" + numtel + ", nbre_reclamation=" + nbre_reclamation + ", nbre_colis_total=" + nbre_colis_total + ", nbre_colis_courant=" + nbre_colis_courant + ", login=" + login + ", mdp=" + mdp + ", disponible=" + disponible + '}';
     }
 
+  
   
 }
