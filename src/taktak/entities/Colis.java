@@ -25,11 +25,12 @@ public class Colis {
     private boolean urgent;
     private int id_client;
     private int id_livreur;
+    private String nom_partenaire;
     
     public Colis(){
         
     }
-    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile, boolean inflammable ,String depart, String destination, String etat_colis, String zone, boolean urgent, int id_client, int id_livreur) {
+    public Colis(String ref, int hauteur, int largeur, int poids, int prix, boolean fragile, boolean inflammable ,String depart, String destination, String etat_colis, String zone, boolean urgent, int id_client, int id_livreur, String nom_partenaire) {
         
         this.ref = ref;
         this.hauteur = hauteur;
@@ -45,6 +46,7 @@ public class Colis {
         this.urgent = urgent;
         this.id_client = id_client;
         this.id_livreur = id_livreur;
+        this.nom_partenaire = nom_partenaire;
     }
     
     // getters
@@ -109,6 +111,10 @@ public class Colis {
         return this.id_livreur;
     }
     
+    public String getNom_partenaire(){
+        return this.nom_partenaire;
+    }
+    
     //setters
     
     public void setId(int id) {
@@ -169,6 +175,10 @@ public class Colis {
     
     public void setId_livreur(int id_livreur) {
         this.id_livreur = id_livreur;
+    }
+    
+    public void setNom_partenaire(String nom_partenaire){
+        this.nom_partenaire = nom_partenaire;
     }
     
     @Override

@@ -6,12 +6,22 @@
 package gui;
 
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -20,34 +30,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.MessageFormat;
-import java.time.Duration;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import taktak.entities.Colis;
-import taktak.services.ColisService;
 import taktak.utils.MyConnection;
-import javax.swing.*;
 
 /**
  * FXML Controller class
@@ -89,13 +92,13 @@ public class ColisController implements Initializable {
     @FXML
     void getAddView(MouseEvent event) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutColis1.fxml"));
-            Parent root = (Parent) loader.load();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+            Stage stage = new Stage ();
+            Parent root = FXMLLoader.load(getClass().getResource("AjoutColis1.fxml"));  
+            Scene scene = new Scene (root);
             stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            ((Node)event.getSource()).getScene().getWindow().hide(); 
         }catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -104,7 +107,11 @@ public class ColisController implements Initializable {
 
     @FXML
     void print(MouseEvent event) {
-        
+        print();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Message d'alerte");
+        alert.setHeaderText("Votre facture a été imprimé avec succès");
+        alert.showAndWait();
     }
     @FXML
     void refreshTable() {
@@ -132,7 +139,8 @@ public class ColisController implements Initializable {
                         s.getString("zone"),
                         s.getBoolean(13),
                         s.getInt(14),
-                        s.getInt(15));
+                        s.getInt(15),
+                        s.getString("nom_partenaire"));
                 colis.add(cls);
             }
         } catch (SQLException ex) {
@@ -170,5 +178,94 @@ public class ColisController implements Initializable {
         catch(SQLException ex){
             System.out.println(ex);
         }afficherColis();
-    }   
+    }
+    
+    public void PrintColis(){
+        File folder = new File("documents");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        String nom_fichier = "documents/Factures.pdf";
+        Font TitleFont = new Font(Font.FontFamily.TIMES_ROMAN,16,Font.BOLD,BaseColor.BLUE);
+        Font RedFont = new Font(Font.FontFamily.TIMES_ROMAN,14,Font.BOLD,BaseColor.RED);
+        File imageTaktak = new File("images/taktakLogo.png");
+        String chemin = imageTaktak.getAbsolutePath(); 
+        LineSeparator ls = new LineSeparator();
+        ls.setLineColor(BaseColor.BLUE);
+        Image image = null;
+    }
+
+private void print() {
+    Colis selectedItem = colisTable.getSelectionModel().getSelectedItem();
+    String ref = selectedItem.getRef();
+    String depart = selectedItem.getDepart();
+    String destination = selectedItem.getDestination();
+    int prix = selectedItem.getPrix();
+    Document document = new Document();
+
+    // Create a File object with the name of the file
+    File file = new File("facture.pdf");
+
+    try {
+        // Check if the file exists
+        if (file.exists()) {
+            // If the file exists, add a timestamp to the filename to create a new file
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            file = new File("facture_" + timestamp + ".pdf");
+        }
+
+        // Create a PdfWriter to write the Document to the file
+        PdfWriter.getInstance(document, new FileOutputStream(file));
+
+        // Open the Document
+        document.open();
+
+        // Create a table with 2 columns
+        PdfPTable table = new PdfPTable(2);
+        table.setWidthPercentage(100);
+        table.getDefaultCell().setBorderWidth(1);
+        table.setSpacingAfter(10f);
+
+        Paragraph header = new Paragraph("Ma facture", FontFactory.getFont(FontFactory.TIMES_BOLD, 20, BaseColor.BLUE));
+
+        PdfPCell headerCell = new PdfPCell(header);
+        headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+        // Set the properties of the cell, including the border
+        headerCell.setBorder(Rectangle.LEFT | Rectangle.RIGHT | Rectangle.TOP | Rectangle.BOTTOM);
+        headerCell.setBorderColor(BaseColor.BLACK);
+        headerCell.setBorderWidth(2f);
+        headerCell.setPaddingBottom(10f);
+
+
+        // Add the header cell to a new table
+        PdfPTable headerTable = new PdfPTable(1);
+        headerTable.setWidthPercentage(100);
+        headerTable.addCell(headerCell);
+
+        // Add the header table to the document
+        document.add(headerTable);
+
+        // Add some content to the table
+        table.addCell(new PdfPCell(new Phrase("Référence:", FontFactory.getFont(FontFactory.TIMES, 14))));
+        table.addCell(new PdfPCell(new Phrase(ref, FontFactory.getFont(FontFactory.TIMES, 14))));
+        table.addCell(new PdfPCell(new Phrase("Départ:", FontFactory.getFont(FontFactory.TIMES, 14))));
+        table.addCell(new PdfPCell(new Phrase(depart, FontFactory.getFont(FontFactory.TIMES, 14))));
+        table.addCell(new PdfPCell(new Phrase("Destination:", FontFactory.getFont(FontFactory.TIMES, 14))));
+        table.addCell(new PdfPCell(new Phrase(destination, FontFactory.getFont(FontFactory.TIMES, 14))));
+        table.addCell(new PdfPCell(new Phrase("Prix Total:", FontFactory.getFont(FontFactory.TIMES_BOLD, 14, BaseColor.RED))));
+        table.addCell(new PdfPCell(new Phrase(prix + " €", FontFactory.getFont(FontFactory.TIMES_BOLD, 14, BaseColor.RED))));
+        
+        // Add the table to the Document
+        document.add(table);
+
+        // Close the Document
+        document.close();
+        
+        System.out.println("Facture imprimé");
+    } catch (DocumentException | FileNotFoundException ex) {
+        System.out.println(ex);
+    }
+}
+
 }

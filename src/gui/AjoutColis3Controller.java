@@ -12,12 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import taktak.entities.Colis;
 import taktak.entities.RandomGenerator;
 import taktak.services.ColisService;
@@ -86,13 +88,13 @@ public class AjoutColis3Controller implements Initializable {
     @FXML
     void btnAnnuler(ActionEvent event) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Colis.fxml"));
-            Parent root = (Parent) loader.load();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+            Stage stage = new Stage ();
+            Parent root = FXMLLoader.load(getClass().getResource("Colis.fxml"));  
+            Scene scene = new Scene (root);
             stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            ((Node)event.getSource()).getScene().getWindow().hide();
        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -155,19 +157,20 @@ public class AjoutColis3Controller implements Initializable {
         cls.setZone(getZone.getText());
         cls.setUrgent(getUrgentOui.isSelected());
         cls.setPrix(Integer.parseInt(getPrix.getText()));
-        cls.setId_client(1);
-        cls.setId_livreur(0);
+        //cls.setId_client(1);
+        //cls.setId_livreur(0);
+        cls.setNom_partenaire("DHL");
        
         cs.ajouterColis(cls);
         
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Colis.fxml"));
-            Parent root = (Parent) loader.load();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+            Stage stage = new Stage ();
+            Parent root = FXMLLoader.load(getClass().getResource("Colis.fxml"));  
+            Scene scene = new Scene (root);
             stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            ((Node)event.getSource()).getScene().getWindow().hide();
         }catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

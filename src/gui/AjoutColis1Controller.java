@@ -15,18 +15,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import static sun.management.Agent.error;
-import taktak.entities.Colis;
-import taktak.entities.RandomGenerator;
-import taktak.services.ColisService;
-
 /**
  * FXML Controller class
  *
@@ -112,13 +111,13 @@ public class AjoutColis1Controller implements Initializable {
     @FXML
     void btnRetour(ActionEvent event) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Colis.fxml"));
-            Parent root = (Parent) loader.load();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+            Stage stage = new Stage ();
+            Parent root = FXMLLoader.load(getClass().getResource("Colis.fxml"));  
+            Scene scene = new Scene (root);
             stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            ((Node)event.getSource()).getScene().getWindow().hide();
         }catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -126,10 +125,6 @@ public class AjoutColis1Controller implements Initializable {
     
     @FXML
     void btnSuivant(ActionEvent event) {
-        //RandomGenerator generator = new RandomGenerator();
-        //String randomString = generator.generateRandomString();
-       
-        //String ref = randomString;
         String getCbZone = cbZone.getValue().toString();
         String depart = fxDepart.getText();
         String destination = fxDestination.getText();
@@ -141,26 +136,36 @@ public class AjoutColis1Controller implements Initializable {
         boolean getUrgent = urgentOui.isSelected();
         Boolean valid = true;
         
-        //int hauteur = Integer.parseInt(fxHauteur.getText());
-        //int largeur = Integer.parseInt(fxLargeur.getText());
-        //int poids = Integer.parseInt(fxPoids.getText());
-
-        
         if (getCbZone.length() == 0 || depart.length() == 0 || destination.length() == 0 || hauteur.length() == 0 || largeur.length() == 0 || poids.length() == 0) {
             error("Les champs ne peuvent pas être vides");
             valid = false ;         
         }else{
             if ((!hauteur.matches("\\d+"))) {
                 error("Le champs ne doit contenir que des chiffres !");
-                valid = false ;            
+                valid = false ;   
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Message d'alerte");
+                alert.setHeaderText("Veuillez saisir un chiffre");
+                alert.showAndWait();
             }
             else if ((!largeur.matches("\\d+"))) {
                 error("Le champs ne doit contenir que des chiffres !");
-                valid = false ;            
+                valid = false ; 
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Message d'alerte");
+                alert.setHeaderText("Veuillez saisir un chiffre");
+                alert.showAndWait();
             }
             if ((!poids.matches("\\d+"))) {
                 error("Le champs ne doit contenir que des chiffres !");
                 valid = false ;            
+                
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Message d'alerte");
+                alert.setHeaderText("Veuillez saisir un chiffre");
+                alert.showAndWait();
             }
         }
         
@@ -205,32 +210,12 @@ public class AjoutColis1Controller implements Initializable {
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
+                stage.initStyle(StageStyle.UNDECORATED);
                 stage.show();
+                ((Node)event.getSource()).getScene().getWindow().hide();
             }catch (IOException ex) {
             System.out.println(ex.getMessage());
           }
        }
-        
-        
-        //Colis cls = new Colis();
-        //ColisService cs = new ColisService();
-       
-       /*cls.setRef(ref);
-       cls.setHauteur(hauteur);
-       cls.setLargeur(largeur);
-       cls.setPoids(poids);
-       cls.setFragile(getFragile);
-       cls.setInflammable(getInflammable);
-       cls.setDepart("Tunis");
-       cls.setDestination("Tunis");
-       cls.setEtat_colis(cls.getEtat_colis());
-       cls.setZone(getZone);
-       cls.setUrgent(getUrgent);
-       cls.setId_client(1);
-       cls.setId_livreur(0);
-       
-       cs.ajouterColis(cls);*/
-       
-
     }
 }

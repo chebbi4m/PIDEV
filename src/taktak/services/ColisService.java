@@ -23,7 +23,7 @@ public class ColisService implements IColis{
     @Override
     public void ajouterColis(Colis cls) {
         try {
-            String sql="insert into colis values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+            String sql="insert into colis values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
             PreparedStatement ste= myconn.prepareStatement(sql);
             ste.setString(1, cls.getRef());
             ste.setInt(2, cls.getHauteur());
@@ -39,6 +39,7 @@ public class ColisService implements IColis{
             ste.setBoolean(12, cls.getUrgent());
             ste.setInt(13, cls.getId_client());
             ste.setInt(14, cls.getId_livreur());
+            ste.setString(15, cls.getNom_partenaire());
             ste.executeUpdate();
             System.out.println("colis ajouté");
         } catch (SQLException ex) {
@@ -48,7 +49,7 @@ public class ColisService implements IColis{
     
      @Override
     public void modifierColis(Colis cls) {
-        String sql="update colis set (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where id= ?";
+        String sql="update colis set (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) where id= ?";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
                 ste.setString(1, cls.getRef());
@@ -63,8 +64,9 @@ public class ColisService implements IColis{
                 ste.setString(10, cls.getEtat_colis());
                 ste.setString(11, cls.getZone());
                 ste.setBoolean(12, cls.getUrgent());
-                ste.setInt(12, cls.getId_client());
-                ste.setInt(11, cls.getId_livreur());
+                ste.setInt(13, cls.getId_client());
+                ste.setInt(14, cls.getId_livreur());
+                ste.setString(15, cls.getNom_partenaire());
                 ste.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -78,12 +80,12 @@ public class ColisService implements IColis{
     
     @Override
     public void supprimerColis(Colis cls) {
-                try {
+        try {
             PreparedStatement preparedStatement = myconn.prepareStatement("DELETE FROM colis where id = ?");
             preparedStatement.setInt(1,cls.getId());
             preparedStatement.executeUpdate();
              System.out.println("colis supprimé");
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             Logger.getLogger(ColisService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -110,7 +112,8 @@ public class ColisService implements IColis{
                         s.getString("zone"),
                         s.getBoolean(13),
                         s.getInt(14),
-                        s.getInt(15));
+                        s.getInt(15),
+                        s.getString("nom_partenaire"));
                 colis.add(cls);
        
             }
