@@ -14,7 +14,7 @@ public class SqlConnection {
         Connection conn= null;
         try {
           conn = DriverManager.getConnection(url, user, password);
-            JOptionPane.showMessageDialog(null,"connexion reussie");
+            System.out.println("connexion reussie");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

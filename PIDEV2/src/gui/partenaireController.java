@@ -55,19 +55,24 @@ public class partenaireController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private void searchByName(KeyEvent event)
-    {
+    private void searchByName(KeyEvent event) {
         String searchText = searchField.getText().toLowerCase();
-        for (partenaire person : table_partenaire.getItems()) {
-            if (person.getNom().toLowerCase().contains(searchText)) {
-                table_partenaire.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-                table_partenaire.scrollTo(person);
-                return;
-            }}
-        if (!table_partenaire.getSelectionModel().isEmpty()) {
-            table_partenaire.scrollTo(table_partenaire.getSelectionModel().getSelectedIndex());
-        }}
 
+        ObservableList<partenaire> filteredList = FXCollections.observableArrayList();
+
+        for (partenaire person : getDataparteniare()) {
+            if (person.getNom().toLowerCase().contains(searchText)) {
+                filteredList.add(person);
+            }
+        }
+
+        table_partenaire.setItems(filteredList);
+
+        if (!filteredList.isEmpty()) {
+            table_partenaire.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            table_partenaire.scrollTo(filteredList.get(0));
+        }
+    }
 
 
 
@@ -109,10 +114,7 @@ public class partenaireController implements Initializable {
         col_Prix1.setCellValueFactory(new PropertyValueFactory<>("prix_zone"));
         col_Prix2.setCellValueFactory(new PropertyValueFactory<>("prix_poids"));
         col_Inflammable.setCellValueFactory(new PropertyValueFactory<>("inflammable"));
-
-
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showpartenaire();

@@ -6,49 +6,29 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="296.0" prefWidth="451.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="308.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.paymentController">
     <children>
-        <Label layoutX="14.0" layoutY="14.0" text="Online Payment Form" />
-        <GridPane layoutX="14.0" layoutY="48.0" prefWidth="372.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <Label text="Numéro de carte bancaire" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <Label text="Date d'expiration" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <HBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <TextField prefWidth="70.0" />
-                    <Label text="/" />
-                    <TextField prefWidth="70.0" />
-                </HBox>
-                <Label text="CVV" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Label text="Amount totale" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            </children>
-        </GridPane>
-        <Button layoutX="309.0" layoutY="244.0" mnemonicParsing="false" styleClass="next-button" stylesheets="@Button.css" text="Confirmer" />
-      <ImageView fitHeight="106.0" fitWidth="200.0" layoutY="189.0">
-         <image>
-            <Image url="@icon1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="92.0" fitWidth="200.0" layoutX="226.0" layoutY="170.0">
+        <Label layoutX="40" layoutY="27" text="Payment Information" />
+        <Label layoutX="40" layoutY="63" text="Card Number:" />
+        <TextField fx:id="cardNumberField" layoutX="192.0" layoutY="59.0" prefHeight="25" prefWidth="200" />
+        <Label layoutX="40" layoutY="99" text="Expiration Month:" />
+        <TextField fx:id="expirationMonthField" layoutX="192.0" layoutY="95.0" prefHeight="25" prefWidth="200" />
+        <Label layoutX="40" layoutY="135" text="Expiration Year:" />
+        <TextField fx:id="expirationYearField" layoutX="192.0" layoutY="131.0" prefHeight="25" prefWidth="200" />
+        <Label layoutX="40" layoutY="171" text="CVV:" />
+        <TextField fx:id="cvvField" layoutX="192.0" layoutY="167.0" prefHeight="25" prefWidth="200" />
+        <Label layoutX="40" layoutY="207" text="Amount:" />
+        <TextField fx:id="amountField" layoutX="192.0" layoutY="203.0" prefHeight="25" prefWidth="200" />
+        <Button fx:id="payButton" layoutX="544.0" layoutY="258.0" mnemonicParsing="false" onAction="#handlePayButtonClicked" styleClass="next-button" stylesheets="@Button.css" text="Confirmer" />
+      <ImageView fitHeight="92.0" fitWidth="200.0" layoutX="7.0" layoutY="223.0">
          <image>
             <Image url="@Icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="86.0" fitWidth="200.0" layoutX="451.0" layoutY="2.0">
+         <image>
+            <Image url="@icon1.png" />
          </image>
       </ImageView>
     </children>
