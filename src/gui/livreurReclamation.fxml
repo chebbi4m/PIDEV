@@ -2,12 +2,14 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FEF7E4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.WelcomeController">
-   <children>
-      <Label layoutX="461.0" layoutY="82.0" prefHeight="54.0" prefWidth="341.0" text="Bienvenue cher client" textFill="#3512e4">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurReclamationController">
+    <children>
+      <Label layoutX="461.0" layoutY="82.0" prefHeight="54.0" prefWidth="341.0" text="Bienvenue cher livreur" textFill="#3512e4">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -55,5 +57,13 @@
             </JFXButton>
          </children>
       </AnchorPane>
+      <TableView fx:id="reclamation_table" layoutX="341.0" layoutY="232.0" prefHeight="284.0" prefWidth="521.0">
+         <columns>
+            <TableColumn fx:id="ref_col" prefWidth="75.0" text="ref" />
+            <TableColumn fx:id="type_col" prefWidth="124.3333740234375" text="type reclamation" />
+            <TableColumn fx:id="reclamation_col" prefWidth="124.3333740234375" text="type reclamation" />
+            <TableColumn fx:id="date_col" prefWidth="124.3333740234375" text="date" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

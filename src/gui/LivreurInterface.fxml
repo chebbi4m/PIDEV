@@ -37,15 +37,11 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <HBox fx:id="ReclamationsCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <children>
-                  <Label text="Voir les réclamations" textFill="WHITE" textOverrun="CLIP">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            <Button fx:id="ReclamationsCont" mnemonicParsing="false" onAction="#open_reclamation" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Voir les réclamations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
          <padding>
             <Insets bottom="20.0" left="38.0" right="30.0" top="20.0" />
@@ -91,7 +87,7 @@
             </HBox>
          </children>
       </HBox>
-      <TableView fx:id="LivreurTable" layoutX="287.0" layoutY="256.0" prefHeight="418.0" prefWidth="710.0">
+      <TableView fx:id="LivreurTable" layoutX="287.0" layoutY="237.0" prefHeight="418.0" prefWidth="710.0">
         <columns>
           <TableColumn fx:id="RefCol" prefWidth="110.0" style="-fx-background-color: #E5D1FA;" text="Ref" />
           <TableColumn fx:id="NomCol" prefWidth="154.0" style="-fx-background-color: #E5D1FA;" text="Nom" />
@@ -107,6 +103,11 @@
          </font>
       </Label>
       <Button fx:id="SavingButton" layoutX="766.0" layoutY="172.0" mnemonicParsing="false" onAction="#saveEtat" style="-fx-background-color: #E5D1FA;" text="Save" textFill="#4b56d2">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="PrintBtn" layoutX="598.0" layoutY="672.0" mnemonicParsing="false" onAction="#PrintAction" text="Print" textFill="#4b56d2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

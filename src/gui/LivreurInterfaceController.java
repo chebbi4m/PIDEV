@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import Entities.Client;
 import Entities.Livreur;
 import java.util.Properties;
 import javax.mail.*;
@@ -43,8 +42,15 @@ import Entities.LivreurTableViewData;
 import Services.LivreurService;
 import Session.UserSession;
 import Utils.MyConnection;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import javafx.scene.Node;
 import javafx.stage.StageStyle;
+
 
 /**
  * FXML Controller class
@@ -58,9 +64,7 @@ public class LivreurInterfaceController implements Initializable {
     @FXML
     private HBox ListeCont;
     @FXML
-    private HBox HistoriqueCont;
-    @FXML
-    private HBox ReclamationsCont;
+    private Button ReclamationsCont;
     @FXML
     private ImageView LogoCont;
     @FXML
@@ -80,14 +84,16 @@ public class LivreurInterfaceController implements Initializable {
     @FXML
     private TableView<LivreurTableViewData> LivreurTable;
     @FXML
-    private Label LivreurCont;
-    @FXML
     private Button SavingButton;
     @FXML
     private ComboBox<String> etat;
     
     @FXML
     private Label name;
+    @FXML
+    private Button historique;
+    @FXML
+    private Button PrintBtn;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,7 +124,6 @@ public class LivreurInterfaceController implements Initializable {
      
     }
 
-    @FXML
     private void LogoutClick(ActionEvent event) throws IOException {
     Stage currentStage = (Stage) LogoutBtn.getScene().getWindow();
     currentStage.close();
@@ -255,6 +260,7 @@ public class LivreurInterfaceController implements Initializable {
      }
 
 
+    @FXML
         public void retourner (ActionEvent e) throws IOException{
 
         Stage stage = new Stage ();
@@ -267,6 +273,7 @@ public class LivreurInterfaceController implements Initializable {
     
 }
     
+    @FXML
     public void historiquePage (ActionEvent e) throws IOException{
 
         Stage stage = new Stage ();
@@ -278,4 +285,58 @@ public class LivreurInterfaceController implements Initializable {
         ((Node)e.getSource()).getScene().getWindow().hide();
     
 }
+    @FXML
+    private void PrintAction(ActionEvent event) {
+        LivreurTableViewData selectedItem = LivreurTable.getSelectionModel().getSelectedItem();
+        String ref= selectedItem.getRef();
+        String nom = selectedItem.getNom();
+        String destination = selectedItem.getDestination();
+        String payement = selectedItem.getType();
+        String etat = selectedItem.getEtat_colis();
+
+
+        
+        Document document = new Document();
+
+        try {
+            // Create a PdfWriter to write the Document to a file
+            PdfWriter.getInstance(document, new FileOutputStream("listeColis.pdf"));
+
+            // Open the Document
+            document.open();
+
+            // Add some content to the Document
+            Paragraph paragraph = new Paragraph();
+            Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+            Paragraph title = new Paragraph("Votre colis", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            paragraph.add(
+                "Colis : " + ref + 
+                "\nNom : " + nom + 
+                "\nDestination : " + destination + 
+                "\nMode de paiement : " + payement +
+                "\nEtat : " + etat
+            );
+            document.add(paragraph);
+
+            // Close the Document
+            document.close();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+
+    @FXML
+    private void open_reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("livreurReclamation.fxml"));
+        Parent root = loader.load();
+        Stage CurrentStage = (Stage) LivreurLogo.getScene().getWindow();
+        Scene scene = new Scene(root,1080,720);
+        CurrentStage.setScene(scene);
+        CurrentStage.show();
+    }
+ 
 }

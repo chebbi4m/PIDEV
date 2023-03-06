@@ -44,7 +44,7 @@ public class Partenaire {
         this.login = login;
         this.mdp = mdp;
     }
-
+    
     public String getNom() {
         return nom;
     }

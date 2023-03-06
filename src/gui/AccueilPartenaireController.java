@@ -22,6 +22,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -34,6 +35,14 @@ public class AccueilPartenaireController implements Initializable {
  @FXML private JFXButton fermer;
     @FXML private JFXButton retour;
     @FXML private Label nomlogin;
+    @FXML
+    private JFXButton historique;
+    @FXML
+    private JFXButton historique1;
+    @FXML
+    private JFXButton historique2;
+    @FXML
+    private JFXButton reclamation_btn;
 
     /**
      * Initializes the controller class.
@@ -52,11 +61,13 @@ public class AccueilPartenaireController implements Initializable {
           nomlogin.setText(pr.getLogin());
     }  
     
+    @FXML
     public void cancel (ActionEvent e){
                Stage stage = (Stage) fermer.getScene().getWindow();
                stage.close();
     }
     
+    @FXML
     public void retourner (ActionEvent e) throws IOException{
         
 
@@ -71,6 +82,7 @@ public class AccueilPartenaireController implements Initializable {
     
 }
     
+    @FXML
        public void hist (ActionEvent e) throws IOException{
         
 
@@ -84,6 +96,28 @@ public class AccueilPartenaireController implements Initializable {
         ((Node)e.getSource()).getScene().getWindow().hide();
     
 }
+
+    @FXML
+    private void hist(MouseEvent event) {
+    }
+
+    @FXML
+    private void open_reclamation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("partenaireReclamation.fxml"));
+        Parent root = loader.load();
+        Stage CurrentStage = (Stage) nomlogin.getScene().getWindow();
+        Scene scene = new Scene(root,1080,720);
+        CurrentStage.setScene(scene);
+        CurrentStage.show();
+    }
+
+    @FXML
+    private void cancel(MouseEvent event) {
+    }
+
+    @FXML
+    private void retourner(MouseEvent event) {
+    }
        
 
 }

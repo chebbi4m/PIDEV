@@ -19,8 +19,8 @@ public class Main extends Application {
         @Override
         public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("LoginClient.fxml"));
-            Scene scene = new Scene(root);
+            Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+            Scene scene = new Scene(root,1080,650);
                 
             primaryStage.setTitle("Taktak !");
             primaryStage.setScene(scene);
