@@ -1,4 +1,4 @@
-package gui;
+package GUI;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -20,9 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import taktak.entities.Livreur;
-import taktak.services.LivreurService;
-import taktak.utils.MyConnection;
+import Entities.Livreur;
+import Services.LivreurService;
+import Utils.MyConnection;
 
 public class LivreurController implements Initializable {
     @FXML
@@ -138,4 +138,4 @@ public void loadData() {
 
     livreurTableView.setItems(livreurObservableList);
 }
-
+}

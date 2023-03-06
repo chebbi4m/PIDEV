@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFFBF5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivreurInterfaceController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFFBF5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LivreurInterfaceController">
    <children>
       <VBox fx:id="LivreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #F5F5F5;">
          <children>
@@ -32,15 +32,11 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="HistoriqueCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <children>
-                  <Label text="Historique" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            <Button fx:id="historique" mnemonicParsing="false" onAction="#historiquePage" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Historique" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
             <HBox fx:id="ReclamationsCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
                <children>
                   <Label text="Voir les réclamations" textFill="WHITE" textOverrun="CLIP">
@@ -67,7 +63,7 @@
             </ImageView>
             <HBox prefHeight="75.0" prefWidth="278.0" spacing="30.0">
                <children>
-                  <Label fx:id="LivreurCont" prefWidth="111.0" text="LIVREUR" textFill="#5463ff">
+                  <Label fx:id="name" prefWidth="111.0" text="LIVREUR" textFill="#5463ff">
                      <HBox.margin>
                         <Insets top="20.0" />
                      </HBox.margin>
@@ -80,7 +76,7 @@
                         <Image url="@../images/logo_user-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#LogoutClick" prefWidth="129.0" text="Logout" textFill="#5463ff">
+                  <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#retourner" onMouseClicked="#retourner" prefWidth="129.0" text="Logout" textFill="#5463ff">
                      <HBox.margin>
                         <Insets top="14.0" />
                      </HBox.margin>

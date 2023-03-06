@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package GUI;
 
+import Entities.Livreur;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -27,9 +28,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import taktak.entities.LivreurInterface;
-import taktak.services.LivreurInterfaceService;
-import taktak.utils.MyConnection;
+import Entities.LivreurInterface;
+import Services.LivreurInterfaceService;
+import Services.LivreurService;
+import Session.UserSession;
+import Utils.MyConnection;
+import javafx.scene.Node;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -73,7 +78,15 @@ public class LivreurCrudController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         livreurInterfaceService = new LivreurInterfaceService();
-        afficherLivreurById(1);
+        
+        
+          Livreur lv = new Livreur();
+          LivreurService ls = new LivreurService();
+          lv = (Livreur) UserSession.INSTANCE.get("livreur");
+          LivreurCont.setText(lv.getLogin());
+        
+        
+        afficherLivreurById(lv.getLogin());
         
     } 
     @FXML
@@ -86,11 +99,11 @@ public class LivreurCrudController implements Initializable {
         CurrentStage.show();
     }
     
-   private void afficherLivreurById(int id) {
+   private void afficherLivreurById(String username) {
     try {
-        String sql = "SELECT * FROM livreur WHERE id = ?";
+        String sql = "SELECT * FROM livreur WHERE login  = ?";
         PreparedStatement ste = myconn.prepareStatement(sql);
-        ste.setInt(1, id);
+        ste.setString(1, username);
         ResultSet rs = ste.executeQuery();
         
         if (rs.next()) {
@@ -107,7 +120,7 @@ public class LivreurCrudController implements Initializable {
             LoginAffich.setText(login);
             MdpAffich.setText(mdp);
         } else {
-            System.out.println("No livreur found with id " + id);
+            System.out.println("No livreur found with login " + username);
         }
     } catch (SQLException e) {
         System.out.println(e);
@@ -116,6 +129,9 @@ public class LivreurCrudController implements Initializable {
 
     @FXML
     private void modifierLivreurDNew(ActionEvent event) {
+        Livreur lv = new Livreur();
+          LivreurService ls = new LivreurService();
+          lv = (Livreur) UserSession.INSTANCE.get("livreur");
           try{      
         String sql = "UPDATE livreur SET nom=?, prenom=?, email=?, numtel=?, login=?, mdp=? WHERE id = ? ";
         PreparedStatement ste = myconn.prepareStatement(sql);
@@ -127,7 +143,7 @@ public class LivreurCrudController implements Initializable {
         newLivreur.setLogin(LoginAffich.getText());
         newLivreur.setMdp(MdpAffich.getText());
         livreurInterfaceService.modifierLivreurD(newLivreur);
-        afficherLivreurById(1);
+        afficherLivreurById(lv.getLogin());
         System.out.println("livreur updated successfully!");
         
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -151,16 +167,16 @@ public class LivreurCrudController implements Initializable {
     }
 
     @FXML
-    private void LogoutClick(ActionEvent event) throws IOException {
-    Stage currentStage = (Stage) LogoutBtn.getScene().getWindow();
-    currentStage.close();
+    private void LogoutClick(ActionEvent e) throws IOException {
+    
+         Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("LoginLivreur.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        ((Node)e.getSource()).getScene().getWindow().hide();
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("LivreurCrud.fxml"));
-    Parent root = loader.load();
-    Stage loginStage = new Stage();
-    Scene scene = new Scene(root,1080,720);
-    loginStage.setScene(scene);
-    loginStage.show();
     }
     
 

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui;
+package GUI;
 
+import Entities.Client;
+import Entities.Livreur;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -36,9 +38,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import taktak.entities.LivreurInterface;
-import taktak.entities.LivreurTableViewData;
-import taktak.utils.MyConnection;
+import Entities.LivreurInterface;
+import Entities.LivreurTableViewData;
+import Services.LivreurService;
+import Session.UserSession;
+import Utils.MyConnection;
+import javafx.scene.Node;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -80,15 +86,23 @@ public class LivreurInterfaceController implements Initializable {
     @FXML
     private ComboBox<String> etat;
     
+    @FXML
+    private Label name;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
+         
+        Livreur lv = new Livreur();
+          LivreurService ls = new LivreurService();
+          lv = (Livreur) UserSession.INSTANCE.get("livreur");
+          name.setText(lv.getLogin());
+        
+        try {
             displayLivreurTable();
         } catch (SQLException e){
             System.out.println(e);
         }
-
+      
 
     }    
 
@@ -118,15 +132,20 @@ public class LivreurInterfaceController implements Initializable {
     
     private void displayLivreurTable() throws SQLException {
     Connection myconn = MyConnection.getInstance().getConnexion();
-    String sql = "SELECT colis.ref,CONCAT(client.nom, ' ', client.prenom) AS nom,colis.destination,paiement.type,colis.etat_colis " +
-            "FROM colis " +
-            "INNER JOIN client ON colis.id_client = client.id " +
-            "INNER JOIN livreur ON colis.id_livreur = livreur.id " +
-            "LEFT JOIN paiement ON colis.id = paiement.id_colis " +
-            "WHERE colis.id_livreur = ?";
-    System.out.println("aaaaa");
+    Livreur lv= new Livreur();
+    LivreurService ls= new LivreurService();
+    lv= (Livreur) UserSession.INSTANCE.get("livreur");
+    String login= lv.getLogin();
+    String sql = "SELECT colis.ref, CONCAT(client.nom, ' ', client.prenom) AS nom, colis.destination, paiement.type, colis.etat_colis " +
+             "FROM colis " +
+             "INNER JOIN client ON colis.id_client = client.id " +
+             "INNER JOIN livreur ON colis.id_livreur = livreur.id " +
+             "LEFT JOIN paiement ON colis.id = paiement.id_colis " +
+             "WHERE colis.id_livreur = ( " +
+             "SELECT id " +
+             "FROM livreur " +
+             "WHERE login = '"+login+"')";
     PreparedStatement ps = myconn.prepareStatement(sql);
-    ps.setInt(1,1); 
     ResultSet rs = ps.executeQuery();
     ObservableList<LivreurTableViewData> dataList = FXCollections.observableArrayList();
     while (rs.next()) {
@@ -146,67 +165,117 @@ public class LivreurInterfaceController implements Initializable {
     LivreurTable.setItems(dataList);
     etat.getItems().addAll("en cours", "livree", "non livree");
 }
-    @FXML
-    private void saveEtat(ActionEvent event) throws SQLException {
-    LivreurTableViewData selectedData = LivreurTable.getSelectionModel().getSelectedItem();
-    String selectedEtat = etat.getValue();
-    if (selectedData != null && selectedEtat != null) {
-        String sql = "UPDATE colis SET etat_colis = ? WHERE ref = ?";
-        PreparedStatement ps = myconn.prepareStatement(sql);
-        ps.setString(1, selectedEtat);
-        ps.setString(2, selectedData.getRef());
-        int rowsAffected = ps.executeUpdate();
-        if (rowsAffected > 0) {
-            System.out.println("Successfully updated the etat_colis column in the database.");
-            // get email and password from user input or configuration
-                String username = "cheima.douiss@esprit.tn";
-                String password = "12345654321280458";
+        @FXML
+     private void saveEtat(ActionEvent event) throws SQLException {
+     LivreurTableViewData selectedData = LivreurTable.getSelectionModel().getSelectedItem();
+     if (selectedData == null) {
+     return;
+     }
+     String ref= selectedData.getRef();
+     String selectedEtat = etat.getValue();
+     if (selectedEtat == null) {
+     return;
+     }
+     String sql = "UPDATE colis SET etat_colis = ? WHERE ref = ?";
+     try (PreparedStatement ps = myconn.prepareStatement(sql)) {
+     ps.setString(1, selectedEtat);
+     ps.setString(2, ref);
+     int rowsAffected = ps.executeUpdate();
+     if (rowsAffected > 0) {
+     System.out.println("Successfully updated the etat_colis column in the database.");
+     
+             // get email and password from user input or configuration
+             String username = "cheima.douiss@esprit.tn";
+             String password = "12345654321280458";
 
-            // create properties object to configure email server and protocol
-                Properties props = new Properties();
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable", "true");
-                props.put("mail.smtp.host", "smtp.gmail.com");
-                props.put("mail.smtp.port", "587");
+             // create properties object to configure email server and protocol
+             Properties props = new Properties();
+             props.put("mail.smtp.auth", "true");
+             props.put("mail.smtp.starttls.enable", "true");
+             props.put("mail.smtp.host", "smtp.gmail.com");
+             props.put("mail.smtp.port", "587");
 
-                // create session with authentication information
-                Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-                try {
-                    Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(username));
-                    message.setRecipients(
-                        Message.RecipientType.TO,
-                        InternetAddress.parse("cheima.douiss@esprit.tn")
-                    );
-                    message.setSubject("Hello from Java");
-                    message.setText("Le colis est "+ selectedEtat);
+             // create session with authentication information
+             Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                 protected PasswordAuthentication getPasswordAuthentication() {
+                     return new PasswordAuthentication(username, password);
+                 }
+             });  
 
-                    // send email
-                    Transport.send(message);
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Email sent");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Email sent successfully.");
-                    alert.showAndWait();
+             // get the email address of the client
+             String emailSql = "SELECT client.email " +
+                          "FROM client " +
+                          "INNER JOIN colis ON client.id = colis.id_client " +
+                          "WHERE colis.ref = ?";
+             try (PreparedStatement ste = myconn.prepareStatement(emailSql)) {
+                 ste.setString(1, ref);
+                 ResultSet emailResult = ste.executeQuery();
+                     String clientEmail = null;
+                     if (emailResult.next()) {
+                         clientEmail = emailResult.getString("email");
+                     }
+                     // send email to client
+                     if (clientEmail != null) {
+                         try {
+                             Message message = new MimeMessage(session);
+                             message.setFrom(new InternetAddress(username));
+                             message.setRecipients(
+                                 Message.RecipientType.TO,
+                                 InternetAddress.parse(clientEmail)
+                             );
+                             message.setSubject("Modification etat colis");
+                             message.setText("Salut " + selectedData.getNom() + ",\n\nVotre livraison avec la reférence " 
+                                 + selectedData.getRef() + " est \"" + selectedEtat + "\".\n\nmerci,\nBonne journée");
 
-                } catch (MessagingException e) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Email error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Failed to send email.");
-                    alert.showAndWait();
-                    System.out.println(e);
-                }  
-        } else {
-            System.out.println("Failed to update the etat_colis column in the database.");
+                             // send email
+                             Transport.send(message);
+
+                             // show confirmation message
+                             Alert alert = new Alert(AlertType.INFORMATION);
+                             alert.setTitle("Email sent");
+                             alert.setHeaderText(null);
+                             alert.setContentText("Email sent successfully.");
+                             alert.showAndWait();
+
+                         } catch (MessagingException e) {
+                             // show error message if email fails to send
+                             Alert alert = new Alert(AlertType.ERROR);
+                             alert.setTitle("Email error");
+                             alert.setHeaderText(null);
+                             alert.setContentText("Failed to send email.");
+                             alert.showAndWait();
+                         }
+                     } else {
+                         System.out.println("Could not retrieve email address for client.");
+                     }
+                 }
+             }
         }
-    } else {
-        System.out.println("Please select a row and an etat value.");
-    }
-}
+     
+     }
 
+
+        public void retourner (ActionEvent e) throws IOException{
+
+        Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("LoginLivreur.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        ((Node)e.getSource()).getScene().getWindow().hide();
+    
+}
+    
+    public void historiquePage (ActionEvent e) throws IOException{
+
+        Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("HistoriqueLivreur.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        ((Node)e.getSource()).getScene().getWindow().hide();
+    
+}
 }
