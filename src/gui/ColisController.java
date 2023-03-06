@@ -5,6 +5,14 @@
  */
 package gui;
 
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Image;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -12,21 +20,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import taktak.utils.MyConnection;
 import taktak.entities.Colis;
+import taktak.services.ColisService;
+import taktak.utils.MyConnection;
+import javax.swing.*;
 
 /**
  * FXML Controller class
@@ -34,70 +55,25 @@ import taktak.entities.Colis;
  * @author LENOVO THINKPAD E15
  */
 public class ColisController implements Initializable {
-    
     Connection myconn = MyConnection.getInstance().getConnexion();
     
     @FXML
-    private TableView<Colis> tableV;
+    private TableView<Colis> colisTable;
 
     @FXML
-    private TableColumn<Colis, String> refc;
+    private TableColumn<Colis, String> refCol;
 
     @FXML
-    private TableColumn<Colis, String> destinationc;
+    private TableColumn<Colis, String> departCol;
 
     @FXML
-    private TableColumn<Colis, String> etatc;
+    private TableColumn<Colis, String> destinationCol;
 
     @FXML
-    private TableColumn<Colis, Integer> prixc;
+    private TableColumn<Colis, Integer> poidsCol;
 
     @FXML
-    void BtnColis(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Colis.fxml"));
-            Parent root = (Parent) loader.load();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-       } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-    }
-
-    @FXML
-    void BtnHistorique(ActionEvent event) {
-        
-    }
-    
-    @FXML
-    void BtnSupprimer(ActionEvent event) throws IOException {
-        delete();
-    }
-    
-    @FXML
-    void BtnRaffraichir(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void BtnAjouter(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Etape1.fxml"));
-            Parent root = (Parent) loader.load();
-           
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-       } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+    private TableColumn<Colis, Integer> prixCol;
 
     /**
      * Initializes the controller class.
@@ -106,10 +82,36 @@ public class ColisController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       afficherColis();
+    }
+    
+
+    @FXML
+    void getAddView(MouseEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutColis1.fxml"));
+            Parent root = (Parent) loader.load();
+           
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        //System.out.println();
+    }
+
+    @FXML
+    void print(MouseEvent event) {
+        
+    }
+    @FXML
+    void refreshTable() {
         afficherColis();
     }
     
-    public ObservableList <Colis> afficherListColis() {
+     public ObservableList <Colis> afficherListColis() {
         ObservableList<Colis> colis = FXCollections.observableArrayList();
         try {
             String sql = "select * from colis where etat_colis = 'En cours' order by id desc";
@@ -132,36 +134,41 @@ public class ColisController implements Initializable {
                         s.getInt(14),
                         s.getInt(15));
                 colis.add(cls);
-       
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return colis;
+        }
 
-        }
-    
-        public void afficherColis (){
-                ObservableList<Colis> list = afficherListColis();
-                refc.setCellValueFactory(new PropertyValueFactory<>("ref"));
-                prixc.setCellValueFactory(new PropertyValueFactory<>("prix"));
-                destinationc.setCellValueFactory(new PropertyValueFactory<>("destination"));
-                etatc.setCellValueFactory(new PropertyValueFactory<>("etat_colis"));
-                tableV.setItems(list);
-        }
-        
-        private void delete() throws IOException{
-       
-        try {
-            PreparedStatement preparedStatement = myconn.prepareStatement("DELETE FROM client where ref = ?");
-            preparedStatement.setString(1,refc.getText());
-            preparedStatement.executeUpdate();
-              //check(" client supprimé " );
-        } catch (SQLException ex) {
-              System.out.println(ex);
-        }
-        afficherColis();
+    public void afficherColis() {
+       ObservableList<Colis> list = afficherListColis();
+       //refreshTable();
+       refCol.setCellValueFactory(new PropertyValueFactory<>("ref"));
+       departCol.setCellValueFactory(new PropertyValueFactory<>("depart"));
+       destinationCol.setCellValueFactory(new PropertyValueFactory<>("destination"));
+       poidsCol.setCellValueFactory(new PropertyValueFactory<>("poids"));
+       prixCol.setCellValueFactory(new PropertyValueFactory<>("prix"));
+       colisTable.setItems(list);
     }
-        
     
+    
+    @FXML
+    void btnAnnuler(ActionEvent event){
+        String sql ="DELETE FROM `colis` WHERE ref = ? ";
+        try{
+            PreparedStatement ste = myconn.prepareStatement(sql);
+            ste.setString(1, refCol.getCellData(0));
+            ste.executeUpdate();
+            System.out.println("colis supprimer");
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Message d'alerte");
+            alert.setHeaderText("Colis annulé");
+            alert.showAndWait();
+        }
+        catch(SQLException ex){
+            System.out.println(ex);
+        }afficherColis();
+    }   
 }
