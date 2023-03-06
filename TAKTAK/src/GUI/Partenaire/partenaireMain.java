@@ -27,7 +27,7 @@ public class partenaireMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("partenaireinterface.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Livreurs.fxml"));
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("Gestion Partenaire");

@@ -88,7 +88,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Numtel" />
          </children>
       </VBox>
-      <TableView fx:id="tvColis" layoutX="121.0" layoutY="374.0" prefHeight="328.0" prefWidth="961.0">
+      <TableView fx:id="tvColis" layoutX="171.0" layoutY="373.0" prefHeight="159.0" prefWidth="904.0">
          <columns>
             <TableColumn fx:id="colref" prefWidth="75.0" text="Ref" />
             <TableColumn fx:id="colhauteur" prefWidth="75.0" text="Hauteur" />
@@ -102,9 +102,26 @@
             <TableColumn fx:id="coletat_colis" prefWidth="75.0" text="Etat_colis" />
             <TableColumn fx:id="colzone" prefWidth="75.0" text="Zone" />
             <TableColumn fx:id="colurgent" prefWidth="75.0" text="Urgent" />
-            <TableColumn fx:id="collivreur" prefWidth="91.66668701171875" text="Livreur" />
          </columns>
       </TableView>
       <Button fx:id="btnaffecter" layoutY="651.0" mnemonicParsing="false" onAction="#affecterColisAuLivreur" prefHeight="59.0" prefWidth="114.0" text="Affecter un livreur " />
+      <TableView fx:id="tvcolis1" layoutX="172.0" layoutY="553.0" prefHeight="160.0" prefWidth="913.0">
+        <columns>
+          <TableColumn fx:id="colref1" prefWidth="75.0" text="ref" />
+          <TableColumn fx:id="colhauteur1" prefWidth="75.0" text="hauteur" />
+            <TableColumn fx:id="collargeur1" prefWidth="75.0" text="largeur" />
+            <TableColumn fx:id="colpoids1" prefWidth="75.0" text="poids" />
+            <TableColumn fx:id="colprix1" prefWidth="75.0" text="prix" />
+            <TableColumn fx:id="colfragile1" prefWidth="75.0" text="fragile" />
+            <TableColumn fx:id="colinflammable1" prefWidth="75.0" text="inflammable" />
+            <TableColumn fx:id="coldepart1" prefWidth="75.0" text="depart" />
+            <TableColumn fx:id="coldestination1" prefWidth="75.0" text="destination" />
+            <TableColumn fx:id="coletatcolis1" prefWidth="75.0" text="etat_colis" />
+            <TableColumn fx:id="colzone1" prefWidth="75.0" text="zone" />
+            <TableColumn fx:id="colurgent1" prefWidth="75.0" text="urgent" />
+        </columns>
+      </TableView>
+      <Text layoutX="237.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="affichage de colis de chaque partenaire" />
+      <Text layoutX="207.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="affichage de tout les colis" />
    </children>
 </AnchorPane>

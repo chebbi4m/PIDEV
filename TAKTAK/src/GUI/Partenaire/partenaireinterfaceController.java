@@ -370,7 +370,7 @@ public void modifierPartenaire() throws SQLException {
         ste.setBoolean(9, Ouifragile.isSelected());
         ste.setString(10, "jumia");
         ste.setString(11, "jumia132");
-        ste.setInt(12, 4);
+        ste.setInt(12, 2);
         
         ste.executeUpdate();
         System.out.println("Partenaire modifié");

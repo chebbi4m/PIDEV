@@ -5,6 +5,11 @@
  */
 package GUI.Partenaire;
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +38,6 @@ import javafx.scene.input.MouseEvent;
 import taktak.entities.Colis;
 import taktak.entities.LivreurInterface;
 
-import taktak.services.LivreurInterfaceService;
 import taktak.utils.MyConnection;
 
 /**
@@ -114,6 +118,32 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
     private TableColumn<Colis, String> collivreur;
     @FXML
     private Button btnaffecter;
+    @FXML
+    private TableView<Colis> tvcolis1;
+    @FXML
+    private TableColumn<Colis, String> colref1;
+    @FXML
+    private TableColumn<Colis, Double> colhauteur1;
+    @FXML
+    private TableColumn<Colis, Double> collargeur1;
+    @FXML
+    private TableColumn<Colis, Double> colpoids1;
+    @FXML
+    private TableColumn<Colis, Double> colprix1;
+    @FXML
+    private TableColumn<Colis, Boolean> colfragile1;
+    @FXML
+    private TableColumn<Colis, Boolean> colinflammable1;
+    @FXML
+    private TableColumn<Colis, String> coldepart1;
+    @FXML
+    private TableColumn<Colis, String> coldestination1;
+    @FXML
+    private TableColumn<Colis, String> coletatcolis1;
+    @FXML
+    private TableColumn<Colis, String> colzone1;
+    @FXML
+    private TableColumn<Colis, Boolean> colurgent1;
     
    
   
@@ -132,7 +162,14 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
         Logger.getLogger(LivreursController.class.getName()).log(Level.SEVERE, null, ex);
     }
     try {
-            afficherColis();
+            afficherColis();//affichage de colis de chaque livreur
+    } catch (SQLException ex) {
+        Logger.getLogger(LivreursController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+      checkDisponibility();
+    try {
+        affichercolis();//affichage de colis 
     } catch (SQLException ex) {
         Logger.getLogger(LivreursController.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -163,54 +200,40 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
     @FXML
     private void affecterColisAuLivreur(ActionEvent event) {
          checkDisponibility();
-         addColisLivreur();
+         
          Alert();
     }
     
     //fonction de disponnibilté du livreur + incrementation du colis
-    LivreurInterface livreur = new LivreurInterface();
-    public void checkDisponibility() {
-    if (livreur.getNbre_colis_courant() <= 5) {
-        livreur.setNbre_colis_courant(livreur.getNbre_colis_courant() + 1);
-        System.out.println("Livreur disponible");
-    } else {
-        System.out.println("Livreur non disponible");
-    }
-}
-   public void addColisLivreur(){   
-       Colis cls = new Colis();
-   String sql="update colis set Ref = ?,Hauteur =?,Largeur = ?,Poids = ?,Prix = ?, "
-           + "Fragile=?,Inflammable=?,Depart=?,Destination=?,Etat_colis=?,Zone=?,Urgent=?,Id_client=?,Id_livreur=? where id= 1";//bch nzid lel colis livreur par nom f blaset id-livreur
-       try {
-            PreparedStatement ste=myconn.prepareStatement(sql);                
-                ste.setString(1, cls.getRef());
-                ste.setInt(2, cls.getHauteur());
-                ste.setInt(3, cls.getLargeur());
-                ste.setInt(4, cls.getPoids());
-                ste.setInt(5, cls.getPrix());
-                ste.setBoolean(6, cls.getFragile());
-                ste.setBoolean(7, cls.getInflammable());
-                ste.setString(8, cls.getDepart());
-                ste.setString(9, cls.getDestination());
-                ste.setString(10, cls.getEtat_colis());
-                ste.setString(11, cls.getZone());
-                ste.setBoolean(12, cls.getUrgent());
-                ste.setInt(13, cls.getId_client());
-                ste.setInt(14, cls.getId_livreur());
-                ste.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            System.out.println("colis affecté a un livreur");
-        }    
-    
-    
-    }
+   
+    public void checkDisponibility() { 
+ LivreurInterface liv = new LivreurInterface();
+ 
+    String sql = "UPDATE livreur SET nbre_colis_courant = nbre_colis_courant + 1, nbre_colis_total = nbre_colis_total + 1 WHERE nbre_colis_courant < 5 AND id = ?";
+    try {
+        
+        PreparedStatement ste = myconn.prepareStatement(sql);                
+         
+         ste.setInt(1, liv.getNbre_colis_courant());
+         ste.setInt(2, liv.getNbre_colis_total());
+        ste.setInt(3, 2);   //id                                           
+        ste.executeUpdate();
+        System.out.println( liv.getNom());
+    } catch (SQLException ex) {
+        System.out.println(ex);
+       System.out.println("livreur n'est pas disponible");
+    } 
+ }
+     
+
     
     
     
     
     
     
+    
+
     
     
    @FXML   /// btn recherche 
@@ -226,7 +249,7 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
         ObservableList<LivreurInterface> chercherLivreurInterfaceList() throws SQLException {
     ObservableList<LivreurInterface> livreurList = FXCollections.observableArrayList();
     try {
-        String sql = "SELECT * FROM livreur WHERE nom = ?";
+        String sql = "SELECT * FROM livreur WHERE id = ?";// nom=?
         PreparedStatement pstmt = myconn.prepareStatement(sql);
         pstmt.setString(1, tfLivreur.getText());
         ResultSet s = pstmt.executeQuery(); // execute the query without any argument
@@ -241,8 +264,7 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
                     s.getInt("nbre_colis_total"),
                     s.getInt("nbre_colis_courant"),
                     s.getString("login"),
-                    s.getString("mdp"),
-                     s.getBoolean("disponible")) ;
+                    s.getString("mdp")) ;
        
             
             livreurList.add(lv);           
@@ -323,7 +345,7 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
             pstmt.setString(8, "");
             pstmt.setString(9, "");
             pstmt.setInt(10, 1);
-            pstmt.setInt(11, 4);
+            pstmt.setInt(11, 6);
           
             
             pstmt.executeUpdate();
@@ -338,7 +360,7 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
      String sql ="DELETE from livreur where id =?";
         try{
                 PreparedStatement ste = myconn.prepareStatement(sql);
-                ste.setInt(1, 4);
+                ste.setInt(1, 6);
                 ste.executeUpdate();
                     System.out.println("livreur supprimer");
         }
@@ -349,9 +371,21 @@ Connection myconn = MyConnection.getInstance().getConnexion(); // connexion à l
          
          
      }
+     public void update() throws SQLException {
+     //String sql="UPDATE colis SET id_livreur = ? WHERE id = ?;";
+     //String query = "UPDATE livreur SET nbre_colis_courant = nbre_colis_courant + 1, nbre_colis_total = nbre_colis_total + 1 WHERE nbre_colis_courant < 5 AND id = ?";
+String sql="START TRANSACTION;\n" +
+"UPDATE livreur SET nbre_colis_courant = nbre_colis_courant + 1, nbre_colis_total = nbre_colis_total + 1 WHERE nbre_colis_courant < 5 AND id = ?;\n" +
+"UPDATE colis SET id_livreur = ? WHERE id = ?;\n" +
+"COMMIT;";
+                Statement ste = myconn.createStatement();
+                ResultSet s = ste.executeQuery(sql);        
+                        
+         
+}
    
      
-     
+  //   
 public ObservableList<LivreurInterface> getLivreurInterfaceList() throws SQLException {
    ObservableList<LivreurInterface> livreurList = FXCollections.observableArrayList();
         try {
@@ -370,8 +404,7 @@ public ObservableList<LivreurInterface> getLivreurInterfaceList() throws SQLExce
                         s.getInt("nbre_colis_total"),
                         s.getInt("nbre_colis_courant"),
                         s.getString("login"),
-                        s.getString("mdp"),
-                        s.getBoolean("disponible")) ;
+                        s.getString("mdp")) ;
               
                     livreurList.add(lv);           
                 
@@ -392,9 +425,9 @@ public ObservableList<LivreurInterface> getLivreurInterfaceList() throws SQLExce
     colprenom.setCellValueFactory(new PropertyValueFactory<LivreurInterface , String>("prenom"));
     colemail.setCellValueFactory(new PropertyValueFactory<LivreurInterface , String>("email"));     
     colnumtel.setCellValueFactory(new PropertyValueFactory<LivreurInterface , String>("numtel"));
-    colNbreReclamation.setCellValueFactory(new PropertyValueFactory<LivreurInterface ,Integer>("NbreColisCourant"));
-    colNbreColisCourant.setCellValueFactory(new PropertyValueFactory<LivreurInterface ,Integer>("NbreColisCourant"));
-    colNbreColistotal.setCellValueFactory(new PropertyValueFactory<LivreurInterface , Integer>("NbreColisCourant"));
+    colNbreReclamation.setCellValueFactory(new PropertyValueFactory<LivreurInterface ,Integer>("nbre_reclamation"));
+    colNbreColistotal.setCellValueFactory(new PropertyValueFactory<LivreurInterface ,Integer>("nbre_colis_total"));
+    colNbreColisCourant.setCellValueFactory(new PropertyValueFactory<LivreurInterface , Integer>("nbre_colis_courant"));
     coldisponibilité.setCellValueFactory(new PropertyValueFactory<LivreurInterface ,String>("disponible"));
    // colLogin.setCellValueFactory(new PropertyValueFactory<LivreurInterface , String>("login"));     
   //  colMdp.setCellValueFactory(new PropertyValueFactory<LivreurInterface , String>("mdp"));
@@ -402,25 +435,17 @@ public ObservableList<LivreurInterface> getLivreurInterfaceList() throws SQLExce
      
  }
 
-    @FXML // click on query will showed on tfField
-    private void handleMouseAction(MouseEvent event) {
-        
-     LivreurInterface liv  = tvLiveurs.getSelectionModel().getSelectedItem();     
-         tfNom.setText( liv.getNom());
-          tfPrenom.setText( liv.getPrenom());
-           tfEmail.setText( liv.getEmail());
-            tfNumtel.setText("" + liv.getNumtel());
-            
-    }  
-        
-
+     
+//affichage de colis 
     
     public ObservableList<Colis> getColisList() throws SQLException {
    ObservableList<Colis> ColisList = FXCollections.observableArrayList();
         try {
-            String sql = "select * from colis ";
-            Statement ste = myconn.createStatement();
-            ResultSet s = ste.executeQuery(sql);
+            String sql = "select * from colis";
+                PreparedStatement ste = myconn.prepareStatement(sql);                         
+                ResultSet s = ste.executeQuery();
+
+            
             while (s.next()) {
 
               Colis cls = new Colis(                          
@@ -447,10 +472,83 @@ public ObservableList<LivreurInterface> getLivreurInterfaceList() throws SQLExce
         return ColisList; 
         
     }
-     
- public void afficherColis() throws SQLException{
+    public void affichercolis() throws SQLException{
  
      ObservableList<Colis> List = getColisList();
+
+   // colID.setCellValueFactory(new PropertyValueFactory<LivreurInterface , Integer>("id"));  
+    colref1.setCellValueFactory(new PropertyValueFactory<Colis , String>("ref"));   
+    colhauteur1.setCellValueFactory(new PropertyValueFactory<Colis , Double>("hauteur"));
+    collargeur1.setCellValueFactory(new PropertyValueFactory<Colis , Double>("largeur"));     
+    colpoids1.setCellValueFactory(new PropertyValueFactory<Colis , Double>("poids"));
+    colprix1.setCellValueFactory(new PropertyValueFactory<Colis ,Double>("prix"));
+    colfragile1.setCellValueFactory(new PropertyValueFactory<Colis ,Boolean>("fragile"));
+    colinflammable1.setCellValueFactory(new PropertyValueFactory<Colis , Boolean>("inflammable"));
+    coldepart1.setCellValueFactory(new PropertyValueFactory<Colis , String>("depart")); 
+    coldestination1.setCellValueFactory(new PropertyValueFactory<Colis , String>("destination")); 
+    coletatcolis1.setCellValueFactory(new PropertyValueFactory<Colis , String>("etat_colis")); 
+    colzone1.setCellValueFactory(new PropertyValueFactory<Colis , String>("zone")); 
+    colurgent1.setCellValueFactory(new PropertyValueFactory<Colis ,Boolean>("urgent")); 
+   
+  
+    tvcolis1.setItems(List);      
+    }  
+       
+ public void afficherColis() throws SQLException{
+ 
+ 
+ }
+
+    
+    
+ //affichage de colis du livreur par email
+    
+    public ObservableList<Colis> getColisList(String email) throws SQLException {
+   ObservableList<Colis> ColisList = FXCollections.observableArrayList();
+        try {
+            String sql = "SELECT colis.ref, colis.hauteur, colis.largeur, colis.poids, colis.prix, colis.fragile, colis.inflammable, colis.depart, colis.destination, colis.etat_colis, colis.zone, colis.urgent, colis.id_client, colis.id_livreur " +
+             "FROM colis " +
+             "JOIN (SELECT id FROM livreur WHERE email = ?) livreur ON colis.id_livreur = livreur.id";
+                PreparedStatement ste = myconn.prepareStatement(sql);          
+                ste.setString(1, email);
+                ResultSet s = ste.executeQuery();
+
+            
+            while (s.next()) {
+
+              Colis cls = new Colis(                          
+                        s.getString("ref"),
+                        s.getInt("hauteur"),
+                        s.getInt("largeur"),
+                        s.getInt("poids"),
+                        s.getInt("prix"),
+                        s.getBoolean("fragile"),
+                        s.getBoolean("inflammable"),
+                        s.getString("depart"),
+                        s.getString("destination"),
+                        s.getString("etat_colis"),
+                        s.getString("zone"),
+                        s.getBoolean("urgent"),
+                        s.getInt("id_client"),
+                        s.getInt("id_livreur")) ;
+                        ColisList.add(cls);           
+                
+            }
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return ColisList; 
+        
+    }
+     @FXML // click on query will showed on tfField
+    private void handleMouseAction(MouseEvent event) throws SQLException {
+        
+     LivreurInterface liv  = tvLiveurs.getSelectionModel().getSelectedItem();     
+         tfNom.setText( liv.getNom());
+          tfPrenom.setText( liv.getPrenom());
+           tfEmail.setText( liv.getEmail());
+            tfNumtel.setText("" + liv.getNumtel());
+         ObservableList<Colis> List = getColisList(liv.getEmail());
 
    // colID.setCellValueFactory(new PropertyValueFactory<LivreurInterface , Integer>("id"));  
     colref.setCellValueFactory(new PropertyValueFactory<Colis , String>("ref"));   
@@ -467,12 +565,29 @@ public ObservableList<LivreurInterface> getLivreurInterfaceList() throws SQLExce
     colurgent.setCellValueFactory(new PropertyValueFactory<Colis ,Boolean>("urgent")); 
     collivreur.setCellValueFactory(new PropertyValueFactory<Colis , String>("livreur")); 
   
-    tvColis.setItems(List);
-     
- }
+    tvColis.setItems(List);      
+    }  
 
-    
-    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     
  public void Alert(){  
  Alert alert = new Alert(Alert.AlertType.INFORMATION);
