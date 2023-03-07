@@ -107,7 +107,7 @@ public class ClienReclamationController implements Initializable {
         ClientService ps = new ClientService();
         pr = (Client) UserSession.INSTANCE.get("client");
         nomlogin.setText(pr.getLogin());
-        
+        loadClientReclamation();
     }    
 
     @FXML
