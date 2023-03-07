@@ -1,6 +1,5 @@
 package gui;
 
-import com.sendgrid.*;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 
@@ -15,8 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class paiementController {
 
@@ -39,6 +42,34 @@ public class paiementController {
 
     @FXML
     private Button payButton;
+    private void sendPaymentConfirmationEmail(String customerEmail, String amount, String paymentIntentId) throws MessagingException {
+
+        // Set up the email server properties
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        // Set up the email session
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("mootez.nasri@esprit.tn", "223JMT4611");
+                    }
+                });
+
+        // Create the email message
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("mootez.nasri@esprit.tn"));
+        message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(customerEmail));
+        message.setSubject("Payment Confirmation");
+        message.setText("Dear Customer,\n\nYour payment of $" + amount + " has been processed successfully.\n\nPayment ID: " + paymentIntentId);
+
+        // Send the email
+        Transport.send(message);
+    }
+
 
     @FXML
     private  void handlePayButtonClicked() {
@@ -116,9 +147,12 @@ public class paiementController {
             PaymentIntent confirmedPaymentIntent = paymentIntent.confirm(confirmParams);
 
             System.out.println("Payment intent confirmed: " + confirmedPaymentIntent.getId());
-            Email CUSTOMER_EMAIL = new Email(customer.getEmail());
-            String paymentAmount = String.valueOf(paymentIntent.getAmount() / 100);
-            PaymentConfirmationEmail.sendConfirmationEmail(String.valueOf(CUSTOMER_EMAIL), paymentAmount);
+            // Send the payment confirmation email
+            try {
+                sendPaymentConfirmationEmail(customer.getEmail(), amount, confirmedPaymentIntent.getId());
+            } catch (MessagingException e) {
+                System.out.println("Error sending payment confirmation email: " + e.getMessage());
+            }
 
 
         } catch (StripeException e) {
