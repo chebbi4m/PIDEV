@@ -128,6 +128,18 @@ public class ClienReclamationController implements Initializable {
     
 }
     
+       @FXML
+    public void btnHistorique (ActionEvent e) throws IOException{
+        Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("Historique.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        ((Node)e.getSource()).getScene().getWindow().hide();
+    
+}
+    
 //       public void hist (ActionEvent e) throws IOException{
 //        
 //
