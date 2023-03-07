@@ -1,32 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
  */
-package gui;
+package GUI;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.stage.StageStyle;
 
-/**
- *
- * @author LENOVO THINKPAD E15
- */
 public class Main extends Application {
-    
-    @Override
-    public void start(Stage primaryStage) {
+
+        @Override
+        public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Colis.fxml"));
-            Scene scene = new Scene(root);
-            
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setScene(scene);
+            Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+            Scene scene = new Scene(root,1080,650);
                 
             primaryStage.setTitle("Taktak !");
             primaryStage.setScene(scene);
@@ -36,13 +30,12 @@ public class Main extends Application {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-    
-    
+        /**
+         * @param args the command line arguments
+         */
+        public static void main(String[] args) {
+            launch(args);
+            
+        }
+
 }

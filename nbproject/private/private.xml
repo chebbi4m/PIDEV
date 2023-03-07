@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Taktak/src/gui/AjoutColis1Controller.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Taktak/src/gui/ColisController.java</file>
-            <file>file:/C:/Users/LENOVO%20THINKPAD%20E15/Downloads/wetransfer_pidev-test_2023-02-08_0822/Pidev3A15/Taktak/src/gui/AjoutColis3Controller.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/gui/AccueilPartenaireController.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/Services/ReclamationService.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/gui/LivreurInterfaceController.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/gui/LivreurReclamationController.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/gui/partenaireReclamation.fxml</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/gui/PartenaireReclamationController.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/Entities/reclamation.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/Entities/reclamationTable.java</file>
+            <file>file:/C:/Users/nedia/Desktop/mohamed/pidev%20git/src/gui/LivreurInterface.fxml</file>
         </group>
     </open-files>
 </project-private>
