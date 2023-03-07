@@ -48,7 +48,7 @@ public class WelcomeController implements Initializable {
 
         //nomlogin = client.g ;
         
-        Client pr = new Client();
+          Client pr = new Client();
           ClientService ps = new ClientService();
           pr = (Client) UserSession.INSTANCE.get("client");
           nomlogin.setText(pr.getLogin());
@@ -100,5 +100,32 @@ public class WelcomeController implements Initializable {
 //        ((Node)e.getSource()).getScene().getWindow().hide();
 //    
 //}
+    
+    
+     @FXML
+    void btnHistorique(ActionEvent event) {
+        try{
+            Stage stage = new Stage ();
+            Parent root = FXMLLoader.load(getClass().getResource("HistoriqueColis.fxml"));  
+            Scene scene = new Scene (root);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+            ((Node)event.getSource()).getScene().getWindow().hide(); 
+        }catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    @FXML
+    void btnColis(ActionEvent event) throws IOException {
+        Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("Colis.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        ((Node)event.getSource()).getScene().getWindow().hide();
+    }
        
 }
