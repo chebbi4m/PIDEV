@@ -75,7 +75,7 @@ public class paiementController {
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
         message.setSubject("Payment Confirmation");
         String htmlCode = "<h1>Thank you for your payment of $" + amount + "</h1>" +
-                "<p>Your payment has been received and your payment ID is " + paymentIntentId + "</p>";
+                "<p>Your payment has been received and your payment ID is " + paymentIntentId + "</p>"+"<b>Payment Card Number:</b>"+cardNumberField.getText();
         message.setContent(htmlCode, "text/html");
         return message;
     }
