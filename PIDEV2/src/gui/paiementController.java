@@ -2,9 +2,7 @@ package gui;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
-
 import com.stripe.model.Customer;
-
 import com.stripe.model.PaymentIntent;
 import com.stripe.model.PaymentMethod;
 import com.stripe.param.PaymentIntentConfirmParams;
@@ -12,7 +10,6 @@ import com.stripe.param.PaymentMethodAttachParams;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -46,6 +43,42 @@ public class paiementController {
         // Create the email message
 
 
+    private void sendPaymentConfirmationEmail(String recipientEmail, String amount, String paymentIntentId) throws MessagingException {
+        String myAccountEmail = "mootez.nasri@esprit.tn"; // Replace with your email address
+        String myAccountPassword = "223JMT4611"; // Replace with your email password
+
+        // Set up the properties for the email session
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com"); // Replace with your email provider's SMTP host
+        properties.put("mail.smtp.port", "587"); // Replace with your email provider's SMTP port
+
+        // Authenticate with the email server
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(myAccountEmail, myAccountPassword);
+            }
+        });
+
+        // Prepare the message
+        Message message = prepareMessage(session, myAccountEmail, recipientEmail, amount, paymentIntentId);
+
+        // Send the message
+        Transport.send(message);
+        System.out.println("Payment confirmation email sent successfully!");
+    }
+
+    private Message prepareMessage(Session session, String myAccountEmail, String recipientEmail, String amount, String paymentIntentId) throws MessagingException {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(myAccountEmail));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
+        message.setSubject("Payment Confirmation");
+        String htmlCode = "<h1>Thank you for your payment of $" + amount + "</h1>" +
+                "<p>Your payment has been received and your payment ID is " + paymentIntentId + "</p>";
+        message.setContent(htmlCode, "text/html");
+        return message;
+    }
 
     @FXML
     private  void handlePayButtonClicked() {
@@ -90,6 +123,7 @@ public class paiementController {
                 // Create a new customer if payment method doesn't have a customer ID
                 Map<String, Object> customerParams = new HashMap<>();
                 customerParams.put("payment_method", paymentMethod.getId());
+                customerParams.put("email", "mootez202@gmail.com");
                 customer = Customer.create(customerParams);
                 customerId = customer.getId();
             }
@@ -124,11 +158,14 @@ public class paiementController {
 
             System.out.println("Payment intent confirmed: " + confirmedPaymentIntent.getId());
             // Send the payment confirmation email
-            /*try {
+            try {
                 sendPaymentConfirmationEmail(customer.getEmail(), amount, confirmedPaymentIntent.getId());
             } catch (MessagingException e) {
                 System.out.println("Error sending payment confirmation email: " + e.getMessage());
-            }*/
+            }
+
+
+
 
 
         } catch (StripeException e) {
