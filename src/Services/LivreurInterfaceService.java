@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Livreur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Entities.LivreurInterface;
 import Interfaces.ILivreurInterface;
+import Session.UserSession;
 import Utils.MyConnection;
 
 /**
@@ -60,7 +62,9 @@ public class LivreurInterfaceService implements ILivreurInterface{
         ste.setString(4, lv.getNumtel());
         ste.setString(5, lv.getLogin());
         ste.setString(6, lv.getMdp());
-        ste.setInt(7, 1);
+        Livreur liv = new Livreur();
+          liv = (Livreur) UserSession.INSTANCE.get("livreur");
+        ste.setInt(7, liv.getId());
         ste.executeUpdate();
     }
        catch (SQLException e) {

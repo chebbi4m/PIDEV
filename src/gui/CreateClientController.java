@@ -34,6 +34,9 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import org.controlsfx.control.Notifications;
+import org.apache.commons.validator.routines.EmailValidator;
+
+
 /**
  * FXML Controller class
  *
@@ -67,6 +70,8 @@ public class CreateClientController implements Initializable {
     
 
        public void Tester(ActionEvent  event) throws IOException, SQLException{
+           EmailValidator validator = EmailValidator.getInstance();
+
            String nomText = nom.getText();
            String prenomText = prenom.getText();
            String numtelText = numtel.getText();
@@ -75,7 +80,9 @@ public class CreateClientController implements Initializable {
            String loginText = login.getText();
            String mdpText = mdp.getText();
            Boolean valid = true ;
-           
+//           if (){
+//           
+//           }
             //ancun champs vide
             if (nomText.length() == 0 || prenomText.length() == 0 || numtelText.length() == 0 || emailText.length() == 0 || adresseText.length() == 0 || loginText.length() == 0 || mdpText.length() == 0) {
              error("Les champs ne peuvent pas être vides");
@@ -86,6 +93,14 @@ public class CreateClientController implements Initializable {
               error(" Verifier votre email");
               valid = false ;
             }
+            
+            //api pour verifier ladresse mail existe ou non
+            if (!(validator.isValid(emailText))){
+                valid = false ;
+            error("Votre adresse mail n'existe pas !");  
+            }
+            
+            
             //numero doit etre de taille 8 et contrient que des chiffres
             if ((numtelText.length() != 8)||(!numtelText.matches("\\d+"))) {
               error("Verifier votre numéro de téléphone !");
@@ -107,6 +122,22 @@ public class CreateClientController implements Initializable {
             ResultSet rs = stmt.executeQuery();
           if (rs.next()) {
             error("Le client existe déjà (Login) ! ");
+            return;
+        }
+         } catch (SQLException ex) {
+        System.out.println(ex);
+        return;
+         }
+           
+           
+           try {
+               // Login client existe ou non deja 
+            Connection conn = MyConnection.getInstance().getConnexion();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM client WHERE email = ?");
+            stmt.setString(1, emailText);
+            ResultSet rs = stmt.executeQuery();
+          if (rs.next()) {
+            error("Le client existe déjà (email) ! ");
             return;
         }
          } catch (SQLException ex) {

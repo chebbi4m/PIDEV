@@ -32,6 +32,8 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
+import org.apache.commons.validator.routines.EmailValidator;
+
 /**
  * FXML Controller class
  *
@@ -64,6 +66,10 @@ public class CreateLivreurController implements Initializable {
     
 
        public void Tester(ActionEvent  event) throws IOException, SQLException{
+           
+                      EmailValidator validator = EmailValidator.getInstance();
+
+           
            String nomText = nom.getText();
            String prenomText = prenom.getText();
            String numtelText = numtel.getText();
@@ -82,6 +88,14 @@ public class CreateLivreurController implements Initializable {
               error(" Verifier votre email");
               valid = false ;
             }
+            
+            //api pour verifier ladresse mail existe ou non
+            if (!(validator.isValid(emailText))){
+                valid = false ;
+            error("Votre adresse mail n'existe pas !");  
+            }
+            
+            
             //numero doit etre de taille 8 et contrient que des chiffres
             if ((numtelText.length() != 8)||(!numtelText.matches("\\d+"))) {
               error("Verifier votre numéro de téléphone !");
@@ -103,6 +117,21 @@ public class CreateLivreurController implements Initializable {
             ResultSet rs = stmt.executeQuery();
           if (rs.next()) {
             error("Le livreur existe déjà (Login) ! ");
+            return;
+        }
+         } catch (SQLException ex) {
+        System.out.println(ex);
+        return;
+         }
+           
+           try {
+               // Login livreur existe ou non deja 
+            Connection conn = MyConnection.getInstance().getConnexion();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM livreur WHERE email = ?");
+            stmt.setString(1, emailText);
+            ResultSet rs = stmt.executeQuery();
+          if (rs.next()) {
+            error("Le livreur existe déjà (email) ! ");
             return;
         }
          } catch (SQLException ex) {

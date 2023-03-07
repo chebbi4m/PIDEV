@@ -34,6 +34,15 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import org.controlsfx.control.Notifications;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import org.apache.commons.validator.routines.EmailValidator;
+
+
 /**
  * FXML Controller class
  *
@@ -65,6 +74,9 @@ public class CreatePartenaireController implements Initializable {
     
 
        public void Tester(ActionEvent  event) throws IOException, SQLException{
+           
+           EmailValidator validator = EmailValidator.getInstance();
+           
            String nomText = nom.getText();
            String numtelText = numtel.getText();
            String emailText = email.getText();
@@ -82,6 +94,13 @@ public class CreatePartenaireController implements Initializable {
               error(" Verifier votre email");
               valid = false ;
             }
+            
+             //api pour verifier ladresse mail existe ou non
+            if (!(validator.isValid(emailText))){
+                valid = false ;
+            error("Votre adresse mail n'existe pas !");  
+            }
+            
             //numero doit etre de taille 8 et contrient que des chiffres
             if ((numtelText.length() != 8)||(!numtelText.matches("\\d+"))) {
               error("Verifier votre numéro de téléphone !");
@@ -109,6 +128,22 @@ public class CreatePartenaireController implements Initializable {
         System.out.println(ex);
         return;
          }
+           
+                      try {
+               // Login partenaire existe ou non deja 
+            Connection conn = MyConnection.getInstance().getConnexion();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM partenaire WHERE email = ?");
+            stmt.setString(1, emailText);
+            ResultSet rs = stmt.executeQuery();
+          if (rs.next()) {
+            error("Le partenaire existe déjà (email) ! ");
+            return;
+        }
+         } catch (SQLException ex) {
+        System.out.println(ex);
+        return;
+         }
+           
            
         try {
             //Inserer le client

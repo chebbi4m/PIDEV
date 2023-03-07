@@ -2,8 +2,11 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FEF7E4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.WelcomeController">
    <children>
@@ -19,22 +22,22 @@
       </Label>
       <AnchorPane prefHeight="720.0" prefWidth="237.0" style="-fx-background-color: #7B829F #7B829F;">
          <children>
-            <JFXButton fx:id="historique" layoutX="53.0" layoutY="435.0" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Historique " textFill="#3512e4">
+            <JFXButton fx:id="historique" layoutX="53.0" layoutY="435.0" onAction="#btnHistorique" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Historique " textFill="#3512e4">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="historique1" layoutX="53.0" layoutY="200.0" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Accueil" textFill="#3512e4">
+            <JFXButton fx:id="historique1" layoutX="53.0" layoutY="200.0" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: #1130AE;" text="Accueil" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="historique2" layoutX="53.0" layoutY="324.0" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Colis" textFill="#3512e4">
+            <JFXButton fx:id="historique2" layoutX="53.0" layoutY="324.0" onAction="#btnColis" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Colis" textFill="#3512e4">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="reclamation_btn" layoutX="53.0" layoutY="550.0" onAction="#reclamation" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Reclamation" textFill="#3512e4">
+            <JFXButton fx:id="historique3" layoutX="53.0" layoutY="550.0" onAction="#reclamation" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Reclamation" textFill="#3512e4">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
@@ -55,5 +58,35 @@
             </JFXButton>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="191.0" fitWidth="362.0" layoutX="306.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/gif1.gif" />
+         </image>
+      </ImageView>
+      <Text layoutX="670.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nous nous assurons que votre colis arrive à destination" wrappingWidth="366.265625">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Text>
+      <Text fill="#483b8a" layoutX="672.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notre équipe est là pour s'assurer que chaque client a bien ce qui lui revient de droit" wrappingWidth="329.498046875">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="306.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nous mettons à votre disposition plusieurs options de paiement" wrappingWidth="366.265625">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="191.0" fitWidth="329.0" layoutX="695.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/gif2.gif" />
+         </image>
+      </ImageView>
+      <Text fill="#483b8a" layoutX="306.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez desormais payer lors de la livraison de votre colis, par chèque ou directement avec votre carte" wrappingWidth="329.498046875">
+         <font>
+            <Font name="Bell MT" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
