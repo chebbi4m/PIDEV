@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFFBF5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LivreurInterfaceController">
    <children>
-      <VBox fx:id="LivreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #F5F5F5;">
+      <VBox fx:id="LivreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #7B829F;">
          <children>
             <HBox fx:id="ListeCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
                <VBox.margin>
@@ -47,7 +47,7 @@
             <Insets bottom="20.0" left="38.0" right="30.0" top="20.0" />
          </padding>
       </VBox>
-      <HBox prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #F5F5F5;">
+      <HBox prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #FFDE59;">
          <children>
             <ImageView fx:id="LogoCont" fitHeight="92.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -89,11 +89,11 @@
       </HBox>
       <TableView fx:id="LivreurTable" layoutX="287.0" layoutY="237.0" prefHeight="418.0" prefWidth="710.0">
         <columns>
-          <TableColumn fx:id="RefCol" prefWidth="110.0" style="-fx-background-color: #E5D1FA;" text="Ref" />
-          <TableColumn fx:id="NomCol" prefWidth="154.0" style="-fx-background-color: #E5D1FA;" text="Nom" />
-            <TableColumn fx:id="DestinationCol" prefWidth="161.0" style="-fx-background-color: #E5D1FA;" text="Destination" />
-            <TableColumn fx:id="PayementCol" prefWidth="148.0" style="-fx-background-color: #E5D1FA;" text="Payement" />
-            <TableColumn fx:id="EtatCol" prefWidth="136.0" style="-fx-background-color: #E5D1FA;" text="Etat" />
+          <TableColumn fx:id="RefCol" prefWidth="110.0" style="-fx-background-color: #FFDE59;" text="Ref" />
+          <TableColumn fx:id="NomCol" prefWidth="154.0" style="-fx-background-color: #FFDE59;" text="Nom" />
+            <TableColumn fx:id="DestinationCol" prefWidth="161.0" style="-fx-background-color: #FFDE59;" text="Destination" />
+            <TableColumn fx:id="PayementCol" prefWidth="148.0" style="-fx-background-color: #FFDE59;" text="Payement" />
+            <TableColumn fx:id="EtatCol" prefWidth="136.0" style="-fx-background-color: #FFDE59;" text="Etat" />
         </columns>
       </TableView>
       <ComboBox fx:id="etat" layoutX="622.0" layoutY="172.0" prefHeight="31.0" prefWidth="120.0" />
@@ -102,12 +102,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="SavingButton" layoutX="766.0" layoutY="172.0" mnemonicParsing="false" onAction="#saveEtat" style="-fx-background-color: #E5D1FA;" text="Save" textFill="#4b56d2">
+      <Button fx:id="SavingButton" layoutX="766.0" layoutY="172.0" mnemonicParsing="false" onAction="#saveEtat" style="-fx-background-color: #FFDE59;" text="Save" textFill="#4b56d2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="PrintBtn" layoutX="598.0" layoutY="672.0" mnemonicParsing="false" onAction="#PrintAction" text="Print" textFill="#4b56d2">
+      <Button fx:id="PrintBtn" layoutX="598.0" layoutY="672.0" mnemonicParsing="false" onAction="#PrintAction" style="-fx-background-color: #FFDE59;" text="Print" textFill="#4b56d2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
