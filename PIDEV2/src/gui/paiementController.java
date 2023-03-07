@@ -42,33 +42,9 @@ public class paiementController {
 
     @FXML
     private Button payButton;
-    private void sendPaymentConfirmationEmail(String customerEmail, String amount, String paymentIntentId) throws MessagingException {
-
-        // Set up the email server properties
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        // Set up the email session
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("mootez.nasri@esprit.tn", "223JMT4611");
-                    }
-                });
 
         // Create the email message
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("mootez.nasri@esprit.tn"));
-        message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(customerEmail));
-        message.setSubject("Payment Confirmation");
-        message.setText("Dear Customer,\n\nYour payment of $" + amount + " has been processed successfully.\n\nPayment ID: " + paymentIntentId);
 
-        // Send the email
-        Transport.send(message);
-    }
 
 
     @FXML
@@ -148,11 +124,11 @@ public class paiementController {
 
             System.out.println("Payment intent confirmed: " + confirmedPaymentIntent.getId());
             // Send the payment confirmation email
-            try {
+            /*try {
                 sendPaymentConfirmationEmail(customer.getEmail(), amount, confirmedPaymentIntent.getId());
             } catch (MessagingException e) {
                 System.out.println("Error sending payment confirmation email: " + e.getMessage());
-            }
+            }*/
 
 
         } catch (StripeException e) {
