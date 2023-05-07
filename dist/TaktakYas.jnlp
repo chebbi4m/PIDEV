@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="TaktakYas.jnlp">
+  <information>
+    <title>TaktakYas</title>
+    <vendor>Yasoulanda</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="TaktakYas.jar" size="306284" download="eager" />
+    <jar href="lib\argon2-jvm-2.11.jar" size="414227" download="eager" />
+    <jar href="lib\argon2-jvm-nolibs-2.10.1.jar" size="17803" download="eager" />
+    <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="lib\commons-validator-1.7.jar" size="189675" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\itextpdf-5.5.9.jar" size="2287148" download="eager" />
+    <jar href="lib\jBCrypt-0.4.3.jar" size="17536" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
+    <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\jna-5.8.0.jar" size="1729586" download="eager" />
+    <jar href="lib\jstl-1.2.jar" size="414240" download="eager" />
+    <jar href="lib\mailapi.jar" size="462098" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.28.jar" size="2476480" download="eager" />
+    <jar href="lib\servlet-1.0.0-v20070606.jar" size="34270" download="eager" />
+    <jar href="lib\servlet-api-3.0-alpha-1.jar" size="173899" download="eager" />
+    <jar href="lib\smtp.jar" size="55147" download="eager" />
+    <jar href="lib\spring-security-core-4.2.3.RELEASE.jar" size="399519" download="eager" />
+    <jar href="lib\spring-security-crypto-4.2.3.RELEASE.jar" size="54902" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="TaktakYas" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="GUI.Main"  name="TaktakYas" />
+  <update check="always"/>
+</jnlp>
