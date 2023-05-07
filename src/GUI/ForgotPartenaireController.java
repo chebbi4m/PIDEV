@@ -60,7 +60,8 @@ public class ForgotPartenaireController implements Initializable {
     
     @FXML private TextField emailField;
     
-   public void recoverPassword() throws Exception {
+
+    public void recoverPassword() throws Exception {
     String username = "yasmine.cherif@esprit.tn";
     String password = "223AFT0324";
     String recipient = emailField.getText();
@@ -82,11 +83,19 @@ public class ForgotPartenaireController implements Initializable {
                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                 String encodedPassword = encoder.encode(newPassword);
                 // Mettre à jour le mot de passe dans la base de données
-                String sqlUpdate = "UPDATE partenaire SET mdp = ? WHERE email = ?";
+                String sqlUpdate = "UPDATE partenaire SET password = ? WHERE email = ?";
                 PreparedStatement stmtUpdate = myconn.prepareStatement(sqlUpdate);
                 stmtUpdate.setString(1, encodedPassword);
                 stmtUpdate.setString(2, recipient);
                 stmtUpdate.executeUpdate();
+                
+                 // Mettre à jour le mot de passe dans la base de données table users
+                String sqlUpdat = "UPDATE users SET password = ? WHERE email = ?";
+                 stmtUpdate = myconn.prepareStatement(sqlUpdat);
+                stmtUpdate.setString(1, encodedPassword);
+                stmtUpdate.setString(2, recipient);
+                stmtUpdate.executeUpdate();
+                
                 // Envoyer le mail avec le nouveau mot de passe
                 String subject = "Récuperation du mot de passe ! ";
                 String content = "Votre nouveau mot de passe est : " + newPassword;
@@ -117,19 +126,10 @@ public class ForgotPartenaireController implements Initializable {
         }
     } catch (Exception e) {
         e.printStackTrace();
-    } finally {
-        if (rs != null) {
-            rs.close();
-        }
-        if (stmt != null) {
-            stmt.close();
-        }
-        if (myconn != null) {
-            myconn.close();
-        }
-    }
-}
-    
+    } 
+}    
+
+   
         public void cancel (ActionEvent e){
                Stage stage = (Stage) fermer.getScene().getWindow();
                stage.close();
