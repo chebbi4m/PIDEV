@@ -35,6 +35,7 @@ import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -75,34 +76,35 @@ public class LoginLivreurController implements Initializable {
         Connection myconn = MyConnection.getInstance().getConnexion();
         String sql = "SELECT password FROM livreur WHERE email = ?";
         
-        try (PreparedStatement stmt = myconn.prepareStatement(sql)) {
+        try {
+            PreparedStatement stmt = myconn.prepareStatement(sql);
             stmt.setString(1, usernameText);
             ResultSet rs = stmt.executeQuery();
-            
             if (rs.next()) {
-                String encodedPassword = rs.getString("password");
-                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-                
-                if (encoder.matches(mdpText, encodedPassword)) {
-                    UserSession.INSTANCE.put("livreur", ls.getUserData(usernameText));
-                    Stage stage = new Stage();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("LivreurInterface.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.show();
-                    ((Node) event.getSource()).getScene().getWindow().hide();
-                    check();
-                } else {
-                    error();
-                }
+                // Validate user password
+                        String hashedPassword = rs.getString("password");
+                        if (BCrypt.checkpw(mdpText, hashedPassword.replaceFirst("\\$2y\\$", "\\$2a\\$"))) {
+                            // Passwords match
+                            UserSession.INSTANCE.put("livreur", ls.getUserData(usernameText));
+                            Stage stage = new Stage();
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("LivreurInterface.fxml"));
+                            Parent root = loader.load();
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.initStyle(StageStyle.UNDECORATED);
+                            stage.show();
+                            ((Node) event.getSource()).getScene().getWindow().hide();
+                            check();
+                        } else {
+                            // Passwords don't match
+                            error();
+                        }
+          
             } else {
                 error();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            error();
         }
     } else {
         error();

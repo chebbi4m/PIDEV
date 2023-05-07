@@ -11,14 +11,24 @@ public class Partenaire {
     private String email;
     private String numtel;
     private String zone  ; 
-    private double prix_poids;
+    private double prix_poids ;
     private double prix_zone;
     private boolean inflammable ;
     private boolean fragile ;
     //private String login; 
     private String password;
+        private int user_id;
+
     public Partenaire(){
     };
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
 
     

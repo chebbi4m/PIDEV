@@ -41,6 +41,7 @@ import javafx.scene.image.ImageView;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -74,48 +75,46 @@ loginButton.setOnAction(e -> {
 
     }    
     
-public void login(ActionEvent event) throws IOException, SQLException {
+    public void login(ActionEvent event) throws IOException, SQLException {
     String usernameText = username.getText();
     String mdpText = mdp.getText();
-
     if (!usernameText.isEmpty() && !mdpText.isEmpty()) {
         Connection myconn = MyConnection.getInstance().getConnexion();
         String sql = "SELECT password FROM partenaire WHERE email = ?";
-        
-        try (PreparedStatement stmt = myconn.prepareStatement(sql)) {
+        try {
+            PreparedStatement stmt = myconn.prepareStatement(sql);
             stmt.setString(1, usernameText);
             ResultSet rs = stmt.executeQuery();
-            
             if (rs.next()) {
-                String encodedPassword = rs.getString("password");
-                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-                
-                if (encoder.matches(mdpText, encodedPassword)) {
-                    UserSession.INSTANCE.put("partenaire", ps.getUserData(usernameText));
-                    Stage stage = new Stage();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccueilPartenaire.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.show();
-                    ((Node) event.getSource()).getScene().getWindow().hide();
-                    check();
-                } else {
-                    error();
-                }
+                // Validate user password
+String hashedPassword = rs.getString("password");
+if (BCrypt.checkpw(mdpText, hashedPassword.replaceFirst("\\$2y\\$", "\\$2a\\$"))) {
+    // Passwords match
+    UserSession.INSTANCE.put("partenaire", ps.getUserData(usernameText));
+    Stage stage = new Stage();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccueilPartenaire.fxml"));
+    Parent root = loader.load();
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
+    stage.initStyle(StageStyle.UNDECORATED);
+    stage.show();
+    ((Node) event.getSource()).getScene().getWindow().hide();
+    check();
+} else {
+    // Passwords don't match
+    error();
+}
+          
             } else {
                 error();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            error();
         }
     } else {
         error();
     }
 }
-
     
     public void error (){
     Image image = new Image("Images/cross.png");

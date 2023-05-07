@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +35,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import org.controlsfx.control.Notifications;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.mindrot.jbcrypt.BCrypt;
 /**
  * FXML Controller class
  *
@@ -109,15 +112,40 @@ public class CreatePartenaireController implements Initializable {
          }
            
         try {
-            //Inserer le client
+            
+            // Encrypt the password using BCryptPasswordEncoder
+            String encodedPassword = BCrypt.hashpw(mdpText, BCrypt.gensalt(13));
+
+            //Insert data into users table
             Connection conn = MyConnection.getInstance().getConnexion();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO partenaire (nom, numtel, email, password) VALUES (?, ?, ?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (nom, numtel, email, password, type, roles) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, nomText);
             stmt.setString(2, numtelText);
             stmt.setString(3, emailText);
-            stmt.setString(4, mdpText);
+            stmt.setString(4, encodedPassword);
+            stmt.setString(5, "partenaire");
+            stmt.setString(6, "[\"ROLE_PARTENAIRE\"]");
+            stmt.executeUpdate();
+
+            // Récupérer l'ID généré
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            int userId = 0;
+            if (generatedKeys.next()) {
+                userId = generatedKeys.getInt(1);
+            }
+            
+            //Inserer le client
+            stmt = conn.prepareStatement("INSERT INTO partenaire (nom, numtel, email, password, user_id) VALUES (?, ?, ?, ?, ?)");
+            stmt.setString(1, nomText);
+            stmt.setString(2, numtelText);
+            stmt.setString(3, emailText);
+            stmt.setString(4, encodedPassword);
+            stmt.setInt(5, userId);
             stmt.executeUpdate();
             check();
+            
+            
+            
          } catch (SQLException ex) {
             System.out.println(ex);
         }

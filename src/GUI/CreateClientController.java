@@ -119,29 +119,37 @@ public void Tester(ActionEvent event) throws IOException, SQLException {
             // Encrypt the password using BCryptPasswordEncoder
             String encodedPassword = BCrypt.hashpw(mdpText, BCrypt.gensalt(13));
 
-            // Insert data into client table
-            Connection conn = MyConnection.getInstance().getConnexion();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO client (nom, prenom, numtel, email, adresse, password) VALUES (?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, nomText);
-            stmt.setString(2, prenomText);
-            stmt.setString(3, numtelText);
-            stmt.setString(4, emailText);
-            stmt.setString(5, adresseText);
-            stmt.setString(6, encodedPassword);
-            stmt.executeUpdate();
+  // Insert data into users table
+Connection conn = MyConnection.getInstance().getConnexion();
+PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (nom, prenom, numtel, email, adresse, password, type, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+stmt.setString(1, nomText);
+stmt.setString(2, prenomText);
+stmt.setString(3, numtelText);
+stmt.setString(4, emailText);
+stmt.setString(5, adresseText);
+stmt.setString(6, encodedPassword);
+stmt.setString(7, "client");
+stmt.setString(8, "[\"ROLE_CLIENT\"]");
+stmt.executeUpdate();
 
-            // Insert data into users table
-            stmt = conn.prepareStatement("INSERT INTO users (nom, prenom, numtel, email, adresse, password, type , roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            stmt.setString(1, nomText);
-            stmt.setString(2, prenomText);
-            stmt.setString(3, numtelText);
-            stmt.setString(4, emailText);
-            stmt.setString(5, adresseText);
-            stmt.setString(6, encodedPassword);
-            stmt.setString(7, "client");
-            stmt.setString(8, "[\"ROLE_CLIENT\"]");
+// Retrieve the generated key
+ResultSet generatedKeys = stmt.getGeneratedKeys();
+int userId = 0;
+if (generatedKeys.next()) {
+    userId = generatedKeys.getInt(1);
+}
 
-            stmt.executeUpdate();
+// Insert data into client table
+stmt = conn.prepareStatement("INSERT INTO client (nom, prenom, numtel, email, adresse, password, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+stmt.setString(1, nomText);
+stmt.setString(2, prenomText);
+stmt.setString(3, numtelText);
+stmt.setString(4, emailText);
+stmt.setString(5, adresseText);
+stmt.setString(6, encodedPassword);
+stmt.setInt(7, userId);
+stmt.executeUpdate();
+
 
             check();
         } catch (SQLException ex) {

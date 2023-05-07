@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="TaktakYas.jar" size="306284" download="eager" />
+    <jar href="TaktakYas.jar" size="307019" download="eager" />
     <jar href="lib\argon2-jvm-2.11.jar" size="414227" download="eager" />
     <jar href="lib\argon2-jvm-nolibs-2.10.1.jar" size="17803" download="eager" />
     <jar href="lib\commons-codec-1.15.jar" size="353793" download="eager" />

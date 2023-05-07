@@ -21,7 +21,9 @@ public class Livreur {
     private int nbre_colis_total ;
     private int nbre_colis_courant;
     private String adresse;
+    private int user_id;
 
+   
     
     
     //constructors
@@ -45,7 +47,13 @@ public class Livreur {
     }
 
 
-    
+     public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
     //getters
     public int getId() {
         return id;
