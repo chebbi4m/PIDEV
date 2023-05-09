@@ -14,12 +14,12 @@
 <AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1080.0" style="-fx-background-color: #FFFBF5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LivreurCrudController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="99.0" layoutY="65.0" prefHeight="100.0" prefWidth="417.0" />
-      <Label layoutX="448.0" layoutY="165.0" prefHeight="35.0" prefWidth="381.0" text="Vos informations sur le compte" textFill="#4e31aa">
+      <Label layoutX="539.0" layoutY="165.0" prefHeight="35.0" prefWidth="145.0" text="Edit Livreur" textFill="#4e31aa">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <HBox layoutY="-1.0" prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #F5F5F5;">
+      <HBox layoutY="-1.0" prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #FFDE59;">
          <children>
             <ImageView fx:id="LogoCont" fitHeight="92.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +44,7 @@
                         <Image url="@../images/logo_user-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#LogoutClick" onMouseClicked="#LogoutClick" prefWidth="129.0" text="Logout" textFill="#5463ff">
+                  <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#LogoutClick" prefWidth="129.0" text="Logout" textFill="#5463ff">
                      <HBox.margin>
                         <Insets top="14.0" />
                      </HBox.margin>
@@ -59,55 +59,14 @@
             </HBox>
          </children>
       </HBox>
-      <VBox fx:id="LivreurFonct" layoutY="127.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #F5F5F5;">
-         <children>
-            <HBox fx:id="ListeCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" onMouseClicked="#OpenListeColis" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <VBox.margin>
-                  <Insets top="61.0" />
-               </VBox.margin>
-               <children>
-                  <Label text="Liste des colis" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox fx:id="HistoriqueCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <children>
-                  <Label text="Historique" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox fx:id="ReclamationsCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <children>
-                  <Label text="Voir les réclamations" textFill="WHITE" textOverrun="CLIP">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="38.0" right="30.0" top="20.0" />
-         </padding>
-      </VBox>
       <VBox alignment="CENTER" layoutX="481.0" layoutY="211.0" maxHeight="908.0" prefHeight="463.0" prefWidth="260.0" spacing="31.0">
          <children>
-            <TextField fx:id="NomAffich" prefHeight="31.0" prefWidth="581.0" promptText="Nom" />
-            <TextField fx:id="PrenomAffich" prefHeight="31.0" prefWidth="252.0" promptText="Prenom" />
-            <TextField fx:id="EmailAffich" promptText="Email" />
-            <TextField fx:id="NumtelAffich" promptText="Numtel" />
-            <TextField fx:id="LoginAffich" promptText="Login" />
-            <TextField fx:id="MdpAffich" promptText="Mot de passe" />
-            <Button fx:id="UpdateeBtn" mnemonicParsing="false" onAction="#modifierLivreurDNew" prefWidth="129.0" style="-fx-background-color: #E5D1FA;" text="Modifier" textFill="#4b56d2">
+            <TextField fx:id="nomLivreur" prefHeight="31.0" prefWidth="581.0" promptText="Nom" />
+            <TextField fx:id="prenomLivreur" prefHeight="31.0" prefWidth="252.0" promptText="Prenom" />
+            <TextField fx:id="emailLivreur" promptText="Email" />
+            <TextField fx:id="numtelLivreur" promptText="Numtel" />
+            <TextField fx:id="adresseLivreur" promptText="Adresse" />
+            <Button fx:id="UpdateBtn" mnemonicParsing="false" onAction="#updateLivreurC" prefWidth="129.0" style="-fx-background-color: #E5D1FA;" text="Update" textFill="#4b56d2">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -118,7 +77,7 @@
          </children>
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0" />
-      <VBox layoutX="339.0" layoutY="240.0" prefHeight="359.0" prefWidth="117.0" spacing="37.0">
+      <VBox layoutX="344.0" layoutY="272.0" prefHeight="359.0" prefWidth="117.0" spacing="37.0">
          <children>
             <Label text="Nom :" textFill="#362fd9">
                <font>
@@ -140,17 +99,45 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label text="Login :" textFill="#362fd9">
+            <Label text="Adresse" textFill="#362fd9">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label text="Mot de passe :" textFill="#362fd9">
+            <Label textFill="#362fd9">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
          </children>
       </VBox>
+      <VBox fx:id="LivreurFonct" layoutY="127.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #7B829F;">
+         <children>
+            <Button fx:id="unassignedColis" mnemonicParsing="false" onAction="#viewUnassignedColisAction" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Unassigned colis" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="myColis" mnemonicParsing="false" onAction="#myColisAction" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="My colis" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="reclamation" mnemonicParsing="false" onAction="#historiquePage" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Réclamations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="addAvailability" mnemonicParsing="false" onAction="#addAvailabilityAction" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Add availability" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="38.0" right="30.0" top="20.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="deleteBtn" layoutX="308.0" layoutY="659.0" mnemonicParsing="false" onAction="#deleteLivreurAction" text="Permanetly delete account" />
    </children>
 </AnchorPane>

@@ -3,22 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Entities/PartenaireN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Entities/LivreurInterfaceN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Services/LivreurInterfaceServiceN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/PartenaireMesLivreursController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Entities/MoyenDeTransport.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Interfaces/ILivreurInterfaceN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/PartenaireColisController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Services/PartenaireServiceN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/EditMoyenDeTransportController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Entities/ColisN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/MoyenDeTransportController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Utils/MyConnection.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/Interfaces/IPartenaireN.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/AccueilPartenaireController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/AddMoyenDeTransportController.java</file>
-            <file>file:/C:/Users/Najet/Desktop/PIDEV-last/src/GUI/Main.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/LivreurAvailabilityController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/livreurAvailability.fxml</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/ClientReclamationController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/WelcomeController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/LivreurInterfaceController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/PartenaireReclamationController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/LivreurCrudController.java</file>
+            <file>file:/C:/Users/nedia/Downloads/PIDEV-last%20(2)/PIDEV-last/src/GUI/clienReclamation.fxml</file>
         </group>
     </open-files>
 </project-private>

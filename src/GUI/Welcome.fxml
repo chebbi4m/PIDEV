@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="53.0" layoutY="550.0" onAction="#reclamation" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Reclamation" textFill="#3512e4">
+            <JFXButton layoutX="53.0" layoutY="550.0" onAction="#openReclamation" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Reclamation" textFill="#3512e4">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

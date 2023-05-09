@@ -32,17 +32,6 @@ public class WelcomeController implements Initializable{
     @FXML
     private Label nomlogin;
 
-    @FXML
-    private JFXButton historique;
-
-    @FXML
-    private JFXButton historique1;
-
-    @FXML
-    private JFXButton historique2;
-
-    @FXML
-    private JFXButton historique3;
 
     @FXML
     private JFXButton fermer;
@@ -82,7 +71,6 @@ public class WelcomeController implements Initializable{
 
     }
 
-    @FXML
     void reclamation(ActionEvent event) {
 
     }
@@ -98,6 +86,24 @@ public class WelcomeController implements Initializable{
           ClientService ps = new ClientService();
           pr = (Client) UserSession.INSTANCE.get("client");
           nomlogin.setText(pr.getPrenom());
+    }
+
+    @FXML
+    private void openReclamation(ActionEvent event) throws IOException {
+        Stage stage = new Stage ();
+        Parent root = FXMLLoader.load(getClass().getResource("clienReclamation.fxml"));  
+        Scene scene = new Scene (root);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
+    }
+
+    @FXML
+    private void retourner(ActionEvent event) {
     }
 
 }

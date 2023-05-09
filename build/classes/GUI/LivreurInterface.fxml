@@ -12,46 +12,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #FFFBF5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LivreurInterfaceController">
    <children>
-      <VBox fx:id="LivreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #F5F5F5;">
+      <VBox fx:id="LivreurFonct" layoutX="-2.0" layoutY="125.0" prefHeight="598.0" prefWidth="242.0" spacing="67.0" style="-fx-background-color: #7B829F;">
          <children>
-            <HBox fx:id="ListeCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <VBox.margin>
-                  <Insets top="61.0" />
-               </VBox.margin>
-               <children>
-                  <Label text="Liste des colis" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Button fx:id="historique" mnemonicParsing="false" onAction="#historiquePage" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Historique" textFill="WHITE">
+            <Button fx:id="unassignedColis" mnemonicParsing="false" onAction="#viewUnassignedColisAction" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Unassigned colis" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <HBox fx:id="ReclamationsCont" alignment="CENTER" fillHeight="false" maxWidth="167.0" minWidth="50.0" prefHeight="94.0" prefWidth="167.0" style="-fx-background-color: #865DFF;">
-               <children>
-                  <Label text="Voir les réclamations" textFill="WHITE" textOverrun="CLIP">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
+            <Button fx:id="myColis" mnemonicParsing="false" onAction="#myColisAction" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="My colis" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="reclamation" mnemonicParsing="false" onAction="#openReclamation" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Réclamations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="addAvailability" mnemonicParsing="false" onAction="#addAvailabilityAction" onMouseClicked="#historiquePage" prefHeight="96.0" prefWidth="167.0" style="-fx-background-color: #865DFF;" text="Add availability" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
          <padding>
             <Insets bottom="20.0" left="38.0" right="30.0" top="20.0" />
          </padding>
       </VBox>
-      <HBox prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #F5F5F5;">
+      <HBox prefHeight="128.0" prefWidth="1080.0" spacing="619.0" style="-fx-background-color: #FFDE59;">
          <children>
             <ImageView fx:id="LogoCont" fitHeight="92.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,25 +83,30 @@
             </HBox>
          </children>
       </HBox>
-      <TableView fx:id="LivreurTable" layoutX="287.0" layoutY="256.0" prefHeight="418.0" prefWidth="710.0">
+      <TableView fx:id="colisTableView" layoutX="266.0" layoutY="237.0" prefHeight="418.0" prefWidth="786.0">
         <columns>
-          <TableColumn fx:id="RefCol" prefWidth="110.0" style="-fx-background-color: #E5D1FA;" text="Ref" />
-          <TableColumn fx:id="NomCol" prefWidth="154.0" style="-fx-background-color: #E5D1FA;" text="Nom" />
-            <TableColumn fx:id="DestinationCol" prefWidth="161.0" style="-fx-background-color: #E5D1FA;" text="Destination" />
-            <TableColumn fx:id="PayementCol" prefWidth="148.0" style="-fx-background-color: #E5D1FA;" text="Payement" />
-            <TableColumn fx:id="EtatCol" prefWidth="136.0" style="-fx-background-color: #E5D1FA;" text="Etat" />
+          <TableColumn fx:id="refCol" prefWidth="64.0" style="-fx-background-color: #FFDE59;" text="Ref" />
+          <TableColumn fx:id="hauteurCol" prefWidth="100.0" style="-fx-background-color: #FFDE59;" text="hauteur" />
+            <TableColumn fx:id="poidsCol" prefWidth="90.0" style="-fx-background-color: #FFDE59;" text="poids" />
+            <TableColumn fx:id="fragileCol" prefWidth="69.0" style="-fx-background-color: #FFDE59;" text="fragile" />
+            <TableColumn fx:id="inflammableCol" prefWidth="111.0" style="-fx-background-color: #FFDE59;" text="inflammable" />
+            <TableColumn fx:id="departCol" prefWidth="74.0" style="-fx-background-color: #FFDE59;" text="depart" />
+            <TableColumn fx:id="destinationCol" prefWidth="103.0" style="-fx-background-color: #FFDE59;" text="destination" />
+            <TableColumn fx:id="zoneCol" prefWidth="108.0" style="-fx-background-color: #FFDE59;" text="zone" />
+            <TableColumn fx:id="urgentCol" prefWidth="66.0" style="-fx-background-color: #FFDE59;" text="urgent" />
         </columns>
       </TableView>
-      <ComboBox fx:id="etat" layoutX="622.0" layoutY="172.0" prefHeight="31.0" prefWidth="120.0" />
-      <Label layoutX="390.0" layoutY="172.0" text="Changer l'état du colis:" textFill="#0033c7">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="SavingButton" layoutX="766.0" layoutY="172.0" mnemonicParsing="false" onAction="#saveEtat" style="-fx-background-color: #E5D1FA;" text="Save" textFill="#4b56d2">
+      <Button fx:id="PrintBtn" layoutX="638.0" layoutY="672.0" mnemonicParsing="false" onAction="#PrintAction" style="-fx-background-color: #FFDE59;" text="Print" textFill="#4b56d2">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      <CustomTextField fx:id="searchTextField" layoutX="393.0" layoutY="159.0" />
+      <Label layoutX="279.0" layoutY="164.0" text="Search by zone" />
+      <Button fx:id="assignBtn" layoutX="461.0" layoutY="672.0" mnemonicParsing="false" onAction="#assignColisToLivreur" text="Assign" />
+      <Button fx:id="searchZoneBtn" layoutX="594.0" layoutY="159.0" mnemonicParsing="false" onAction="#SearchZoneAction" text="Search" />
+      <Label fx:id="etatLabel" layoutX="717.0" layoutY="164.0" text="Etat colis" />
+      <ComboBox fx:id="etatColisSelect" layoutX="793.0" layoutY="159.0" prefWidth="150.0" />
+      <Button fx:id="updateEtatBtn" layoutX="967.0" layoutY="159.0" mnemonicParsing="false" onAction="#updateEtatAction" prefHeight="31.0" prefWidth="86.0" text="Update " />
    </children>
 </AnchorPane>
