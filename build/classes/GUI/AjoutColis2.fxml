@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutColis2Controller">
+   <children>
+      <Pane layoutX="293.0" layoutY="162.0" prefHeight="5.0" prefWidth="777.0" style="-fx-background-color: black;" />
+      <Text layoutX="293.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes colis">
+         <font>
+            <Font name="Bauhaus 93" size="41.0" />
+         </font>
+      </Text>
+      <Pane layoutY="86.0" prefHeight="634.0" prefWidth="229.0" style="-fx-background-color: #7B829F;">
+         <children>
+            <AnchorPane layoutX="15.0" layoutY="137.0" prefHeight="357.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="28.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnAccueil" prefHeight="51.0" prefWidth="144.0" style="-fx-background-color: black;" text="ACCUEIL" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="28.0" layoutY="98.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="144.0" style="-fx-background-color: #1130AE;" text="COLIS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="29.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnHistorique" prefHeight="51.0" prefWidth="144.0" style="-fx-background-color: black;" text="HISTORIQUE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+
+                  </Button>
+                  <Button layoutX="29.0" layoutY="266.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="144.0" style="-fx-background-color: black;" text="RECLAMATION" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+      <Pane prefHeight="85.0" prefWidth="1070.0" style="-fx-background-color: #FFDE59;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="215.0" fitWidth="267.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/taktakLogo.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="928.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnDeconnecter" prefHeight="39.0" prefWidth="122.0" style="-fx-background-color: black;" text="DECONNECTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <FontAwesomeIconView glyphName="USER" layoutX="887.0" layoutY="57.0" size="35" />
+            <Label fx:id="nomlogin" layoutX="811.0" layoutY="29.0" text="name" textFill="#1130ae">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutY="85.0" prefHeight="2.0" prefWidth="1070.0" style="-fx-background-color: black;" />
+         </children>
+      </Pane>
+      <Pane layoutX="410.0" layoutY="214.0" prefHeight="461.0" prefWidth="526.0" style="-fx-background-color: #7B829F #7B829F;">
+         <children>
+            <Button layoutX="29.0" layoutY="363.0" mnemonicParsing="false" onAction="#btnRetour" prefHeight="39.0" prefWidth="108.0" style="-fx-background-color: red;" text="RETOUR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="395.0" layoutY="363.0" mnemonicParsing="false" onAction="#btnSuivant" prefHeight="39.0" prefWidth="108.0" style="-fx-background-color: #1130AE;" text="SUIVANT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Text layoutX="104.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment souhaitez-vous payer ?">
+               <font>
+                  <Font name="Bauhaus 93" size="22.0" />
+               </font>
+            </Text>
+            <Button layoutX="191.0" layoutY="124.0" mnemonicParsing="false" onAction="#carte" prefHeight="39.0" prefWidth="144.0" text="Par carte">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="191.0" layoutY="192.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Par virement">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="191.0" layoutY="262.0" mnemonicParsing="false" onAction="#Livraison" prefHeight="39.0" prefWidth="144.0" text="Sur place">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="410.0" layoutY="193.0" prefHeight="21.0" prefWidth="108.0" style="-fx-background-color: #FFDE59 #FFDE59;">
+         <children>
+            <Pane layoutX="-1.0" prefHeight="21.0" prefWidth="2.0" style="-fx-background-color: black;" />
+            <Text layoutX="28.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ETAPE 1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Pane layoutX="106.0" layoutY="2.0" prefHeight="21.0" prefWidth="2.0" style="-fx-background-color: black;" />
+         </children>
+      </Pane>
+      <Pane layoutX="518.0" layoutY="193.0" prefHeight="21.0" prefWidth="108.0" style="-fx-background-color: #FFDE59 #FFDE59;">
+         <children>
+            <Text layoutX="31.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ETAPE 2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane layoutX="773.0" layoutY="193.0" prefHeight="21.0" prefWidth="108.0" style="-fx-background-color: #FFDE59 #FFDE59;">
+         <children>
+            <Text layoutX="31.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ETAPE 4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Pane layoutX="-363.0" layoutY="1.0" prefHeight="2.0" prefWidth="471.0" style="-fx-background-color: black;" />
+            <Pane layoutX="106.0" prefHeight="21.0" prefWidth="2.0" style="-fx-background-color: black;" />
+         </children>
+      </Pane>
+      <Pane layoutX="771.0" layoutY="195.0" prefHeight="21.0" prefWidth="2.0" style="-fx-background-color: black;" />
+      <Pane layoutX="626.0" layoutY="177.0" prefHeight="39.0" prefWidth="144.0" style="-fx-background-color: #1130AE;">
+         <children>
+            <Text layoutX="38.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ETAPE 3">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
