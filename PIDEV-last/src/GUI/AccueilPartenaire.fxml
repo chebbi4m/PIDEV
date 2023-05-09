@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AccueilPartenaireController">
+   <children>
+      <AnchorPane layoutX="-6.0" layoutY="-4.0" prefHeight="734.0" prefWidth="251.0" style="-fx-background-color: #7B829F #7B829F;">
+         <children>
+            <JFXButton fx:id="historiquebtn" layoutX="53.0" layoutY="475.0" onAction="#hist" onMouseClicked="#hist" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Historique " textFill="#3512e4">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Accueilbtn" layoutX="53.0" layoutY="208.0" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Accueil" textFill="#3512e4">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Meslivreurbtn" layoutX="53.0" layoutY="297.0" onAction="#meslivreurs" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Mes livreurs" textFill="#3512e4">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="reclamation_btn" layoutX="53.0" layoutY="558.0" onAction="#open_reclamation" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Reclamation" textFill="#3512e4">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Meslvoiturebtn" layoutX="55.0" layoutY="379.0" onAction="#Moyen" prefHeight="54.0" prefWidth="131.0" style="-fx-background-color: white;" text="Mes Vehicules" textFill="#3512e4">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="224.0" prefHeight="73.0" prefWidth="843.0" style="-fx-background-color: #7B829F #7B829F;">
+         <children>
+            <JFXButton fx:id="fermer" layoutX="789.0" layoutY="12.0" onAction="#cancel" onMouseClicked="#cancel" prefHeight="44.0" prefWidth="38.0" style="-fx-background-color: red;" text="X" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="retour" layoutX="617.0" layoutY="11.0" onAction="#retourner" onMouseClicked="#retourner" prefHeight="44.0" prefWidth="164.0" style="-fx-background-color: #7B829F;" text="Deconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="380.0" layoutY="266.0" prefHeight="131.0" prefWidth="207.0" spacing="10.0">
+         <children>
+            <TextField fx:id="tfNom" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfEmail" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfNumtel" layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="377.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="267.0" layoutY="266.0" prefHeight="124.0" prefWidth="71.0" spacing="20.0">
+         <children>
+            <Label text="Nom">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label text="Email" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Numtel">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="826.0" layoutY="269.0" prefHeight="165.0" prefWidth="214.0" spacing="10.0">
+         <children>
+            <ComboBox fx:id="listeZone" prefHeight="25.0" prefWidth="225.0" />
+            <TextField fx:id="tfPrix_poids" layoutX="10.0" layoutY="118.0" prefHeight="36.0" prefWidth="377.0" />
+            <TextField fx:id="tfPrix_zone" layoutX="10.0" layoutY="154.0" prefHeight="36.0" prefWidth="231.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="646.0" layoutY="264.0" prefHeight="175.0" prefWidth="152.0" spacing="20.0">
+         <children>
+            <Label text="Zone de transport " textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Prix par poids ">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Prix par zone">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="btnModifier" layoutX="845.0" layoutY="492.0" mnemonicParsing="false" onAction="#modifierPartenaire" prefHeight="52.0" prefWidth="94.0" text="    Confirmer" textFill="#0798d7" textOverrun="CLIP" />
+      <FontAwesomeIconView fill="#02c31c" glyphName="CHECK" layoutX="849.0" layoutY="524.0" size="18" text="" />
+      <Text layoutX="501.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis inflammable  : " wrappingWidth="191.2499976530671">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="502.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-Les colis fragile :" textAlignment="CENTER" wrappingWidth="143.43750382214785">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="Ouiinflammable" layoutX="531.0" layoutY="543.0" mnemonicParsing="false" onAction="#inflammable" text="Oui">
+         <toggleGroup>
+            <ToggleGroup fx:id="colis" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="Noninflammable" layoutX="604.0" layoutY="543.0" mnemonicParsing="false" onAction="#inflammable" prefHeight="17.0" prefWidth="61.0" text="Non">
+         <toggleGroup>
+            <ToggleGroup fx:id="colis1" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="Ouifragile" layoutX="536.0" layoutY="635.0" mnemonicParsing="false" onAction="#fragile" text="Oui">
+         <toggleGroup>
+            <ToggleGroup fx:id="test" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="Nonfragile" layoutX="615.0" layoutY="635.0" mnemonicParsing="false" onAction="#fragile" prefHeight="17.0" prefWidth="61.0" text="Non">
+         <toggleGroup>
+            <ToggleGroup fx:id="test1" />
+         </toggleGroup>
+      </RadioButton>
+      <Label layoutX="471.0" layoutY="102.0" prefHeight="54.0" prefWidth="341.0" text="Bienvenue cher Partenaire" textFill="#3512e4">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="nomlogin" layoutX="766.0" layoutY="129.0" prefHeight="31.0" prefWidth="120.0" text="Nom" textFill="RED">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
