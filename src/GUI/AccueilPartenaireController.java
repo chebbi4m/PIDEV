@@ -7,8 +7,6 @@ package GUI;
  */
 
 
-import Entities.Partenaire;
-import Services.PartenaireService;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +38,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import Session.UserSession;
 import Entities.PartenaireN;
+import Services.PartenaireService;
 import Services.PartenaireServiceN;
 import Utils.MyConnection;
 
@@ -106,11 +105,8 @@ public class AccueilPartenaireController implements Initializable {
         
             String[] items = {"Nationale", "Internationale"};
          listeZone.getItems().setAll(items);
-
-          Partenaire pr = new Partenaire();
-          PartenaireService ps = new PartenaireService();
-          pr = (Partenaire) Session.UserSession.INSTANCE.get("partenaire");
-          nomlogin.setText(pr.getNom());
+ PartenaireService ps = new PartenaireService ();
+       ;
     }    
 
     @FXML

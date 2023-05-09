@@ -1,0 +1,79 @@
+.root-pane {
+    -fx-background-color: #F9F9F9;
+}
+
+.header {
+    -fx-text-fill: #333333;
+    -fx-padding: 10 0;
+}
+
+.label {
+    -fx-text-fill: #666666;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-prompt-text-fill: #999999;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 16px;
+}
+
+.radio-button {
+    -fx-text-fill: #333333;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.grid {
+    -fx-padding: 20px;
+}
+
+.cancel-button {
+    -fx-background-color: #CCCCCC;
+    -fx-text-fill: #333333;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.add-button {
+    -fx-background-color: #0077FF;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.button-box {
+    -fx-padding: 20px 0;
+}
+.hbox {
+    -fx-spacing: 10px;
+}
+
+.button-box > * {
+    -fx-transition-duration: 0.3s;
+}
+
+.button-box > *:hover {
+    -fx-background-color: derive(-fx-base, 20%);
+    -fx-text-fill: white;
+}
+
+.button-box > *:pressed {
+    -fx-background-color: derive(-fx-base, 60%);
+    -fx-text-fill: white;
+}

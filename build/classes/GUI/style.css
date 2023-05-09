@@ -1,0 +1,111 @@
+.table-view {
+    -fx-background-color: #FFFFFF;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 1px;
+    -fx-border-color: #CCCCCC;
+}
+
+.table-view .column-header {
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #333333;
+}
+
+.table-row-cell {
+    -fx-background-color: #F7F7F7;
+    -fx-border-width: 1px;
+    -fx-border-color: #CCCCCC;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #0077CC;
+    -fx-text-fill: #FFFFFF;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #FFFFFF;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #F7F7F7;
+}
+
+
+.button {
+    -fx-background-color: linear-gradient(#3F51B5, rgba(255, 255, 255, 0));
+    -fx-background-radius: 30;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#f0f1ef, #f5eff0);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.8) , 7, 0.0 , 0 , 2 );
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(#f4f6f4, #3F51B5);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 10, 0.0 , 0 , 3 );
+}
+.imageView {
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 0);
+    -fx-padding: 10px;
+    -fx-translate-x: 40%;
+    -fx-translate-y: -10%;
+}
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+.voiture-button {
+    -fx-background-color: #6e98f1;
+    -fx-text-fill: #FFFFFF;
+}
+
+.camion-button {
+    -fx-background-color: #FF0000;
+    -fx-text-fill: #FFFFFF;
+}
+.button-primary {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: #a6d5f6;
+    -fx-font-weight: bold;
+}
+
+/* Secondary button style */
+.button-secondary {
+    -fx-background-color: #67b5ec;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+}
+#addButton {
+    -fx-background-color: #4bdbe0; /* Green */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14pt;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+}
+
+#addButton:hover {
+    -fx-background-color: #a9dad5; /* Darker green */
+}
+
+
+
+
+
+
+
