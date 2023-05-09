@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="mainAnchorPane" prefHeight="642.0" prefWidth="1011.0" style="-fx-background-color: rgba(0, 0, 255, 0.5);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MoyenDeTransportController">
+   <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="268.0" />
+   <Button fx:id="searchButton" layoutX="287.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleSearch" styleClass="button-primary" text="Search" />
+   <Button fx:id="voitureButton" layoutY="520.0" mnemonicParsing="false" onAction="#handleVoiture" styleClass="voiture-button" text="Voiture" />
+   <Button fx:id="camionButton" layoutX="-1.0" layoutY="573.0" mnemonicParsing="false" onAction="#handleCamion" styleClass="camion-button" text="Camion" />
+
+   <Label layoutX="419.0" layoutY="5.0" styleClass="page-title" text="Moyen De Transport" />
+   <ImageView fitHeight="95.0" fitWidth="199.0" layoutX="748.0" styleClass="imageView">
+      <image>
+         <Image url="@../Images/328342324_1364954254275732_306385570230425431_n.jpg" />
+      </image>
+
+   </ImageView>
+   <Button fx:id="refreshButton" layoutX="571.0" layoutY="573.0" onAction="#handleRefresh" styleClass="button-secondary" text="Refresh Table" />
+
+   <TableView id="table" fx:id="table" layoutX="136.0" layoutY="73.0" prefHeight="487.0" prefWidth="876.0">
+      <columns>
+         <TableColumn id="colId" fx:id="colId" prefWidth="75.0" text="ID" />
+         <TableColumn id="colMarque" fx:id="colMarque" prefWidth="150.0" text="Marque" />
+         <TableColumn id="colType" fx:id="colType" prefWidth="75.0" text="Type" />
+         <TableColumn id="colMatricule" fx:id="colMatricule" prefWidth="150.0" text="Matricule" />
+         <TableColumn id="assignedColumn" fx:id="assignedColumn" prefWidth="150.0" text="Assigné" />
+         <TableColumn fx:id="actionsColumn" prefWidth="259.9999755859375" text="Actions" />
+
+      </columns>
+   </TableView>
+   <Button layoutX="723.0" layoutY="573.0" onAction="#handleAddMoyenDeTransportButton" text="Add Moyen De Transport" />
+
+   <stylesheets>
+
+      <URL value="@style.css" />
+   </stylesheets>
+
+</AnchorPane>
